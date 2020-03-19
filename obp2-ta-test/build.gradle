@@ -1,0 +1,12 @@
+dependencies {
+
+    compile project(':obp2-ta')
+    compile flexoFoundation()
+    
+    compile testUtils()
+    compile flexoFoundationTest()
+
+	// Test resource center
+	testRuntime project(':obp2-ta-test-rc')
+  
+}

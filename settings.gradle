@@ -1,0 +1,1 @@
+include 'obp2-ta', 'obp2-ta-rc', 'obp2-ta-test', 'obp2-ta-test-rc', 'obp2-ta-ui'
