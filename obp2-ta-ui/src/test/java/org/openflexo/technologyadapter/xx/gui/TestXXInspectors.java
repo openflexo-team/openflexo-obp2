@@ -76,12 +76,12 @@ public class TestXXInspectors extends GenericFIBInspectorTestCase {
 
 	@Test
 	public void testXXLineInspector() {
-		validateFIB("Inspectors/XX/XXLine.inspector");
+		validateFIB("Inspectors/XX/OBP2XXX.inspector");
 	}
 
 	@Test
 	public void testXXTextInspector() {
-		validateFIB("Inspectors/XX/XXText.inspector");
+		validateFIB("Inspectors/XX/OBP2Analysis.inspector");
 	}
 
 }

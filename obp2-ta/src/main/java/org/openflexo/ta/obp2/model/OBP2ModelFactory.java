@@ -47,41 +47,41 @@ import org.openflexo.pamela.ModelContextLibrary;
 import org.openflexo.pamela.exceptions.ModelDefinitionException;
 import org.openflexo.pamela.factory.EditingContext;
 import org.openflexo.pamela.factory.ModelFactory;
-import org.openflexo.ta.obp2.rm.XXTextResource;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResource;
 
 /**
- * A {@link ModelFactory} used to manage a XXText<br>
- * One instance of this class should be used for each {@link XXTextResource}
+ * A {@link ModelFactory} used to manage a OBP2Analysis<br>
+ * One instance of this class should be used for each {@link OBP2AnalysisResource}
  * 
  * @author sylvain
  * 
  */
-public class XXModelFactory extends ModelFactory implements PamelaResourceModelFactory<XXTextResource> {
+public class OBP2ModelFactory extends ModelFactory implements PamelaResourceModelFactory<OBP2AnalysisResource> {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(XXModelFactory.class.getPackage().getName());
+	private static final Logger logger = Logger.getLogger(OBP2ModelFactory.class.getPackage().getName());
 
-	private final XXTextResource resource;
+	private final OBP2AnalysisResource resource;
 	private IgnoreLoadingEdits ignoreHandler = null;
 	private FlexoUndoManager undoManager = null;
 
-	public XXModelFactory(XXTextResource resource, EditingContext editingContext) throws ModelDefinitionException {
-		super(ModelContextLibrary.getCompoundModelContext(XXText.class));
+	public OBP2ModelFactory(OBP2AnalysisResource resource, EditingContext editingContext) throws ModelDefinitionException {
+		super(ModelContextLibrary.getCompoundModelContext(OBP2Analysis.class));
 		this.resource = resource;
 		setEditingContext(editingContext);
 	}
 
 	@Override
-	public XXTextResource getResource() {
+	public OBP2AnalysisResource getResource() {
 		return resource;
 	}
 
-	public XXText makeXXText() {
-		return newInstance(XXText.class);
+	public OBP2Analysis makeXXText() {
+		return newInstance(OBP2Analysis.class);
 	}
 
-	public XXLine makeXXLine(String value, int index) {
-		XXLine returned = newInstance(XXLine.class);
+	public OBP2XXX makeXXLine(String value, int index) {
+		OBP2XXX returned = newInstance(OBP2XXX.class);
 		returned.setValue(value);
 		returned.setIndex(index);
 		return returned;

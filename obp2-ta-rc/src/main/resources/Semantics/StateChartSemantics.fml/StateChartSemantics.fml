@@ -1,0 +1,9 @@
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/Semantics/StateChartsSemantics.fml")
+public class StateChartsSemantics {
+}

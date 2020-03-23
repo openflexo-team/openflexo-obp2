@@ -41,7 +41,7 @@ package org.openflexo.ta.obp2.fml.editionaction;
 import org.openflexo.foundation.fml.editionaction.TechnologySpecificActionDefiningReceiver;
 import org.openflexo.pamela.annotations.ModelEntity;
 import org.openflexo.ta.obp2.OBP2ModelSlot;
-import org.openflexo.ta.obp2.model.XXText;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
 
 /**
  * Abstract action for {@link OBP2ModelSlot}
@@ -53,6 +53,6 @@ import org.openflexo.ta.obp2.model.XXText;
  */
 
 @ModelEntity(isAbstract = true)
-public interface XXAction<T extends Object> extends TechnologySpecificActionDefiningReceiver<OBP2ModelSlot, XXText, T> {
+public interface XXAction<T extends Object> extends TechnologySpecificActionDefiningReceiver<OBP2ModelSlot, OBP2Analysis, T> {
 
 }

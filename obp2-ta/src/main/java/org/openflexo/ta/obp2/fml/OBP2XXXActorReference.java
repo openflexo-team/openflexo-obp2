@@ -54,21 +54,21 @@ import org.openflexo.pamela.annotations.PropertyIdentifier;
 import org.openflexo.pamela.annotations.Setter;
 import org.openflexo.pamela.annotations.XMLAttribute;
 import org.openflexo.pamela.annotations.XMLElement;
-import org.openflexo.ta.obp2.model.XXLine;
-import org.openflexo.ta.obp2.model.XXText;
-import org.openflexo.ta.obp2.rm.XXTextResource;
+import org.openflexo.ta.obp2.model.OBP2XXX;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResource;
 
 /**
- * Implements {@link ActorReference} for {@link XXLine} object
+ * Implements {@link ActorReference} for {@link OBP2XXX} object
  * 
  * @author sylvain
  * 
  */
 @ModelEntity
-@ImplementationClass(XXLineActorReference.XXLineActorReferenceImpl.class)
+@ImplementationClass(OBP2XXXActorReference.XXLineActorReferenceImpl.class)
 @XMLElement
-@FML("XXLineActorReference")
-public interface XXLineActorReference extends ActorReference<XXLine> {
+@FML("OBP2XXXActorReference")
+public interface OBP2XXXActorReference extends ActorReference<OBP2XXX> {
 
 	@PropertyIdentifier(type = String.class)
 	public static final String OBJECT_URI_KEY = "objectURI";
@@ -80,14 +80,14 @@ public interface XXLineActorReference extends ActorReference<XXLine> {
 	@Setter(OBJECT_URI_KEY)
 	public void setObjectURI(String objectURI);
 
-	public abstract static class XXLineActorReferenceImpl extends ActorReferenceImpl<XXLine> implements XXLineActorReference {
+	public abstract static class XXLineActorReferenceImpl extends ActorReferenceImpl<OBP2XXX> implements OBP2XXXActorReference {
 
-		private static final Logger logger = FlexoLogger.getLogger(XXLineActorReference.class.getPackage().toString());
+		private static final Logger logger = FlexoLogger.getLogger(OBP2XXXActorReference.class.getPackage().toString());
 
-		private XXLine object;
+		private OBP2XXX object;
 		private String objectURI;
 
-		public XXText getXXText() {
+		public OBP2Analysis getXXText() {
 			if (getXXTextResource() != null) {
 				try {
 					return getXXTextResource().getResourceData();
@@ -102,16 +102,16 @@ public interface XXLineActorReference extends ActorReference<XXLine> {
 			return null;
 		}
 
-		public XXTextResource getXXTextResource() {
+		public OBP2AnalysisResource getXXTextResource() {
 			ModelSlotInstance<?, ?> msInstance = getModelSlotInstance();
-			if (msInstance != null && msInstance.getResource() instanceof XXTextResource) {
-				return (XXTextResource) msInstance.getResource();
+			if (msInstance != null && msInstance.getResource() instanceof OBP2AnalysisResource) {
+				return (OBP2AnalysisResource) msInstance.getResource();
 			}
 			return null;
 		}
 
 		@Override
-		public XXLine getModellingElement(boolean forceLoading) {
+		public OBP2XXX getModellingElement(boolean forceLoading) {
 			if (object == null && objectURI != null) {
 				int index = Integer.parseInt(objectURI);
 				return getXXText().getLines().get(index);
@@ -124,7 +124,7 @@ public interface XXLineActorReference extends ActorReference<XXLine> {
 		}
 
 		@Override
-		public void setModellingElement(XXLine object) {
+		public void setModellingElement(OBP2XXX object) {
 			this.object = object;
 			if (object != null) {
 				objectURI = "" + object.getIndex();

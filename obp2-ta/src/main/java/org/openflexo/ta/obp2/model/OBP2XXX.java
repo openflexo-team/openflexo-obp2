@@ -49,45 +49,45 @@ import org.openflexo.pamela.annotations.Setter;
 import org.openflexo.pamela.annotations.XMLElement;
 
 /**
- * Represents a simple line of a {@link XXText}
+ * Represents a simple line of a {@link OBP2Analysis}
  * 
  * Note: Purpose of that class is to demonstrate API of a {@link TechnologyAdapter}, thus the semantics is here pretty simple: a
- * {@link XXText} is a plain text file contents, serialized as a {@link String}, and a {@link XXLine} is a line of that file, represented as
+ * {@link OBP2Analysis} is a plain text file contents, serialized as a {@link String}, and a {@link OBP2XXX} is a line of that file, represented as
  * a String
  * 
  * @author sylvain
  *
  */
 @ModelEntity
-@ImplementationClass(value = XXLine.XXLineImpl.class)
+@ImplementationClass(value = OBP2XXX.XXLineImpl.class)
 @XMLElement
-public interface XXLine extends XXObject {
+public interface OBP2XXX extends OBP2Object {
 
-	@PropertyIdentifier(type = XXText.class)
-	public static final String XX_TEXT_KEY = "XXText";
+	@PropertyIdentifier(type = OBP2Analysis.class)
+	public static final String XX_TEXT_KEY = "OBP2Analysis";
 	@PropertyIdentifier(type = String.class)
 	public static final String VALUE_KEY = "value";
 	@PropertyIdentifier(type = Integer.class)
 	public static final String INDEX_KEY = "index";
 
 	/**
-	 * Return {@link XXText} where this {@link XXLine} is defined
+	 * Return {@link OBP2Analysis} where this {@link OBP2XXX} is defined
 	 * 
 	 * @return
 	 */
 	@Getter(value = XX_TEXT_KEY)
-	public XXText getXXText();
+	public OBP2Analysis getXXText();
 
 	/**
-	 * Sets {@link XXText} where this {@link XXLine} is defined
+	 * Sets {@link OBP2Analysis} where this {@link OBP2XXX} is defined
 	 * 
 	 * @param text
 	 */
 	@Setter(XX_TEXT_KEY)
-	public void setXXText(XXText text);
+	public void setXXText(OBP2Analysis text);
 
 	/**
-	 * Return value for this {@link XXLine}, as a String representing the line
+	 * Return value for this {@link OBP2XXX}, as a String representing the line
 	 * 
 	 * @return
 	 */
@@ -95,7 +95,7 @@ public interface XXLine extends XXObject {
 	public String getValue();
 
 	/**
-	 * Sets value for this {@link XXLine}, as a String representing the line
+	 * Sets value for this {@link OBP2XXX}, as a String representing the line
 	 * 
 	 * @return
 	 */
@@ -119,21 +119,21 @@ public interface XXLine extends XXObject {
 	public void setIndex(int index);
 
 	/**
-	 * Default base implementation for {@link XXLine}
+	 * Default base implementation for {@link OBP2XXX}
 	 * 
 	 * @author sylvain
 	 *
 	 */
-	public static abstract class XXLineImpl extends XXObjectImpl implements XXLine {
+	public static abstract class XXLineImpl extends XXObjectImpl implements OBP2XXX {
 
 		@SuppressWarnings("unused")
-		private static final Logger logger = Logger.getLogger(XXLine.class.getPackage().getName());
+		private static final Logger logger = Logger.getLogger(OBP2XXX.class.getPackage().getName());
 
 		public XXLineImpl() {
 		}
 
 		@Override
-		public XXText getResourceData() {
+		public OBP2Analysis getResourceData() {
 			return getXXText();
 		}
 

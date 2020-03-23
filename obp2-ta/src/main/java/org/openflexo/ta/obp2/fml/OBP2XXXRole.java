@@ -36,48 +36,63 @@
  * 
  */
 
-package org.openflexo.ta.obp2.model;
+package org.openflexo.ta.obp2.fml;
 
-import java.util.logging.Logger;
+import java.lang.reflect.Type;
 
-import org.openflexo.foundation.InnerResourceData;
-import org.openflexo.foundation.technologyadapter.TechnologyObject;
+import org.openflexo.foundation.fml.FlexoRole;
+import org.openflexo.foundation.fml.annotations.FML;
+import org.openflexo.foundation.fml.rt.AbstractVirtualModelInstanceModelFactory;
+import org.openflexo.foundation.fml.rt.ActorReference;
+import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
+import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
+import org.openflexo.pamela.annotations.XMLElement;
 import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
+import org.openflexo.ta.obp2.model.OBP2XXX;
 
 /**
- * Common API for all objects involved in XX model
+ * A role which allow to reference a line in a plain text file
  * 
  * @author sylvain
  *
  */
-@ModelEntity(isAbstract = true)
-public interface XXObject extends InnerResourceData<XXText>, TechnologyObject<OBP2TechnologyAdapter> {
+@ModelEntity
+@ImplementationClass(OBP2XXXRole.XXLineRoleImpl.class)
+@XMLElement
+@FML("OBP2XXXRole")
+public interface OBP2XXXRole extends FlexoRole<OBP2XXX> {
 
-	public XXModelFactory getFactory();
-
-	/**
-	 * Default base implementation for {@link XXObject}
-	 * 
-	 * @author sylvain
-	 *
-	 */
-	public static abstract class XXObjectImpl extends FlexoObjectImpl implements XXObject {
-
-		@SuppressWarnings("unused")
-		private static final Logger logger = Logger.getLogger(XXObjectImpl.class.getPackage().getName());
+	public static abstract class XXLineRoleImpl extends FlexoRoleImpl<OBP2XXX> implements OBP2XXXRole {
 
 		@Override
-		public OBP2TechnologyAdapter getTechnologyAdapter() {
-			if (getResourceData() != null && getResourceData().getResource() != null) {
-				return getResourceData().getResource().getTechnologyAdapter();
-			}
-			return null;
+		public Type getType() {
+			return OBP2XXX.class;
 		}
 
 		@Override
-		public XXModelFactory getFactory() {
-			return getResourceData().getResource().getFactory();
+		public RoleCloningStrategy defaultCloningStrategy() {
+			return RoleCloningStrategy.Reference;
+		}
+
+		@Override
+		public boolean defaultBehaviourIsToBeDeleted() {
+			return false;
+		}
+
+		@Override
+		public ActorReference<OBP2XXX> makeActorReference(OBP2XXX object, FlexoConceptInstance fci) {
+			AbstractVirtualModelInstanceModelFactory<?> factory = fci.getFactory();
+			OBP2XXXActorReference returned = factory.newInstance(OBP2XXXActorReference.class);
+			returned.setFlexoRole(this);
+			returned.setFlexoConceptInstance(fci);
+			returned.setModellingElement(object);
+			return returned;
+		}
+
+		@Override
+		public Class<OBP2TechnologyAdapter> getRoleTechnologyAdapterClass() {
+			return OBP2TechnologyAdapter.class;
 		}
 
 	}

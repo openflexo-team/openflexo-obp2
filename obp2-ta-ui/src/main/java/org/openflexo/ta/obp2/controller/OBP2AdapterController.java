@@ -46,16 +46,12 @@ import org.openflexo.foundation.fml.FlexoRole;
 import org.openflexo.foundation.fml.editionaction.EditionAction;
 import org.openflexo.foundation.technologyadapter.TechnologyObject;
 import org.openflexo.gina.utils.InspectorGroup;
-import org.openflexo.icon.IconFactory;
-import org.openflexo.icon.IconLibrary;
 import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
-import org.openflexo.ta.obp2.fml.XXLineRole;
-import org.openflexo.ta.obp2.fml.editionaction.AbstractSelectXXLine;
-import org.openflexo.ta.obp2.fml.editionaction.AddXXLine;
-import org.openflexo.ta.obp2.gui.XXIconLibrary;
-import org.openflexo.ta.obp2.model.XXLine;
-import org.openflexo.ta.obp2.model.XXObject;
-import org.openflexo.ta.obp2.model.XXText;
+import org.openflexo.ta.obp2.fml.OBP2XXXRole;
+import org.openflexo.ta.obp2.gui.OBP2IconLibrary;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
+import org.openflexo.ta.obp2.model.OBP2Object;
+import org.openflexo.ta.obp2.model.OBP2XXX;
 import org.openflexo.ta.obp2.view.XXTextView;
 import org.openflexo.view.EmptyPanel;
 import org.openflexo.view.ModuleView;
@@ -64,9 +60,9 @@ import org.openflexo.view.controller.FlexoController;
 import org.openflexo.view.controller.TechnologyAdapterController;
 import org.openflexo.view.controller.model.FlexoPerspective;
 
-public class XXAdapterController extends TechnologyAdapterController<OBP2TechnologyAdapter> {
+public class OBP2AdapterController extends TechnologyAdapterController<OBP2TechnologyAdapter> {
 
-	static final Logger logger = Logger.getLogger(XXAdapterController.class.getPackage().getName());
+	static final Logger logger = Logger.getLogger(OBP2AdapterController.class.getPackage().getName());
 
 	private InspectorGroup xxInspectorGroup;
 
@@ -110,7 +106,7 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	 */
 	@Override
 	public ImageIcon getTechnologyBigIcon() {
-		return XXIconLibrary.XX_TA_BIG_ICON;
+		return OBP2IconLibrary.OBP2_TA_BIG_ICON;
 	}
 
 	/**
@@ -120,7 +116,7 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	 */
 	@Override
 	public ImageIcon getTechnologyIcon() {
-		return XXIconLibrary.XX_TA_ICON;
+		return OBP2IconLibrary.OBP2_TA_ICON;
 	}
 
 	/**
@@ -130,7 +126,7 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	 */
 	@Override
 	public ImageIcon getModelIcon() {
-		return XXIconLibrary.XX_TEXT_ICON;
+		return OBP2IconLibrary.OBP2_ANALYSIS_ICON;
 	}
 
 	/**
@@ -140,7 +136,7 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	 */
 	@Override
 	public ImageIcon getMetaModelIcon() {
-		return XXIconLibrary.XX_TEXT_ICON;
+		return OBP2IconLibrary.OBP2_ANALYSIS_ICON;
 	}
 
 	/**
@@ -151,8 +147,8 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	 */
 	@Override
 	public ImageIcon getIconForTechnologyObject(Class<? extends TechnologyObject<?>> objectClass) {
-		if (XXObject.class.isAssignableFrom(objectClass)) {
-			return XXIconLibrary.iconForObject((Class<? extends XXObject>) objectClass);
+		if (OBP2Object.class.isAssignableFrom(objectClass)) {
+			return OBP2IconLibrary.iconForObject((Class<? extends OBP2Object>) objectClass);
 		}
 		return null;
 	}
@@ -165,8 +161,8 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	 */
 	@Override
 	public ImageIcon getIconForFlexoRole(Class<? extends FlexoRole<?>> patternRoleClass) {
-		if (XXLineRole.class.isAssignableFrom(patternRoleClass)) {
-			return getIconForTechnologyObject(XXLine.class);
+		if (OBP2XXXRole.class.isAssignableFrom(patternRoleClass)) {
+			return getIconForTechnologyObject(OBP2XXX.class);
 		}
 		return null;
 	}
@@ -179,24 +175,24 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	 */
 	@Override
 	public ImageIcon getIconForEditionAction(Class<? extends EditionAction> editionActionClass) {
-		if (AddXXLine.class.isAssignableFrom(editionActionClass)) {
-			return IconFactory.getImageIcon(getIconForTechnologyObject(XXLine.class), IconLibrary.DUPLICATE);
+		/*if (AddXXLine.class.isAssignableFrom(editionActionClass)) {
+			return IconFactory.getImageIcon(getIconForTechnologyObject(OBP2XXX.class), IconLibrary.DUPLICATE);
 		}
 		else if (AbstractSelectXXLine.class.isAssignableFrom(editionActionClass)) {
-			return IconFactory.getImageIcon(getIconForTechnologyObject(XXLine.class), IconLibrary.IMPORT);
-		}
+			return IconFactory.getImageIcon(getIconForTechnologyObject(OBP2XXX.class), IconLibrary.IMPORT);
+		}*/
 		return super.getIconForEditionAction(editionActionClass);
 	}
 
 	@Override
 	public boolean hasModuleViewForObject(TechnologyObject<OBP2TechnologyAdapter> object, FlexoController controller) {
-		return object instanceof XXText;
+		return object instanceof OBP2Analysis;
 	}
 
 	@Override
 	public String getWindowTitleforObject(TechnologyObject<OBP2TechnologyAdapter> object, FlexoController controller) {
-		if (object instanceof XXText) {
-			return ((XXText) object).getResource().getName();
+		if (object instanceof OBP2Analysis) {
+			return ((OBP2Analysis) object).getResource().getName();
 		}
 		return object.toString();
 	}
@@ -204,8 +200,8 @@ public class XXAdapterController extends TechnologyAdapterController<OBP2Technol
 	@Override
 	public ModuleView<?> createModuleViewForObject(TechnologyObject<OBP2TechnologyAdapter> object, FlexoController controller,
 			FlexoPerspective perspective) {
-		if (object instanceof XXText) {
-			XXTextView returned = new XXTextView((XXText) object, controller, perspective);
+		if (object instanceof OBP2Analysis) {
+			XXTextView returned = new XXTextView((OBP2Analysis) object, controller, perspective);
 			return returned;
 		}
 		return new EmptyPanel<>(controller, perspective, object);

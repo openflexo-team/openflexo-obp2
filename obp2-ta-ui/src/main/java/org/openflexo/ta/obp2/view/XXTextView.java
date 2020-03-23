@@ -48,27 +48,27 @@ import javax.swing.JTextArea;
 
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.selection.SelectionListener;
-import org.openflexo.ta.obp2.model.XXText;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
 import org.openflexo.view.SelectionSynchronizedModuleView;
 import org.openflexo.view.controller.FlexoController;
 import org.openflexo.view.controller.model.FlexoPerspective;
 
 /**
- * This class represent the module view for a XXText.<br>
+ * This class represent the module view for a OBP2Analysis.<br>
  * 
  * @author sylvain
  * 
  */
 @SuppressWarnings("serial")
-public class XXTextView extends JPanel implements SelectionSynchronizedModuleView<XXText> {
+public class XXTextView extends JPanel implements SelectionSynchronizedModuleView<OBP2Analysis> {
 
-	private final XXText text;
+	private final OBP2Analysis text;
 	private final FlexoPerspective declaredPerspective;
 
 	private final FlexoController controller;
 	private JTextArea textArea;
 
-	public XXTextView(XXText text, FlexoController controller, FlexoPerspective perspective) {
+	public XXTextView(OBP2Analysis text, FlexoController controller, FlexoPerspective perspective) {
 		super(new BorderLayout());
 		this.controller = controller;
 		declaredPerspective = perspective;
@@ -114,7 +114,7 @@ public class XXTextView extends JPanel implements SelectionSynchronizedModuleVie
 	}
 
 	@Override
-	public XXText getRepresentedObject() {
+	public OBP2Analysis getRepresentedObject() {
 		return text;
 	}
 

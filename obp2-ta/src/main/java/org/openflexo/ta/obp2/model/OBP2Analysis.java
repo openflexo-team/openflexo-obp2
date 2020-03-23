@@ -49,7 +49,7 @@ import org.openflexo.pamela.annotations.CloningStrategy.StrategyType;
 import org.openflexo.pamela.annotations.Embedded;
 import org.openflexo.pamela.annotations.Getter;
 import org.openflexo.pamela.annotations.Getter.Cardinality;
-import org.openflexo.ta.obp2.rm.XXTextResource;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResource;
 import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
 import org.openflexo.pamela.annotations.PastingPoint;
@@ -58,19 +58,19 @@ import org.openflexo.pamela.annotations.Remover;
 import org.openflexo.pamela.annotations.XMLElement;
 
 /**
- * Represents the {@link ResourceData} deserialized from a {@link XXTextResource}<br>
+ * Represents the {@link ResourceData} deserialized from a {@link OBP2AnalysisResource}<br>
  * 
  * Note: Purpose of that class is to demonstrate API of a {@link TechnologyAdapter}, thus the semantics is here pretty simple: a
- * {@link XXText} is a plain text file contents, serialized as a {@link String}
+ * {@link OBP2Analysis} is a plain text file contents, serialized as a {@link String}
  * 
  * @author sylvain
  *
  */
 @ModelEntity
-@ImplementationClass(value = XXText.XXTextImpl.class)
-public interface XXText extends XXObject, ResourceData<XXText> {
+@ImplementationClass(value = OBP2Analysis.XXTextImpl.class)
+public interface OBP2Analysis extends OBP2Object, ResourceData<OBP2Analysis> {
 
-	@PropertyIdentifier(type = XXLine.class, cardinality = Cardinality.LIST)
+	@PropertyIdentifier(type = OBP2XXX.class, cardinality = Cardinality.LIST)
 	public static final String LINES_KEY = "lines";
 
 	/**
@@ -81,33 +81,33 @@ public interface XXText extends XXObject, ResourceData<XXText> {
 	public String getContents();
 
 	/**
-	 * Return all {@link XXLine} defined in this {@link XXText}
+	 * Return all {@link OBP2XXX} defined in this {@link OBP2Analysis}
 	 * 
 	 * @return
 	 */
-	@Getter(value = LINES_KEY, cardinality = Cardinality.LIST, inverse = XXLine.XX_TEXT_KEY)
+	@Getter(value = LINES_KEY, cardinality = Cardinality.LIST, inverse = OBP2XXX.XX_TEXT_KEY)
 	@XMLElement
 	@Embedded
 	@CloningStrategy(StrategyType.CLONE)
-	public List<XXLine> getLines();
+	public List<OBP2XXX> getLines();
 
 	@Adder(LINES_KEY)
 	@PastingPoint
-	public void addToLines(XXLine aLine);
+	public void addToLines(OBP2XXX aLine);
 
 	@Remover(LINES_KEY)
-	public void removeFromLines(XXLine aLine);
+	public void removeFromLines(OBP2XXX aLine);
 
 	@Override
-	public XXTextResource getResource();
+	public OBP2AnalysisResource getResource();
 
 	/**
-	 * Default base implementation for {@link XXText}
+	 * Default base implementation for {@link OBP2Analysis}
 	 * 
 	 * @author sylvain
 	 *
 	 */
-	public static abstract class XXTextImpl extends XXObjectImpl implements XXText {
+	public static abstract class XXTextImpl extends XXObjectImpl implements OBP2Analysis {
 
 		@SuppressWarnings("unused")
 		private static final Logger logger = Logger.getLogger(XXObjectImpl.class.getPackage().getName());
@@ -117,13 +117,13 @@ public interface XXText extends XXObject, ResourceData<XXText> {
 		private String contents = null;
 
 		@Override
-		public XXText getResourceData() {
+		public OBP2Analysis getResourceData() {
 			return this;
 		}
 
 		@Override
-		public XXTextResource getResource() {
-			return (XXTextResource) performSuperGetter(FLEXO_RESOURCE);
+		public OBP2AnalysisResource getResource() {
+			return (OBP2AnalysisResource) performSuperGetter(FLEXO_RESOURCE);
 		}
 
 		@Override
@@ -135,7 +135,7 @@ public interface XXText extends XXObject, ResourceData<XXText> {
 		public String getContents() {
 			if (contents == null) {
 				StringBuffer sb = new StringBuffer();
-				for (XXLine xxLine : getLines()) {
+				for (OBP2XXX xxLine : getLines()) {
 					sb.append(xxLine.getValue() + "\n");
 				}
 				contents = sb.toString();
@@ -148,13 +148,13 @@ public interface XXText extends XXObject, ResourceData<XXText> {
 		}
 
 		@Override
-		public void addToLines(XXLine aLine) {
+		public void addToLines(OBP2XXX aLine) {
 			performSuperAdder(LINES_KEY, aLine);
 			clearContents();
 		}
 
 		@Override
-		public void removeFromLines(XXLine aLine) {
+		public void removeFromLines(OBP2XXX aLine) {
 			performSuperRemover(LINES_KEY, aLine);
 			clearContents();
 		}

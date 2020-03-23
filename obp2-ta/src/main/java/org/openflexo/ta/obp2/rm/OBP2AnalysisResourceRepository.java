@@ -36,58 +36,42 @@
  * 
  */
 
-package org.openflexo.ta.obp2.fml.editionaction;
+package org.openflexo.ta.obp2.rm;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
-import org.openflexo.foundation.fml.editionaction.AbstractFetchRequest;
-import org.openflexo.foundation.fml.rt.RunTimeEvaluationContext;
-import org.openflexo.pamela.annotations.ImplementationClass;
+import org.openflexo.foundation.resource.FlexoResourceCenter;
+import org.openflexo.foundation.technologyadapter.TechnologyAdapterResourceRepository;
 import org.openflexo.pamela.annotations.ModelEntity;
-import org.openflexo.ta.obp2.OBP2ModelSlot;
-import org.openflexo.ta.obp2.model.XXLine;
-import org.openflexo.ta.obp2.model.XXText;
+import org.openflexo.pamela.exceptions.ModelDefinitionException;
+import org.openflexo.pamela.factory.ModelFactory;
+import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
 
 /**
- * Generic {@link AbstractFetchRequest} allowing to retrieve a selection of some {@link XXLine} matching some conditions
+ * XX resource repository<br>
+ * 
+ * A repository which references some {@link OBP2AnalysisResource}
  * 
  * @author sylvain
- *
- * @param <AT>
+ * 
  */
-@ModelEntity(isAbstract = true)
-@ImplementationClass(AbstractSelectXXLine.AbstractSelectXXLineImpl.class)
-public interface AbstractSelectXXLine<AT> extends AbstractFetchRequest<OBP2ModelSlot, XXText, XXLine, AT> {
+@ModelEntity
+public interface OBP2AnalysisResourceRepository<I> extends TechnologyAdapterResourceRepository<OBP2AnalysisResource, OBP2TechnologyAdapter, OBP2Analysis, I> {
 
-	public static abstract class AbstractSelectXXLineImpl<AT> extends AbstractFetchRequestImpl<OBP2ModelSlot, XXText, XXLine, AT>
-			implements AbstractSelectXXLine<AT> {
-
-		@SuppressWarnings("unused")
-		private static final Logger logger = Logger.getLogger(AbstractSelectXXLine.class.getPackage().getName());
-
-		@Override
-		public Type getFetchedType() {
-			return XXLine.class;
+	public static <I> OBP2AnalysisResourceRepository<I> instanciateNewRepository(OBP2TechnologyAdapter technologyAdapter,
+			FlexoResourceCenter<I> resourceCenter) {
+		try {
+			ModelFactory factory = new ModelFactory(OBP2AnalysisResourceRepository.class);
+			@SuppressWarnings("unchecked")
+			OBP2AnalysisResourceRepository<I> newRepository = factory.newInstance(OBP2AnalysisResourceRepository.class);
+			newRepository.setTechnologyAdapter(technologyAdapter);
+			newRepository.setResourceCenter(resourceCenter);
+			newRepository.setBaseArtefact(resourceCenter.getBaseArtefact());
+			newRepository.getRootFolder().setRepositoryContext(null);
+			return newRepository;
+		} catch (ModelDefinitionException e) {
+			e.printStackTrace();
 		}
-
-		@Override
-		public List<XXLine> performExecute(RunTimeEvaluationContext evaluationContext) {
-
-			List<XXLine> selectedLines = new ArrayList<>();
-			XXText resourceData = getReceiver(evaluationContext);
-
-			if (resourceData != null) {
-				selectedLines.addAll(resourceData.getLines());
-			}
-
-			List<XXLine> returned = filterWithConditions(selectedLines, evaluationContext);
-
-			return returned;
-
-		}
-
+		return null;
 	}
+
 }

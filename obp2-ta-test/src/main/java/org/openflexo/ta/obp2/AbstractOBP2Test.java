@@ -48,18 +48,18 @@ import org.openflexo.foundation.resource.FlexoResource;
 import org.openflexo.foundation.resource.FlexoResourceCenter;
 import org.openflexo.foundation.resource.ResourceLoadingCancelledException;
 import org.openflexo.foundation.test.OpenflexoProjectAtRunTimeTestCase;
-import org.openflexo.ta.obp2.model.XXText;
-import org.openflexo.ta.obp2.rm.XXTextResource;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResource;
 
 public abstract class AbstractOBP2Test extends OpenflexoProjectAtRunTimeTestCase {
 	protected static final Logger logger = Logger.getLogger(AbstractOBP2Test.class.getPackage().getName());
 
-	protected XXTextResource getXXResource(String documentName, FlexoResourceCenter<?> resourceCenter) {
+	protected OBP2AnalysisResource getXXResource(String documentName, FlexoResourceCenter<?> resourceCenter) {
 
 		String documentURI = resourceCenter.getDefaultBaseURI() + "/" + "OBP2" + "/" + documentName;
 		System.out.println("Searching " + documentURI);
 
-		XXTextResource documentResource = (XXTextResource) serviceManager.getResourceManager().getResource(documentURI, null, XXText.class);
+		OBP2AnalysisResource documentResource = (OBP2AnalysisResource) serviceManager.getResourceManager().getResource(documentURI, null, OBP2Analysis.class);
 
 		if (documentResource == null) {
 			logger.warning("Cannot find document resource " + documentURI);
@@ -73,7 +73,7 @@ public abstract class AbstractOBP2Test extends OpenflexoProjectAtRunTimeTestCase
 		return documentResource;
 	}
 
-	protected XXTextResource getXXResource(String documentName) {
+	protected OBP2AnalysisResource getXXResource(String documentName) {
 
 		FlexoResourceCenter<?> resourceCenter = serviceManager.getResourceCenterService()
 				.getFlexoResourceCenter("http://www.openflexo.org/test/xx");
@@ -81,12 +81,12 @@ public abstract class AbstractOBP2Test extends OpenflexoProjectAtRunTimeTestCase
 		return getXXResource(documentName, resourceCenter);
 	}
 
-	protected XXText getXXText(String documentName) {
+	protected OBP2Analysis getXXText(String documentName) {
 
-		XXTextResource documentResource = getXXResource(documentName);
+		OBP2AnalysisResource documentResource = getXXResource(documentName);
 		assertNotNull(documentResource);
 
-		XXText document = null;
+		OBP2Analysis document = null;
 		try {
 			document = documentResource.getResourceData();
 		} catch (FileNotFoundException e) {

@@ -1,0 +1,68 @@
+
+/**
+ * 
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/ITransitionRelation.fml")
+public class ITransitionRelation {
+
+  
+  abstract List<IConfiguration> initialConfigurations;
+
+  @ActionScheme  
+  List<ITransition> fireableTransitionsFrom(IConfiguration configuration) {  
+  
+  }  
+
+  @ActionScheme  
+  IFiredTransition fireOneTransition(IConfiguration source, ITransition transition) {  
+  
+  }  
+
+
+  @FlexoConcept  
+  public class IConfiguration {  
+  
+    @CreationScheme    
+    IConfiguration:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class ITransition {  
+  
+    @CreationScheme    
+    ITransition:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class IFiredTransition {  
+  
+    @CreationScheme    
+    IFiredTransition:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+}

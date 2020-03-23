@@ -57,8 +57,8 @@ import org.openflexo.foundation.technologyadapter.TechnologyAdapterBindingFactor
  * @author sylvain
  *
  */
-public final class XXBindingFactory extends TechnologyAdapterBindingFactory {
-	static final Logger logger = Logger.getLogger(XXBindingFactory.class.getPackage().getName());
+public final class OBP2BindingFactory extends TechnologyAdapterBindingFactory {
+	static final Logger logger = Logger.getLogger(OBP2BindingFactory.class.getPackage().getName());
 
 	@Override
 	protected SimplePathElement makeSimplePathElement(Object object, IBindingPathElement parent) {

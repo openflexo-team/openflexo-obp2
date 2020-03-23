@@ -36,28 +36,49 @@
  * 
  */
 
-package org.openflexo.ta.obp2.fml.editionaction;
+package org.openflexo.ta.obp2.model;
 
-import org.openflexo.foundation.fml.annotations.FML;
-import org.openflexo.foundation.fml.editionaction.FetchRequest;
-import org.openflexo.foundation.fml.editionaction.UniqueFetchRequest;
-import org.openflexo.pamela.annotations.ImplementationClass;
+import java.util.logging.Logger;
+
+import org.openflexo.foundation.InnerResourceData;
+import org.openflexo.foundation.technologyadapter.TechnologyObject;
 import org.openflexo.pamela.annotations.ModelEntity;
-import org.openflexo.pamela.annotations.XMLElement;
-import org.openflexo.ta.obp2.OBP2ModelSlot;
-import org.openflexo.ta.obp2.model.XXLine;
-import org.openflexo.ta.obp2.model.XXText;
+import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
 
 /**
- * A {@link FetchRequest} allowing to retrieve a unique {@link XXLine} matching some conditions
+ * Common API for all objects involved in XX model
  * 
  * @author sylvain
- * 
+ *
  */
-@ModelEntity
-@ImplementationClass(SelectUniqueXXLine.AbstractSelectXXLineImpl.class)
-@XMLElement
-@FML("SelectUniqueXXLine")
-public interface SelectUniqueXXLine extends AbstractSelectXXLine<XXLine>, UniqueFetchRequest<OBP2ModelSlot, XXText, XXLine> {
+@ModelEntity(isAbstract = true)
+public interface OBP2Object extends InnerResourceData<OBP2Analysis>, TechnologyObject<OBP2TechnologyAdapter> {
 
+	public OBP2ModelFactory getFactory();
+
+	/**
+	 * Default base implementation for {@link OBP2Object}
+	 * 
+	 * @author sylvain
+	 *
+	 */
+	public static abstract class XXObjectImpl extends FlexoObjectImpl implements OBP2Object {
+
+		@SuppressWarnings("unused")
+		private static final Logger logger = Logger.getLogger(XXObjectImpl.class.getPackage().getName());
+
+		@Override
+		public OBP2TechnologyAdapter getTechnologyAdapter() {
+			if (getResourceData() != null && getResourceData().getResource() != null) {
+				return getResourceData().getResource().getTechnologyAdapter();
+			}
+			return null;
+		}
+
+		@Override
+		public OBP2ModelFactory getFactory() {
+			return getResourceData().getResource().getFactory();
+		}
+
+	}
 }

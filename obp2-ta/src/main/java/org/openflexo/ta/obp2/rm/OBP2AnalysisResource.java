@@ -36,36 +36,31 @@
  * 
  */
 
-package org.openflexo.ta.obp2.gui;
+package org.openflexo.ta.obp2.rm;
 
-import java.util.logging.Logger;
+import org.openflexo.foundation.resource.PamelaResource;
+import org.openflexo.foundation.technologyadapter.TechnologyAdapterResource;
+import org.openflexo.pamela.annotations.ImplementationClass;
+import org.openflexo.pamela.annotations.ModelEntity;
+import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
+import org.openflexo.ta.obp2.model.OBP2ModelFactory;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
 
-import javax.swing.ImageIcon;
+/**
+ * A resource storing a {@link OBP2Analysis}
+ * 
+ * @author sylvain
+ *
+ */
+@ModelEntity
+@ImplementationClass(OBP2AnalysisResourceImpl.class)
+public interface OBP2AnalysisResource extends TechnologyAdapterResource<OBP2Analysis, OBP2TechnologyAdapter>, PamelaResource<OBP2Analysis, OBP2ModelFactory> {
 
-import org.openflexo.icon.ImageIconResource;
-import org.openflexo.rm.ResourceLocator;
-import org.openflexo.ta.obp2.model.XXLine;
-import org.openflexo.ta.obp2.model.XXObject;
-import org.openflexo.ta.obp2.model.XXText;
+	/**
+	 * Convenient method to retrieve resource data
+	 * 
+	 * @return
+	 */
+	public OBP2Analysis getXXText();
 
-public class XXIconLibrary {
-
-	private static final Logger logger = Logger.getLogger(XXIconLibrary.class.getPackage().getName());
-
-	public static final ImageIconResource XX_TA_BIG_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/xx-ta-32x32.png"));
-
-	public static final ImageIconResource XX_TA_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/xx-ta-16x16.png"));
-	public static final ImageIconResource XX_TEXT_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/XXText.png"));
-	public static final ImageIconResource XX_LINE_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/XXLine.png"));
-
-	public static ImageIcon iconForObject(Class<? extends XXObject> objectClass) {
-		if (XXText.class.isAssignableFrom(objectClass)) {
-			return XX_TEXT_ICON;
-		}
-		else if (XXLine.class.isAssignableFrom(objectClass)) {
-			return XX_LINE_ICON;
-		}
-		logger.warning("No icon for " + objectClass);
-		return null;
-	}
 }

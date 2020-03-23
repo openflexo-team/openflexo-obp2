@@ -46,29 +46,29 @@ import org.openflexo.foundation.resource.TechnologySpecificPamelaResourceFactory
 import org.openflexo.foundation.technologyadapter.TechnologyContextManager;
 import org.openflexo.pamela.exceptions.ModelDefinitionException;
 import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
-import org.openflexo.ta.obp2.model.XXModelFactory;
-import org.openflexo.ta.obp2.model.XXText;
+import org.openflexo.ta.obp2.model.OBP2ModelFactory;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
 
 /**
- * Implementation of {@link FlexoResourceFactory} for {@link XXTextResource}
+ * Implementation of {@link FlexoResourceFactory} for {@link OBP2AnalysisResource}
  * 
  * @author sylvain
  *
  */
-public class XXTextResourceFactory
-		extends TechnologySpecificPamelaResourceFactory<XXTextResource, XXText, OBP2TechnologyAdapter, XXModelFactory> {
+public class OBP2AnalysisResourceFactory
+		extends TechnologySpecificPamelaResourceFactory<OBP2AnalysisResource, OBP2Analysis, OBP2TechnologyAdapter, OBP2ModelFactory> {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(XXTextResourceFactory.class.getPackage().getName());
+	private static final Logger logger = Logger.getLogger(OBP2AnalysisResourceFactory.class.getPackage().getName());
 
 	public static String TXT_FILE_EXTENSION = ".txt";
 
-	public XXTextResourceFactory() throws ModelDefinitionException {
-		super(XXTextResource.class);
+	public OBP2AnalysisResourceFactory() throws ModelDefinitionException {
+		super(OBP2AnalysisResource.class);
 	}
 
 	@Override
-	public XXText makeEmptyResourceData(XXTextResource resource) {
+	public OBP2Analysis makeEmptyResourceData(OBP2AnalysisResource resource) {
 		return resource.getFactory().makeXXText();
 	}
 
@@ -79,7 +79,7 @@ public class XXTextResourceFactory
 	}
 
 	@Override
-	protected <I> XXTextResource registerResource(XXTextResource resource, FlexoResourceCenter<I> resourceCenter) {
+	protected <I> OBP2AnalysisResource registerResource(OBP2AnalysisResource resource, FlexoResourceCenter<I> resourceCenter) {
 		super.registerResource(resource, resourceCenter);
 
 		// Register the resource in the repository of supplied resource center
@@ -90,9 +90,9 @@ public class XXTextResourceFactory
 	}
 
 	@Override
-	public XXModelFactory makeModelFactory(XXTextResource resource, TechnologyContextManager<OBP2TechnologyAdapter> technologyContextManager)
+	public OBP2ModelFactory makeModelFactory(OBP2AnalysisResource resource, TechnologyContextManager<OBP2TechnologyAdapter> technologyContextManager)
 			throws ModelDefinitionException {
-		return new XXModelFactory(resource, technologyContextManager.getServiceManager().getEditingContext());
+		return new OBP2ModelFactory(resource, technologyContextManager.getServiceManager().getEditingContext());
 	}
 
 }

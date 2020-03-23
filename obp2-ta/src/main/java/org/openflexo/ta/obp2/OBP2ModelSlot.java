@@ -43,8 +43,6 @@ import java.util.logging.Logger;
 
 import org.openflexo.foundation.fml.FlexoRole;
 import org.openflexo.foundation.fml.annotations.DeclareActorReferences;
-import org.openflexo.foundation.fml.annotations.DeclareEditionActions;
-import org.openflexo.foundation.fml.annotations.DeclareFetchRequests;
 import org.openflexo.foundation.fml.annotations.DeclareFlexoRoles;
 import org.openflexo.foundation.fml.annotations.FML;
 import org.openflexo.foundation.technologyadapter.FreeModelSlot;
@@ -52,32 +50,29 @@ import org.openflexo.foundation.technologyadapter.ModelSlot;
 import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
 import org.openflexo.pamela.annotations.XMLElement;
-import org.openflexo.ta.obp2.fml.XXLineActorReference;
-import org.openflexo.ta.obp2.fml.XXLineRole;
-import org.openflexo.ta.obp2.fml.editionaction.AddXXLine;
-import org.openflexo.ta.obp2.fml.editionaction.SelectUniqueXXLine;
-import org.openflexo.ta.obp2.fml.editionaction.SelectXXLine;
-import org.openflexo.ta.obp2.model.XXText;
+import org.openflexo.ta.obp2.fml.OBP2XXXActorReference;
+import org.openflexo.ta.obp2.fml.OBP2XXXRole;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
 
 import plug.core.ILanguagePlugin;
 
 /**
- * Implementation of the {@link ModelSlot} class for the XX technology adapter (plain text connector)
+ * Implementation of the {@link ModelSlot} class for the OBP2 technology adapter
  * 
  * @author sylvain
  * 
  */
-@DeclareFlexoRoles({ XXLineRole.class })
-@DeclareEditionActions({ AddXXLine.class })
-@DeclareFetchRequests({ SelectUniqueXXLine.class, SelectXXLine.class })
-@DeclareActorReferences({ XXLineActorReference.class })
+@DeclareFlexoRoles({ OBP2XXXRole.class })
+// @DeclareEditionActions({ AddXXLine.class })
+// @DeclareFetchRequests({ SelectUniqueXXLine.class, SelectXXLine.class })
+@DeclareActorReferences({ OBP2XXXActorReference.class })
 @ModelEntity
-@ImplementationClass(OBP2ModelSlot.XXModelSlotImpl.class)
+@ImplementationClass(OBP2ModelSlot.OBP2ModelSlotImpl.class)
 @XMLElement
 @FML("OBP2ModelSlot")
-public interface OBP2ModelSlot extends FreeModelSlot<XXText> {
+public interface OBP2ModelSlot extends FreeModelSlot<OBP2Analysis> {
 
-	public static abstract class XXModelSlotImpl extends FreeModelSlotImpl<XXText> implements OBP2ModelSlot {
+	public static abstract class OBP2ModelSlotImpl extends FreeModelSlotImpl<OBP2Analysis> implements OBP2ModelSlot {
 
 		@SuppressWarnings("unused")
 		private static final Logger logger = Logger.getLogger(OBP2ModelSlot.class.getPackage().getName());
@@ -89,7 +84,7 @@ public interface OBP2ModelSlot extends FreeModelSlot<XXText> {
 
 		@Override
 		public <PR extends FlexoRole<?>> String defaultFlexoRoleName(Class<PR> patternRoleClass) {
-			if (XXLineRole.class.isAssignableFrom(patternRoleClass)) {
+			if (OBP2XXXRole.class.isAssignableFrom(patternRoleClass)) {
 				return "line";
 			}
 			return null;
@@ -100,7 +95,7 @@ public interface OBP2ModelSlot extends FreeModelSlot<XXText> {
 
 			ILanguagePlugin p;
 
-			return XXText.class;
+			return OBP2Analysis.class;
 		}
 
 		@Override

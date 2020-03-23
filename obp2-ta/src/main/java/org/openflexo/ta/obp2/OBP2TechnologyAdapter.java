@@ -44,9 +44,9 @@ import org.openflexo.foundation.fml.annotations.DeclareModelSlots;
 import org.openflexo.foundation.fml.annotations.DeclareResourceFactories;
 import org.openflexo.foundation.resource.FlexoResourceCenter;
 import org.openflexo.foundation.technologyadapter.TechnologyAdapter;
-import org.openflexo.ta.obp2.fml.binding.XXBindingFactory;
-import org.openflexo.ta.obp2.rm.XXTextResourceFactory;
-import org.openflexo.ta.obp2.rm.XXTextResourceRepository;
+import org.openflexo.ta.obp2.fml.binding.OBP2BindingFactory;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResourceFactory;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResourceRepository;
 
 /**
  * This class defines and implements an archetype of a technology adapter<br>
@@ -61,17 +61,17 @@ import org.openflexo.ta.obp2.rm.XXTextResourceRepository;
 @DeclareModelSlots({ OBP2ModelSlot.class })
 // You might declare your own types here
 // @DeclareTechnologySpecificTypes({ YourCustomType.class })
-@DeclareResourceFactories({ XXTextResourceFactory.class })
+@DeclareResourceFactories({ OBP2AnalysisResourceFactory.class })
 public class OBP2TechnologyAdapter extends TechnologyAdapter<OBP2TechnologyAdapter> {
 
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(OBP2TechnologyAdapter.class.getPackage().getName());
 
-	private static final XXBindingFactory BINDING_FACTORY = new XXBindingFactory();
+	private static final OBP2BindingFactory BINDING_FACTORY = new OBP2BindingFactory();
 
 	@Override
 	public String getName() {
-		return "XX technology adapter";
+		return "OBP2 technology adapter";
 	}
 
 	@Override
@@ -93,25 +93,25 @@ public class OBP2TechnologyAdapter extends TechnologyAdapter<OBP2TechnologyAdapt
 	}
 
 	@Override
-	public XXBindingFactory getTechnologyAdapterBindingFactory() {
+	public OBP2BindingFactory getTechnologyAdapterBindingFactory() {
 		return BINDING_FACTORY;
 	}
 
 	@Override
 	public String getIdentifier() {
-		return "XX";
+		return "OBP2";
 	}
 
-	public XXTextResourceFactory getXXResourceFactory() {
-		return getResourceFactory(XXTextResourceFactory.class);
+	public OBP2AnalysisResourceFactory getXXResourceFactory() {
+		return getResourceFactory(OBP2AnalysisResourceFactory.class);
 	}
 
 	@SuppressWarnings("unchecked")
-	public <I> XXTextResourceRepository<I> getXXResourceRepository(FlexoResourceCenter<I> resourceCenter) {
-		XXTextResourceRepository<I> returned = resourceCenter.retrieveRepository(XXTextResourceRepository.class, this);
+	public <I> OBP2AnalysisResourceRepository<I> getXXResourceRepository(FlexoResourceCenter<I> resourceCenter) {
+		OBP2AnalysisResourceRepository<I> returned = resourceCenter.retrieveRepository(OBP2AnalysisResourceRepository.class, this);
 		if (returned == null) {
-			returned = XXTextResourceRepository.instanciateNewRepository(this, resourceCenter);
-			resourceCenter.registerRepository(returned, XXTextResourceRepository.class, this);
+			returned = OBP2AnalysisResourceRepository.instanciateNewRepository(this, resourceCenter);
+			resourceCenter.registerRepository(returned, OBP2AnalysisResourceRepository.class, this);
 		}
 		return returned;
 	}
