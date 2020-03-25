@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml" version="0.1" name="ExecutableStateChart" author="sylvain" description="Represent a StateChart associated with a semantics, which can be executed" userID="SYL" flexoID="5">
+  <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
+  <Inspector id="SYL-1" inspectorTitle="ExecutableStateChart" userID="SYL" flexoID="1" />
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-9" virtualModelURI="http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml" isRequired="true" container="stateChartsView" cloningStrategy="Reference" cardinality="ZeroOne" name="model" userID="SYL" flexoID="9" />
+</VirtualModel>

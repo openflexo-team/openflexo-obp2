@@ -1,0 +1,13 @@
+use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
+
+/**
+ * Represent a StateChart associated with a semantics, which can be executed
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml")
+public class ExecutableStateChart {
+
+  public StateChartModel model;
+}

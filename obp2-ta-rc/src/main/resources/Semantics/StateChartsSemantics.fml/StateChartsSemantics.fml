@@ -1,0 +1,17 @@
+use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
+use org.openflexo.foundation.fml.ta.FMLModelSlot;
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/Semantics/StateChartsSemantics.fml")
+public class StateChartsSemantics extends CoreSemantics  {
+
+  @CreationScheme  
+  StateChartsSemantics:init(String virtualModelName) {  
+    this.initSupportVirtualModel(parameters.virtualModelName)  
+  }  
+
+}

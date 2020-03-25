@@ -1,0 +1,136 @@
+use org.openflexo.foundation.fml.ta.FMLModelSlot;
+
+/**
+ * 
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/Semantics/CoreSemantics.fml")
+public class CoreSemantics extends ITransitionRelation  {
+
+  public VirtualModel supportVirtualModel;
+
+  @ActionScheme  
+  Void initSupportVirtualModel(String virtualModelName) {  
+    log "Initialize support VirtualModel"    
+    supportVirtualModel = CreateTopLevelVirtualModel();  
+  }  
+
+
+  @FlexoConcept  
+  public class ExecutionUnitDefinition {  
+  
+    public FlexoConcept supportConcept;  
+      
+    public String name = supportConcept.name;  
+    @GetSetProperty(value="variables", access=get)    
+    public Void getVariables {    
+      container.SelectFlexoConceptInstance(type=Variable)    
+    }  
+  
+    @ActionScheme    
+    public Variable createNewVariable(String name, PrimitiveType primitiveType, String description) {    
+      return Variable.create(parameters.name,parameters.primitiveType,parameters.description);    
+    }    
+  
+  
+    @FlexoConcept    
+    public class Variable {    
+      
+      public PrimitiveRole property;    
+      
+      @CreationScheme      
+      Variable:create(String aName, PrimitiveType primitiveType, String description) {      
+        property = supportVirtualModel.CreatePrimitiveRole();        
+        property.description = parameters.description;        
+        container.firePropertyChange variables      
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+    }    
+  
+    @FlexoConcept    
+    public class ExecutionUnitReference {    
+      
+      @CreationScheme      
+      ExecutionUnitReference:create() {      
+          
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+    }    
+  
+    @FlexoConcept    
+    public class ExecutionUnitProperty {    
+      
+      @CreationScheme      
+      ExecutionUnitProperty:create() {      
+          
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class Variable {  
+  
+    public PrimitiveRole property;  
+  
+    @CreationScheme    
+    Variable:create(String aName, PrimitiveType primitiveType, String description) {    
+      property = supportVirtualModel.CreatePrimitiveRole();      
+      property.description = parameters.description;      
+      container.firePropertyChange variables    
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class ExecutionUnitReference {  
+  
+    @CreationScheme    
+    ExecutionUnitReference:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class ExecutionUnitProperty {  
+  
+    @CreationScheme    
+    ExecutionUnitProperty:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+}

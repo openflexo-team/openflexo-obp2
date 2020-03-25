@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://openflexo.org/obp2/resources/Semantics/StateChartsExecutionModel.fml" version="0.1" name="StateChartsExecutionModel" author="sylvain" userID="SYL" flexoID="5">
+  <Inspector id="SYL-1" inspectorTitle="StateChartsExecutionModel" userID="SYL" flexoID="1" />
+</VirtualModel>

@@ -1,0 +1,20 @@
+use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/Tools/StateChartsEditor.fml")
+public class StateChartsEditor {
+
+  public StateCharts stateChartsView;
+  public StateChartsSemantics stateChartsSemantics;
+
+  @CreationScheme  
+  StateChartsEditor:init() {  
+    stateChartsView = StateCharts.create();    
+    stateChartsSemantics = StateChartsSemantics.init((this.name + "ExecutionModel"));  
+  }  
+
+}
