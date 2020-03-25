@@ -4,17 +4,10 @@ use org.openflexo.foundation.fml.ta.FMLModelSlot;
  * 
  * @version 0.1
  */
-@VirtualModel(uri="http://openflexo.org/obp2/Semantics/CoreSemantics.fml")
+@VirtualModel(uri="http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml")
 public class CoreSemantics extends ITransitionRelation  {
 
   public VirtualModel supportVirtualModel;
-
-  @ActionScheme  
-  Void initSupportVirtualModel(String virtualModelName) {  
-    log "Initialize support VirtualModel"    
-    supportVirtualModel = CreateTopLevelVirtualModel();  
-  }  
-
 
   @FlexoConcept  
   public class ExecutionUnitDefinition {  

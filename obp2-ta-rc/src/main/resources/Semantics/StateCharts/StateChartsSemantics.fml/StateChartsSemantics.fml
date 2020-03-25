@@ -1,0 +1,33 @@
+use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
+use org.openflexo.foundation.fml.ta.FMLModelSlot;
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml")
+public class StateChartsSemantics extends CoreSemantics  {
+
+  @CreationScheme  
+  StateChartsSemantics:init(String virtualModelName) {  
+    supportVirtualModel = CreateTopLevelVirtualModel();  
+  }  
+
+
+  @FlexoConcept  
+  public class StateChartExecutionUnitDefinition extends ExecutionUnitDefinition  {  
+  
+    @CreationScheme    
+    StateChartExecutionUnitDefinition:create(String name) {    
+      supportConcept = supportVirtualModel.CreateFlexoConcept();    
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+}

@@ -1,9 +1,0 @@
-
-/**
- * 
- * @author sylvain
- * @version 0.1
- */
-@VirtualModel(uri="http://openflexo.org/obp2/resources/Semantics/StateChartsExecutionModel.fml")
-public class StateChartsExecutionModel {
-}

@@ -1,0 +1,25 @@
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml")
+public class StateChartsExecutionModel extends CoreExecutionModel  {
+
+  @FlexoConcept  
+  public class StateChartExecutionUnit extends StateChartsExecutionModel  {  
+  
+    @CreationScheme    
+    StateChartExecutionUnit:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+}

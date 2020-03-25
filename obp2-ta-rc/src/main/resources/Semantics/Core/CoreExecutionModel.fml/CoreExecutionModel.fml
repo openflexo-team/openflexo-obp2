@@ -1,0 +1,17 @@
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml")
+public class CoreExecutionModel {
+
+  @FlexoConcept  
+  public class ExecutionUnit {  
+  
+      
+    abstract ExecutionUnitDefinition definition;  
+  }  
+
+}

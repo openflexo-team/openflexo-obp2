@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5"
+	virtualModelClass="org.openflexo.foundation.fml.VirtualModel"
+	modelVersion="2.0"
+	uri="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml"
+	version="0.1"
+	parentFlexoConceptsList="http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml"
+	name="StateChartsExecutionModel" author="sylvain" userID="SYL"
+	flexoID="5">
+	<FlexoConcept id="SYL-9"
+		parentFlexoConceptsList="http://openflexo.org/obp2/resources/Semantics/Core/CoreExecutionModel.fml#ExecutionUnit"
+		name="StateChartExecutionUnit" author="sylvain" userID="SYL"
+		flexoID="9">
+		<Inspector id="SYL-10"
+			inspectorTitle="StateChartExecutionUnit" userID="SYL" flexoID="10" />
+		<CreationScheme id="SYL-11" label="create"
+			name="create" width="800" height="600" userID="SYL" flexoID="11">
+			<BehaviourControlGraph_EmptyControlGraph
+				id="SYL-12" userID="SYL" flexoID="12" />
+		</CreationScheme>
+		<DeletionScheme id="SYL-13" label="delete"
+			name="delete" width="800" height="600" userID="SYL" flexoID="13">
+			<BehaviourControlGraph_EmptyControlGraph
+				id="SYL-14" userID="SYL" flexoID="14" />
+		</DeletionScheme>
+	</FlexoConcept>
+	<Inspector id="SYL-1"
+		inspectorTitle="StateChartsExecutionModel" userID="SYL" flexoID="1" />
+</VirtualModel>

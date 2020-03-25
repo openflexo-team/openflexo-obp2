@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5"
+	virtualModelClass="org.openflexo.foundation.fml.VirtualModel"
+	modelVersion="2.0"
+	uri="http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml"
+	version="0.1" name="CoreExecutionModel" author="sylvain" userID="SYL"
+	flexoID="5">
+	<FlexoConcept id="SYL-9" isAbstract="true"
+		name="ExecutionUnit" author="sylvain" userID="SYL" flexoID="9">
+		<Inspector id="SYL-10" inspectorTitle="ExecutionUnit"
+			userID="SYL" flexoID="10" />
+		<AbstractProperty id="SYL-16"
+			type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml#ExecutionUnitDefinition&gt;"
+			name="definition" userID="SYL" flexoID="16" />
+	</FlexoConcept>
+	<Inspector id="SYL-1" inspectorTitle="CoreExecutionModel"
+		userID="SYL" flexoID="1" />
+</VirtualModel>
