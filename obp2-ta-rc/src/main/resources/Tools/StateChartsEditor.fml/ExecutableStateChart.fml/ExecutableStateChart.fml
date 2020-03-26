@@ -1,4 +1,5 @@
 use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
+use org.openflexo.technologyadapter.diagram.TypedDiagramModelSlot;
 
 /**
  * Represent a StateChart associated with a semantics, which can be executed
@@ -10,4 +11,61 @@ use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
 public class ExecutableStateChart {
 
   public StateChartModel model;
+  public StateChartExecutionUnitDefinition semantics;
+  public Diagram diagram;
+
+  @CreationScheme  
+  ExecutableStateChart:create() {  
+    model = StateChartModel.create();    
+    diagram = CreateDiagram();    
+    semantics = StateChartExecutionUnitDefinition.create((this.name + "ExecutionUnit"));  
+  }  
+
+
+  @FlexoConcept  
+  public class StateGR {  
+  
+    public DiagramShape shape;  
+    public State state;  
+  
+    @DropScheme    
+    StateGR:dropStateGRAtTopLevel() {    
+      shape = diagram.AddShape();      
+      state = State.create("State");    
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class TransitionGR {  
+  
+    public DiagramConnector connector;  
+    public Transition transition;  
+  
+    @LinkScheme    
+    TransitionGR:linkStateGRToStateGR() {    
+      connector = diagram.AddConnector();      
+      transition = Transition.create(fromTarget.state,toTarget.state,"transition");    
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class InitialTransitionGR {  
+  
+    public DiagramShape shape;  
+    public InitialTransition initialTransition;  
+    public DiagramConnector connector;  
+  
+    @DropScheme    
+    InitialTransitionGR:dropInitialTransitionGRAtTopLevel() {    
+      initialTransition = InitialTransition.create(target.state,"init");      
+      shape = diagram.AddShape();      
+      shape.x=(target.shape.graphicalRepresentation.x - 20)      
+      shape.y=(target.shape.graphicalRepresentation.y - 30)      
+      connector = diagram.AddConnector();    
+    }    
+  
+  }  
+
 }

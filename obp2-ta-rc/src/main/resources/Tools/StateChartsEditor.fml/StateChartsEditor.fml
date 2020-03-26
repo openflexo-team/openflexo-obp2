@@ -10,11 +10,13 @@ public class StateChartsEditor {
 
   public StateCharts stateChartsView;
   public StateChartsSemantics stateChartsSemantics;
+  public ExecutableStateChart singleStateChart;
 
   @CreationScheme  
   StateChartsEditor:init() {  
     stateChartsView = StateCharts.create();    
-    stateChartsSemantics = StateChartsSemantics.init((this.name + "ExecutionModel"));  
+    stateChartsSemantics = StateChartsSemantics.init((this.name + "ExecutionModel"));    
+    singleStateChart = ExecutableStateChart.create();  
   }  
 
 }

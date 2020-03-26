@@ -4,7 +4,7 @@
     <Inspector id="SYL-48" inspectorTitle="StateChartExecutionUnitDefinition" userID="SYL" flexoID="48" />
     <CreationScheme id="SYL-52" label="create" name="create" width="800" height="600" userID="SYL" flexoID="52">
       <BehaviourControlGraph_AssignationAction id="SYL-63" assign="supportConcept" ownerContext="controlGraph2" userID="SYL" flexoID="63">
-        <AssignableAction_CreateFlexoConcept id="SYL-64" container="supportVirtualModel" conceptName="parameters.name" receiver="supportVirtualModel" parentFlexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit" userID="SYL" flexoID="64" />
+        <AssignableAction_CreateFlexoConcept id="SYL-64" container="supportVirtualModel" conceptName="parameters.name" parentFlexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="64" />
       </BehaviourControlGraph_AssignationAction>
       <GenericBehaviourParameter id="SYL-55" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="55" />
     </CreationScheme>

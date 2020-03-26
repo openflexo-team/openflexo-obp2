@@ -88,7 +88,7 @@ public class OBP2TechnologyAdapter extends TechnologyAdapter<OBP2TechnologyAdapt
 
 	@Override
 	public <I> boolean isIgnorable(FlexoResourceCenter<I> resourceCenter, I contents) {
-		System.out.println("Tiens: " + contents);
+		// System.out.println("Tiens: " + contents);
 		return false;
 	}
 
