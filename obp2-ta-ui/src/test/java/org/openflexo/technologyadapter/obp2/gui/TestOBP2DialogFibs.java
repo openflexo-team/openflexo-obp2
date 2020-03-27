@@ -1,8 +1,8 @@
 /**
  * 
- * Copyright (c) 2018, Openflexo
+ * Copyright (c) 2014, Openflexo
  * 
- * This file is part of OpenflexoTechnologyAdapter, a component of the software infrastructure 
+ * This file is part of Openflexo-technology-adapters-ui, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -36,23 +36,30 @@
  * 
  */
 
-package org.openflexo.ta.obp2.fml.editionaction;
+package org.openflexo.technologyadapter.obp2.gui;
 
-import org.openflexo.foundation.fml.editionaction.TechnologySpecificActionDefiningReceiver;
-import org.openflexo.pamela.annotations.ModelEntity;
-import org.openflexo.ta.obp2.OBP2ModelSlot;
-import org.openflexo.ta.obp2.model.OBP2Analysis;
+import org.openflexo.gina.test.GenericFIBTestCase;
+import org.openflexo.rm.FileResourceImpl;
+import org.openflexo.rm.ResourceLocator;
 
 /**
- * Abstract action for {@link OBP2ModelSlot}
+ * Used to test all dialog FIBs defined in this technology adapter<br>
+ * 
+ * To use that class, first execute main method to generate all tests in the console, then copy-paste all the tests in this source file
+ * 
  * 
  * @author sylvain
- * 
- * @param <T>
- *            object type
+ *
  */
+public class TestOBP2DialogFibs extends GenericFIBTestCase {
 
-@ModelEntity(isAbstract = true)
-public interface XXAction<T extends Object> extends TechnologySpecificActionDefiningReceiver<OBP2ModelSlot, OBP2Analysis, T> {
+	/*
+	 * Use this method to print all
+	 * Then copy-paste 
+	 */
+	public static void main(String[] args) {
+		System.out.println(
+				generateFIBTestCaseClass(((FileResourceImpl) ResourceLocator.locateResource("Fib/Dialog")).getFile(), "Fib/Dialog/"));
+	}
 
 }

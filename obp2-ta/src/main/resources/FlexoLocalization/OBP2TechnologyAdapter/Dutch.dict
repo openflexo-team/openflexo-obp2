@@ -1,0 +1,9 @@
+Default=Default
+Private=Private
+Protected=Protected
+Public=Public
+author=author
+object_type=object_type
+transition_relation=transition_relation
+viewpoint=viewpoint
+visibility=visibility

@@ -38,20 +38,32 @@
 
 package org.openflexo.ta.obp2;
 
+import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.util.logging.Logger;
 
+import org.openflexo.connie.DataBinding;
+import org.openflexo.connie.DataBinding.BindingDefinitionType;
+import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.fml.FlexoRole;
+import org.openflexo.foundation.fml.VirtualModel;
 import org.openflexo.foundation.fml.annotations.DeclareActorReferences;
+import org.openflexo.foundation.fml.annotations.DeclareEditionActions;
 import org.openflexo.foundation.fml.annotations.DeclareFlexoRoles;
 import org.openflexo.foundation.fml.annotations.FML;
+import org.openflexo.foundation.fml.rt.VirtualModelInstance;
+import org.openflexo.foundation.resource.ResourceLoadingCancelledException;
 import org.openflexo.foundation.technologyadapter.FreeModelSlot;
 import org.openflexo.foundation.technologyadapter.ModelSlot;
+import org.openflexo.pamela.annotations.Getter;
 import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
+import org.openflexo.pamela.annotations.PropertyIdentifier;
+import org.openflexo.pamela.annotations.Setter;
 import org.openflexo.pamela.annotations.XMLElement;
 import org.openflexo.ta.obp2.fml.OBP2XXXActorReference;
 import org.openflexo.ta.obp2.fml.OBP2XXXRole;
+import org.openflexo.ta.obp2.fml.editionaction.PerformBFSAnalysis;
 import org.openflexo.ta.obp2.model.OBP2Analysis;
 
 import plug.core.ILanguagePlugin;
@@ -63,7 +75,7 @@ import plug.core.ILanguagePlugin;
  * 
  */
 @DeclareFlexoRoles({ OBP2XXXRole.class })
-// @DeclareEditionActions({ AddXXLine.class })
+@DeclareEditionActions({ PerformBFSAnalysis.class })
 // @DeclareFetchRequests({ SelectUniqueXXLine.class, SelectXXLine.class })
 @DeclareActorReferences({ OBP2XXXActorReference.class })
 @ModelEntity
@@ -71,6 +83,15 @@ import plug.core.ILanguagePlugin;
 @XMLElement
 @FML("OBP2ModelSlot")
 public interface OBP2ModelSlot extends FreeModelSlot<OBP2Analysis> {
+
+	@PropertyIdentifier(type = DataBinding.class)
+	String TRANSITION_RELATION_KEY = "transitionRelation";
+
+	@Getter(value = TRANSITION_RELATION_KEY)
+	public DataBinding<VirtualModelInstance<?, ?>> getTransitionRelation();
+
+	@Setter(TRANSITION_RELATION_KEY)
+	public void setTransitionRelation(DataBinding<VirtualModelInstance<?, ?>> transitionRelation);
 
 	public static abstract class OBP2ModelSlotImpl extends FreeModelSlotImpl<OBP2Analysis> implements OBP2ModelSlot {
 
@@ -101,6 +122,55 @@ public interface OBP2ModelSlot extends FreeModelSlot<OBP2Analysis> {
 		@Override
 		public OBP2TechnologyAdapter getModelSlotTechnologyAdapter() {
 			return (OBP2TechnologyAdapter) super.getModelSlotTechnologyAdapter();
+		}
+
+		private DataBinding<VirtualModelInstance<?, ?>> transitionRelation;
+
+		@Override
+		public DataBinding<VirtualModelInstance<?, ?>> getTransitionRelation() {
+			if (transitionRelation == null) {
+				transitionRelation = new DataBinding<>(this, VirtualModelInstance.class, BindingDefinitionType.GET);
+				transitionRelation.setBindingName("transitionRelation");
+				if (getTransitionRelationVirtualModel() != null) {
+					transitionRelation.setDeclaredType(getTransitionRelationVirtualModel().getInstanceType());
+				}
+			}
+			return transitionRelation;
+		}
+
+		@Override
+		public void setTransitionRelation(DataBinding<VirtualModelInstance<?, ?>> transitionRelation) {
+			if (transitionRelation != null) {
+				transitionRelation.setOwner(this);
+				transitionRelation.setBindingName("transitionRelation");
+				if (getTransitionRelationVirtualModel() != null) {
+					transitionRelation.setDeclaredType(getTransitionRelationVirtualModel().getInstanceType());
+				}
+				else {
+					transitionRelation.setDeclaredType(VirtualModelInstance.class);
+				}
+				transitionRelation.setBindingDefinitionType(BindingDefinitionType.GET);
+			}
+			this.transitionRelation = transitionRelation;
+		}
+
+		private VirtualModel getTransitionRelationVirtualModel() {
+			if (getVirtualModelLibrary() != null) {
+				VirtualModel transitionRelationVM;
+				try {
+					return getVirtualModelLibrary().getVirtualModel("http://openflexo.org/obp2/ITransitionRelation.fml");
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ResourceLoadingCancelledException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FlexoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return null;
 		}
 
 	}

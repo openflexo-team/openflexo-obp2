@@ -1,6 +1,6 @@
 /**
  * 
- * Copyright (c) 2014, Openflexo
+ * Copyright (c) 2014-2015, Openflexo
  * 
  * This file is part of Openflexo-technology-adapters-ui, a component of the software infrastructure 
  * developed at Openflexo.
@@ -36,14 +36,15 @@
  * 
  */
 
-package org.openflexo.technologyadapter.xx.gui;
+package org.openflexo.technologyadapter.obp2.gui;
 
-import org.openflexo.gina.test.GenericFIBTestCase;
+import org.junit.Test;
+import org.openflexo.gina.test.GenericFIBInspectorTestCase;
 import org.openflexo.rm.FileResourceImpl;
 import org.openflexo.rm.ResourceLocator;
 
 /**
- * Used to test all dialog FIBs defined in this technology adapter<br>
+ * Used to test all inspectors defined in this technology adapter<br>
  * 
  * To use that class, first execute main method to generate all tests in the console, then copy-paste all the tests in this source file
  * 
@@ -51,15 +52,36 @@ import org.openflexo.rm.ResourceLocator;
  * @author sylvain
  *
  */
-public class TestXXDialogFibs extends GenericFIBTestCase {
+public class TestOBP2Inspectors extends GenericFIBInspectorTestCase {
 
 	/*
 	 * Use this method to print all
 	 * Then copy-paste 
 	 */
+
 	public static void main(String[] args) {
-		System.out.println(
-				generateFIBTestCaseClass(((FileResourceImpl) ResourceLocator.locateResource("Fib/Dialog")).getFile(), "Fib/Dialog/"));
+		System.out.println(generateInspectorTestCaseClass(((FileResourceImpl) ResourceLocator.locateResource("Inspectors/XX")).getFile(),
+				"Inspectors/XX/"));
+	}
+
+	@Test
+	public void testAbstractSelectXXLineInspector() {
+		validateFIB("Inspectors/XX/EditionAction/AbstractSelectXXLine.inspector");
+	}
+
+	@Test
+	public void testAddXXLineInspector() {
+		validateFIB("Inspectors/XX/EditionAction/PerformBFSAnalysis.inspector");
+	}
+
+	@Test
+	public void testXXLineInspector() {
+		validateFIB("Inspectors/XX/OBP2XXX.inspector");
+	}
+
+	@Test
+	public void testXXTextInspector() {
+		validateFIB("Inspectors/XX/OBP2Analysis.inspector");
 	}
 
 }

@@ -1,8 +1,8 @@
 /**
  * 
- * Copyright (c) 2014, Openflexo
+ * Copyright (c) 2018, Openflexo
  * 
- * This file is part of Openflexo-technology-adapters-ui, a component of the software infrastructure 
+ * This file is part of OpenflexoTechnologyAdapter, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -36,38 +36,23 @@
  * 
  */
 
-package org.openflexo.technologyadapter.xx.gui;
+package org.openflexo.ta.obp2.fml.editionaction;
 
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.openflexo.gina.test.GenericFIBTestCase;
-import org.openflexo.rm.FileResourceImpl;
-import org.openflexo.rm.ResourceLocator;
-import org.openflexo.test.UITest;
+import org.openflexo.foundation.fml.editionaction.TechnologySpecificActionDefiningReceiver;
+import org.openflexo.pamela.annotations.ModelEntity;
+import org.openflexo.ta.obp2.OBP2ModelSlot;
+import org.openflexo.ta.obp2.model.OBP2Analysis;
 
 /**
- * Used to test all FIBs defined in this technology adapter<br>
- * 
- * To use that class, first execute main method to generate all tests in the console, then copy-paste all the tests in this source file
- * 
+ * Abstract action for {@link OBP2ModelSlot}
  * 
  * @author sylvain
- *
+ * 
+ * @param <T>
+ *            object type
  */
-public class TestXXFibs extends GenericFIBTestCase {
 
-	/*
-	 * Use this method to print all
-	 * Then copy-paste 
-	 */
-	public static void main(String[] args) {
-		System.out.println(generateFIBTestCaseClass(((FileResourceImpl) ResourceLocator.locateResource("Fib")).getFile(), "Fib/"));
-	}
-
-	@Test
-	@Category(UITest.class)
-	public void removeThis() {
-		// Actually no test to execute
-	}
+@ModelEntity(isAbstract = true)
+public interface AbstractAnalysisAction<T extends Object> extends TechnologySpecificActionDefiningReceiver<OBP2ModelSlot, OBP2Analysis, T> {
 
 }

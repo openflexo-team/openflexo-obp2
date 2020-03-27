@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Inspector xmlns:p="http://www.openflexo.org/pamela/" id="0"
+	p:modelEntity="org.openflexo.gina.utils.FIBInspector" align="left"
+	borderTop="0" borderLeft="0" trackViewPortHeight="true"
+	trackViewPortWidth="true" borderBottom="0" border="empty"
+	sizeAdjustment="OriginalSize" titleFont="SansSerif,0,12" layout="border"
+	borderRight="0" controllerClassName="org.openflexo.inspector.FIBInspectorController"
+	font="SansSerif,0,12" name="Inspector">
+	<TabPanel id="1" constraints="border(location=center)" name="Tab">
+		<Tab id="2" title="Basic" align="left" borderTop="0" borderLeft="0"
+			trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
+			border="empty" sizeAdjustment="OriginalSize" titleFont="SansSerif,0,11"
+			layout="twocols" borderRight="0" useScrollBar="true"
+			verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED" index="0"
+			horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED" font="SansSerif,0,11"
+			name="BasicTab">
+			<Label name="TransitionRelationLabel" index="30" localize="true" align="left"
+				constraints="twocols(expandHorizontally=false;expandVertically=false;index=2;location=left)"
+				label="transition_relation" />
+			<Custom manageDynamicModel="true" index="31"
+				dataClassForComponent="org.openflexo.connie.DataBinding"
+				componentClassName="org.openflexo.gina.swing.utils.BindingSelector"
+				name="ContainerSelector" data="data.transitionRelation"
+				constraints="twocols(expandHorizontally=true;expandVertically=false;index=3;location=right)">
+				<Assignment mandatory="true" variable="component.bindable" />
+			</Custom>
+		</Tab>
+		<Tab id="12" title="Advanced" align="left" borderTop="0"
+			borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+			borderBottom="0" border="empty" sizeAdjustment="OriginalSize"
+			titleFont="SansSerif,0,11" layout="twocols" borderRight="0"
+			useScrollBar="true" verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED"
+			index="2" horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED"
+			font="SansSerif,0,11" name="AdvancedTab" />
+	</TabPanel>
+	<FIBVariable id="13"
+		type="org.openflexo.ta.obp2.OBP2ModelSlot" name="data" />
+	<LocalizedDictionary id="14" />
+</Inspector>

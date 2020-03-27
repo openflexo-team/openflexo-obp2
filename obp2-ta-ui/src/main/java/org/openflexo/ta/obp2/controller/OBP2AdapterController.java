@@ -46,8 +46,11 @@ import org.openflexo.foundation.fml.FlexoRole;
 import org.openflexo.foundation.fml.editionaction.EditionAction;
 import org.openflexo.foundation.technologyadapter.TechnologyObject;
 import org.openflexo.gina.utils.InspectorGroup;
+import org.openflexo.icon.IconFactory;
+import org.openflexo.icon.IconLibrary;
 import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
 import org.openflexo.ta.obp2.fml.OBP2XXXRole;
+import org.openflexo.ta.obp2.fml.editionaction.PerformBFSAnalysis;
 import org.openflexo.ta.obp2.gui.OBP2IconLibrary;
 import org.openflexo.ta.obp2.model.OBP2Analysis;
 import org.openflexo.ta.obp2.model.OBP2Object;
@@ -64,7 +67,7 @@ public class OBP2AdapterController extends TechnologyAdapterController<OBP2Techn
 
 	static final Logger logger = Logger.getLogger(OBP2AdapterController.class.getPackage().getName());
 
-	private InspectorGroup xxInspectorGroup;
+	private InspectorGroup obp2InspectorGroup;
 
 	@Override
 	public Class<OBP2TechnologyAdapter> getTechnologyAdapterClass() {
@@ -79,7 +82,7 @@ public class OBP2AdapterController extends TechnologyAdapterController<OBP2Techn
 	@Override
 	protected void initializeInspectors(FlexoController controller) {
 
-		xxInspectorGroup = controller.loadInspectorGroup("XX", getTechnologyAdapter().getLocales(),
+		obp2InspectorGroup = controller.loadInspectorGroup("OBP2", getTechnologyAdapter().getLocales(),
 				getFMLTechnologyAdapterInspectorGroup());
 	}
 
@@ -90,7 +93,7 @@ public class OBP2AdapterController extends TechnologyAdapterController<OBP2Techn
 	 */
 	@Override
 	public InspectorGroup getTechnologyAdapterInspectorGroup() {
-		return xxInspectorGroup;
+		return obp2InspectorGroup;
 	}
 
 	@Override
@@ -175,10 +178,10 @@ public class OBP2AdapterController extends TechnologyAdapterController<OBP2Techn
 	 */
 	@Override
 	public ImageIcon getIconForEditionAction(Class<? extends EditionAction> editionActionClass) {
-		/*if (AddXXLine.class.isAssignableFrom(editionActionClass)) {
-			return IconFactory.getImageIcon(getIconForTechnologyObject(OBP2XXX.class), IconLibrary.DUPLICATE);
+		if (PerformBFSAnalysis.class.isAssignableFrom(editionActionClass)) {
+			return IconFactory.getImageIcon(OBP2IconLibrary.OBP2_ANALYSIS_ICON, IconLibrary.DUPLICATE);
 		}
-		else if (AbstractSelectXXLine.class.isAssignableFrom(editionActionClass)) {
+		/*else if (AbstractSelectXXLine.class.isAssignableFrom(editionActionClass)) {
 			return IconFactory.getImageIcon(getIconForTechnologyObject(OBP2XXX.class), IconLibrary.IMPORT);
 		}*/
 		return super.getIconForEditionAction(editionActionClass);
