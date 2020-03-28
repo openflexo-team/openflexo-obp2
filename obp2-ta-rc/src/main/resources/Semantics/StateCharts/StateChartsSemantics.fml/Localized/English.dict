@@ -1,3 +1,6 @@
+configuration=Configuration
+fireableTransitionsFrom=FireableTransitionsFrom
 initialConfigurations=InitialConfigurations
+invalid_parameter=Invalid parameter
 makeInitialConfiguration=MakeInitialConfiguration
 makeInitialConfigurations=MakeInitialConfigurations

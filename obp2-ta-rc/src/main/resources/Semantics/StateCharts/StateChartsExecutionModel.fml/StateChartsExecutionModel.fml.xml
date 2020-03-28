@@ -28,4 +28,12 @@
   <CreationScheme id="SYL-21" label="create" name="create" width="800" height="600" userID="SYL" flexoID="21">
     <BehaviourControlGraph_EmptyControlGraph id="SYL-22" userID="SYL" flexoID="22" />
   </CreationScheme>
+  <ActionScheme id="SYL-72" label="getStateChartExecutionUnit" name="getStateChartExecutionUnit" width="800" height="600" userID="SYL" flexoID="72">
+    <BehaviourControlGraph_ReturnStatement id="SYL-76" userID="SYL" flexoID="76">
+      <AssignableAction_SelectUniqueFlexoConceptInstance id="SYL-74" container="this" flexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit" receiver="this" userID="SYL" flexoID="74">
+        <Condition id="SYL-75" condition="(selected.definition = parameters.definition)" userID="SYL" flexoID="75" />
+      </AssignableAction_SelectUniqueFlexoConceptInstance>
+    </BehaviourControlGraph_ReturnStatement>
+    <GenericBehaviourParameter id="SYL-77" isRequired="true" widget="CUSTOM_WIDGET" name="definition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml#StateChartExecutionUnitDefinition&gt;" userID="SYL" flexoID="77" />
+  </ActionScheme>
 </VirtualModel>

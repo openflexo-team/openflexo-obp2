@@ -15,6 +15,11 @@ public class StateChartsExecutionModel extends CoreExecutionModel  {
   
   }  
 
+  @ActionScheme  
+  StateChartExecutionUnit getStateChartExecutionUnit(StateChartExecutionUnitDefinition definition) {  
+    return this.SelectUniqueFlexoConceptInstance(type=StateChartExecutionUnit,where=where=(selected.definition = parameters.definition));  
+  }  
+
 
   @FlexoConcept  
   public class StateChartExecutionUnit extends ExecutionUnit  {  

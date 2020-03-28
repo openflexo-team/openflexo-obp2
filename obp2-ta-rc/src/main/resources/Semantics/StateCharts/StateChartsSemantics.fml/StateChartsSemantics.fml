@@ -49,6 +49,18 @@ public class StateChartsSemantics extends CoreSemantics  {
     return returned;  
   }  
 
+  @ActionScheme  
+  public ArrayList<Transition> fireableTransitionsFrom(StateChartsExecutionModel configuration) {  
+    ArrayList<Transition> returned = new ArrayList<Transition>();    
+    for (startChartDefinition : stateCharts) {    
+      StateChartExecutionUnit stateChartExecutionUnit = parameters.configuration.getStateChartExecutionUnit(startChartDefinition);      
+      List<Transition> transitions = startChartDefinition.fireableTransitionsFrom(stateChartExecutionUnit);      
+      log ((("Pour " + startChartDefinition) + " je retourne ") + transitions)      
+      returned.addAll(transitions)    
+    }    
+    return returned;  
+  }  
+
 
   @FlexoConcept  
   public class StateChartExecutionUnitDefinition extends ExecutionUnitDefinition  {  
@@ -64,6 +76,11 @@ public class StateChartsSemantics extends CoreSemantics  {
     @DeletionScheme    
     Void delete() {    
       
+    }    
+  
+    @ActionScheme    
+    List<Transition> fireableTransitionsFrom(StateChartExecutionUnit executionUnit) {    
+      return parameters.executionUnit.state.outgoingTransitions;    
     }    
   
   }  

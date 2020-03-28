@@ -18,6 +18,12 @@
     <DeletionScheme id="SYL-53" label="delete" name="delete" width="800" height="600" userID="SYL" flexoID="53">
       <BehaviourControlGraph_EmptyControlGraph id="SYL-56" userID="SYL" flexoID="56" />
     </DeletionScheme>
+    <ActionScheme id="SYL-208" label="fireableTransitionsFrom" name="fireableTransitionsFrom" width="800" height="600" userID="SYL" flexoID="208">
+      <BehaviourControlGraph_ReturnStatement id="SYL-210" userID="SYL" flexoID="210">
+        <AssignableAction_ExpressionAction id="SYL-209" expression="parameters.executionUnit.state.outgoingTransitions" userID="SYL" flexoID="209" />
+      </BehaviourControlGraph_ReturnStatement>
+      <GenericBehaviourParameter id="SYL-211" isRequired="true" widget="CUSTOM_WIDGET" name="executionUnit" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit&gt;" userID="SYL" flexoID="211" />
+    </ActionScheme>
   </FlexoConcept>
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
   <UseModelSlotDeclaration id="1" modelSlotClass="org.openflexo.foundation.fml.ta.FMLModelSlot" userID="SYL" flexoID="-1" />
@@ -97,5 +103,35 @@
         </ThenControlGraph_AssignationAction>
       </ControlGraph1_ConditionalAction>
     </BehaviourControlGraph_Sequence>
+  </ActionScheme>
+  <ActionScheme id="SYL-196" visibility="Public" label="fireableTransitionsFrom" name="fireableTransitionsFrom" width="800" height="600" userID="SYL" flexoID="196">
+    <BehaviourControlGraph_Sequence id="SYL-203" userID="SYL" flexoID="203">
+      <ControlGraph2_Sequence id="SYL-219" ownerContext="controlGraph2" userID="SYL" flexoID="219">
+        <ControlGraph2_ReturnStatement id="SYL-216" ownerContext="controlGraph2" userID="SYL" flexoID="216">
+          <AssignableAction_ExpressionAction id="SYL-215" expression="returned" userID="SYL" flexoID="215" />
+        </ControlGraph2_ReturnStatement>
+        <ControlGraph1_IterationAction id="SYL-201" iteratorName="startChartDefinition" ownerContext="controlGraph1" userID="SYL" flexoID="201">
+          <Iteration_ExpressionAction id="SYL-202" expression="stateCharts" ownerContext="iterationControlGraph" userID="SYL" flexoID="202" />
+          <ControlGraph_Sequence id="SYL-220" ownerContext="controlGraph" userID="SYL" flexoID="220">
+            <ControlGraph2_Sequence id="SYL-221" ownerContext="controlGraph2" userID="SYL" flexoID="221">
+              <ControlGraph2_Sequence id="SYL-222" ownerContext="controlGraph2" userID="SYL" flexoID="222">
+                <ControlGraph2_ExpressionAction id="SYL-214" expression="returned.addAll(transitions)" ownerContext="controlGraph2" userID="SYL" flexoID="214" />
+                <ControlGraph1_LogAction id="SYL-218" logLevel="INFO" logString="(((&quot;Pour &quot; + startChartDefinition) + &quot; je retourne &quot;) + transitions)" ownerContext="controlGraph1" userID="SYL" flexoID="218" />
+              </ControlGraph2_Sequence>
+              <ControlGraph1_DeclarationAction id="SYL-213" variable="transitions" ownerContext="controlGraph1" userID="SYL" flexoID="213">
+                <AssignableAction_ExpressionAction id="SYL-212" expression="startChartDefinition.fireableTransitionsFrom(stateChartExecutionUnit)" userID="SYL" flexoID="212" />
+              </ControlGraph1_DeclarationAction>
+            </ControlGraph2_Sequence>
+            <ControlGraph1_DeclarationAction id="SYL-207" variable="stateChartExecutionUnit" ownerContext="controlGraph1" userID="SYL" flexoID="207">
+              <AssignableAction_ExpressionAction id="SYL-206" expression="parameters.configuration.getStateChartExecutionUnit(startChartDefinition)" userID="SYL" flexoID="206" />
+            </ControlGraph1_DeclarationAction>
+          </ControlGraph_Sequence>
+        </ControlGraph1_IterationAction>
+      </ControlGraph2_Sequence>
+      <ControlGraph1_DeclarationAction id="SYL-199" variable="returned" ownerContext="controlGraph1" userID="SYL" flexoID="199">
+        <AssignableAction_AddClassInstance id="SYL-198" type="java.util.ArrayList&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#Transition&gt;&gt;" userID="SYL" flexoID="198" />
+      </ControlGraph1_DeclarationAction>
+    </BehaviourControlGraph_Sequence>
+    <GenericBehaviourParameter id="SYL-205" isRequired="true" widget="CUSTOM_WIDGET" name="configuration" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml&gt;" userID="SYL" flexoID="205" />
   </ActionScheme>
 </VirtualModel>

@@ -61,6 +61,11 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "FMLConfiguration:[" + getBase().toString() + "]";
+	}
+
 	private Color metadata = Color.WHITE;
 
 	@Override

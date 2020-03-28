@@ -93,7 +93,25 @@ public class FMLTransitionRelation extends VirtualModelInstanceWrapper implement
 
 	@Override
 	public Collection<Object> fireableTransitionsFrom(FMLConfiguration configuration) {
-		System.out.println("Pour la configuration " + configuration);
+		try {
+			System.out.println("Pour la configuration " + configuration);
+			List<Object> fireableTransitions = getBase().execute("this.fireableTransitionsFrom({$configuration})", configuration.getBase());
+			System.out.println("fireableTransitions=" + fireableTransitions);
+			return fireableTransitions;
+		} catch (TypeMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullReferenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidBindingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return Collections.emptyList();
 	}
 
