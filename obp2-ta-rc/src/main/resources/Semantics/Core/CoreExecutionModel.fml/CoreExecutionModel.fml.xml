@@ -3,6 +3,7 @@
 	virtualModelClass="org.openflexo.foundation.fml.VirtualModel"
 	modelVersion="2.0"
 	uri="http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml"
+	parentFlexoConceptsList="http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration"
 	version="0.1" name="CoreExecutionModel" author="sylvain" userID="SYL"
 	flexoID="5">
 	<FlexoConcept id="SYL-9" isAbstract="true"

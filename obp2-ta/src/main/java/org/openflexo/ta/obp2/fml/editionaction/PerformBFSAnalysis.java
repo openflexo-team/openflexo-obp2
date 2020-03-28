@@ -51,7 +51,14 @@ import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
 import org.openflexo.pamela.annotations.XMLElement;
 import org.openflexo.ta.obp2.OBP2ModelSlot;
+import org.openflexo.ta.obp2.model.FMLConfiguration;
+import org.openflexo.ta.obp2.model.FMLTransitionRelation;
 import org.openflexo.ta.obp2.model.OBP2Analysis;
+
+import announce4j.Announcer;
+import plug.events.ExecutionEndedEvent;
+import plug.explorer.BFSExplorer;
+import plug.statespace.SimpleStateSpaceManager;
 
 @ModelEntity
 @ImplementationClass(PerformBFSAnalysis.PerformBFSAnalysisImpl.class)
@@ -81,6 +88,17 @@ public interface PerformBFSAnalysis extends AbstractAnalysisAction<Object> {
 						.getBindingValue(evaluationContext);
 				System.out.println("TransitionRelation=" + transitionRelation);
 				System.out.println(transitionRelation.getFactory().stringRepresentation(transitionRelation));
+
+				System.out.println("Tiens, faudrait executer le BFS !!!");
+
+				FMLTransitionRelation fmlTransitionRelation = new FMLTransitionRelation(transitionRelation);
+				BFSExplorer<FMLConfiguration, Object> controller = new BFSExplorer<>(fmlTransitionRelation,
+						new SimpleStateSpaceManager<FMLConfiguration, Object>(true));
+				controller.getAnnouncer().when(ExecutionEndedEvent.class, (Announcer announcer, ExecutionEndedEvent o) -> {
+					System.out.println("Final size: " + o.getSource().getStateSpaceManager().size() + "\n");
+				});
+				controller.execute();
+
 			} catch (TypeMismatchException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -91,8 +109,6 @@ public interface PerformBFSAnalysis extends AbstractAnalysisAction<Object> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			System.out.println("Tiens, faudrait executer le BFS !!!");
 
 			return null;
 

@@ -28,7 +28,6 @@
     </DeletionScheme>
   </FlexoConcept>
   <Inspector id="SYL-2" inspectorTitle="ITransitionRelation" userID="SYL" flexoID="2" />
-  <AbstractProperty id="SYL-13" type="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;&gt;" visibility="Public" name="initialConfigurations" userID="SYL" flexoID="13" />
   <ActionScheme id="SYL-14" label="fireableTransitionsFrom" declaredType="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#ITransition&gt;&gt;" isAbstract="true" name="fireableTransitionsFrom" width="800" height="600" userID="SYL" flexoID="14">
     <BehaviourControlGraph_EmptyControlGraph id="SYL-30" userID="SYL" flexoID="30" />
     <GenericBehaviourParameter id="SYL-31" isRequired="true" widget="CUSTOM_WIDGET" name="configuration" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;" userID="SYL" flexoID="31" />
@@ -37,5 +36,8 @@
     <BehaviourControlGraph_EmptyControlGraph id="SYL-32" userID="SYL" flexoID="32" />
     <GenericBehaviourParameter id="SYL-33" isRequired="true" widget="CUSTOM_WIDGET" name="source" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;" userID="SYL" flexoID="33" />
     <GenericBehaviourParameter id="SYL-34" isRequired="true" widget="CUSTOM_WIDGET" name="transition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#ITransition&gt;" userID="SYL" flexoID="34" />
+  </ActionScheme>
+  <ActionScheme id="SYL-47" label="initialConfigurations" declaredType="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;&gt;" isAbstract="true" name="initialConfigurations" width="800" height="600" userID="SYL" flexoID="47">
+    <BehaviourControlGraph_EmptyControlGraph id="SYL-48" userID="SYL" flexoID="48" />
   </ActionScheme>
 </VirtualModel>

@@ -51,7 +51,7 @@
     </GetSetProperty>
     <ActionScheme id="SYL-69" visibility="Public" label="createNewVariable" name="createNewVariable" width="800" height="600" userID="SYL" flexoID="69">
       <BehaviourControlGraph_ReturnStatement id="SYL-78" userID="SYL" flexoID="78">
-        <AssignableAction_AddFlexoConceptInstance id="SYL-74" container="this" creationSchemeURI="http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml#Variable.create(aName,primitiveType,description)" receiver="container" userID="SYL" flexoID="74">
+        <AssignableAction_AddFlexoConceptInstance id="SYL-74" creationSchemeURI="http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml#Variable.create(aName,primitiveType,description)" container="this" flexoConceptTypeURI="http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml#Variable" receiver="container" userID="SYL" flexoID="74">
           <AddFlexoConceptInstanceParameter id="SYL-75" paramName="aName" value="parameters.name" userID="SYL" flexoID="75" />
           <AddFlexoConceptInstanceParameter id="SYL-76" paramName="primitiveType" value="parameters.primitiveType" userID="SYL" flexoID="76" />
           <AddFlexoConceptInstanceParameter id="SYL-77" paramName="description" value="parameters.description" userID="SYL" flexoID="77" />
@@ -68,4 +68,7 @@
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.ta.FMLModelSlot" userID="SYL" flexoID="-1" />
   <Inspector id="SYL-1" inspectorTitle="CoreSemantics" userID="SYL" flexoID="1" />
   <FMLModelSlot id="SYL-9" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="supportVirtualModel" userID="SYL" flexoID="9" />
+  <ActionScheme id="SYL-94" label="initialConfigurations" declaredType="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;&gt;" isAbstract="true" name="initialConfigurations" width="800" height="600" userID="SYL" flexoID="94">
+    <BehaviourControlGraph_EmptyControlGraph id="SYL-95" userID="SYL" flexoID="95" />
+  </ActionScheme>
 </VirtualModel>

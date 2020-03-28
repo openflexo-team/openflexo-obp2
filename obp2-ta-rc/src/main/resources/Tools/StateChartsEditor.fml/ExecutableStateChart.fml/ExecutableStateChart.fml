@@ -18,7 +18,12 @@ public class ExecutableStateChart {
   ExecutableStateChart:create() {  
     model = StateChartModel.create();    
     diagram = CreateDiagram();    
-    semantics = StateChartExecutionUnitDefinition.create((this.name + "ExecutionUnit"));  
+    semantics = StateChartExecutionUnitDefinition.create((this.name + "ExecutionUnit"),model);  
+  }  
+
+  @DeletionScheme  
+  Void delete() {  
+  
   }  
 
 

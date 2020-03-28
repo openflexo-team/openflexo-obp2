@@ -6,9 +6,6 @@
 @VirtualModel(uri="http://openflexo.org/obp2/ITransitionRelation.fml")
 public class ITransitionRelation {
 
-  
-  abstract List<IConfiguration> initialConfigurations;
-
   @ActionScheme  
   List<ITransition> fireableTransitionsFrom(IConfiguration configuration) {  
   
@@ -16,6 +13,11 @@ public class ITransitionRelation {
 
   @ActionScheme  
   IFiredTransition fireOneTransition(IConfiguration source, ITransition transition) {  
+  
+  }  
+
+  @ActionScheme  
+  List<IConfiguration> initialConfigurations() {  
   
   }  
 

@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VirtualModel id="SYL-5"
-	virtualModelClass="org.openflexo.foundation.fml.VirtualModel"
-	modelVersion="2.0"
-	uri="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml"
-	version="0.1"
-	parentFlexoConceptsList="http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml"
-	name="StateChartsExecutionModel" author="sylvain" userID="SYL"
-	flexoID="5">
-	<FlexoConcept id="SYL-9"
-		parentFlexoConceptsList="http://openflexo.org/obp2/resources/Semantics/Core/CoreExecutionModel.fml#ExecutionUnit"
-		name="StateChartExecutionUnit" author="sylvain" userID="SYL"
-		flexoID="9">
-		<Inspector id="SYL-10"
-			inspectorTitle="StateChartExecutionUnit" userID="SYL" flexoID="10" />
-		<CreationScheme id="SYL-11" label="create"
-			name="create" width="800" height="600" userID="SYL" flexoID="11">
-			<BehaviourControlGraph_EmptyControlGraph
-				id="SYL-12" userID="SYL" flexoID="12" />
-		</CreationScheme>
-		<DeletionScheme id="SYL-13" label="delete"
-			name="delete" width="800" height="600" userID="SYL" flexoID="13">
-			<BehaviourControlGraph_EmptyControlGraph
-				id="SYL-14" userID="SYL" flexoID="14" />
-		</DeletionScheme>
-	</FlexoConcept>
-	<Inspector id="SYL-1"
-		inspectorTitle="StateChartsExecutionModel" userID="SYL" flexoID="1" />
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml" version="0.1" parentFlexoConceptsList="http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml" name="StateChartsExecutionModel" author="sylvain" userID="SYL" flexoID="5">
+  <FlexoConcept id="SYL-9" parentFlexoConceptsList="http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml#ExecutionUnit" name="StateChartExecutionUnit" author="sylvain" userID="SYL" flexoID="9">
+    <Inspector id="SYL-10" inspectorTitle="StateChartExecutionUnit" userID="SYL" flexoID="10" />
+    <FlexoConceptInstanceRole id="SYL-24" virtualModelInstance="semantics" flexoConceptTypeURI="http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml#StateChartExecutionUnitDefinition" cloningStrategy="Reference" cardinality="ZeroOne" name="definition" userID="SYL" flexoID="24" />
+    <ExpressionProperty id="SYL-31" expression="definition.model" name="model" userID="SYL" flexoID="31" />
+    <FlexoConceptInstanceRole id="SYL-32" virtualModelInstance="model" flexoConceptTypeURI="http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#State" cloningStrategy="Reference" cardinality="ZeroOne" name="state" userID="SYL" flexoID="32" />
+    <CreationScheme id="SYL-11" label="create" name="create" width="800" height="600" userID="SYL" flexoID="11">
+      <BehaviourControlGraph_EmptyControlGraph id="SYL-64" ownerContext="controlGraph1" userID="SYL" flexoID="64" />
+    </CreationScheme>
+    <DeletionScheme id="SYL-13" label="delete" name="delete" width="800" height="600" userID="SYL" flexoID="13">
+      <BehaviourControlGraph_EmptyControlGraph id="SYL-14" userID="SYL" flexoID="14" />
+    </DeletionScheme>
+    <ActionScheme id="SYL-56" label="init" name="init" width="800" height="600" userID="SYL" flexoID="56">
+      <BehaviourControlGraph_Sequence id="SYL-65" userID="SYL" flexoID="65">
+        <ControlGraph2_ConditionalAction id="SYL-61" condition="(model.initialTransition != null)" ownerContext="controlGraph2" userID="SYL" flexoID="61">
+          <ThenControlGraph_AssignationAction id="SYL-63" assign="state" ownerContext="thenControlGraph" userID="SYL" flexoID="63">
+            <AssignableAction_ExpressionAction id="SYL-62" expression="model.initialTransition.to" userID="SYL" flexoID="62" />
+          </ThenControlGraph_AssignationAction>
+        </ControlGraph2_ConditionalAction>
+        <ControlGraph1_LogAction id="SYL-59" logLevel="INFO" logString="&quot;Initialize StateChartExecutionUnit&quot;" ownerContext="controlGraph1" userID="SYL" flexoID="59" />
+      </BehaviourControlGraph_Sequence>
+    </ActionScheme>
+  </FlexoConcept>
+  <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
+  <Inspector id="SYL-1" inspectorTitle="StateChartsExecutionModel" userID="SYL" flexoID="1" />
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-23" virtualModelURI="http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="semantics" userID="SYL" flexoID="23" />
+  <CreationScheme id="SYL-21" label="create" name="create" width="800" height="600" userID="SYL" flexoID="21">
+    <BehaviourControlGraph_EmptyControlGraph id="SYL-22" userID="SYL" flexoID="22" />
+  </CreationScheme>
 </VirtualModel>

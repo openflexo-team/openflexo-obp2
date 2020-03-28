@@ -17,13 +17,18 @@ public class StateChartsEditor {
   @CreationScheme  
   StateChartsEditor:init() {  
     stateChartsView = StateCharts.create();    
-    stateChartsSemantics = StateChartsSemantics.init((this.name + "ExecutionModel"));    
+    stateChartsSemantics = StateChartsSemantics.init((this.name + "ExecutionModel"),stateChartsView);    
     singleStateChart = ExecutableStateChart.create();  
   }  
 
   @ActionScheme  
   public Void performCheck() {  
     modelChecking.PerformBFSAnalysis()  
+  }  
+
+  @DeletionScheme  
+  Void delete() {  
+  
   }  
 
 }

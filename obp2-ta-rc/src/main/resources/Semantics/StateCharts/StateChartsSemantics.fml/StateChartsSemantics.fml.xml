@@ -2,11 +2,18 @@
 <VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml" version="0.1" isAbstract="true" parentFlexoConceptsList="http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml" name="StateChartsSemantics" author="sylvain" userID="SYL" flexoID="5">
   <FlexoConcept id="SYL-47" isAbstract="true" parentFlexoConceptsList="http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml#ExecutionUnitDefinition" name="StateChartExecutionUnitDefinition" userID="SYL" flexoID="47">
     <Inspector id="SYL-48" inspectorTitle="StateChartExecutionUnitDefinition" userID="SYL" flexoID="48" />
+    <FMLRTVirtualModelInstanceModelSlot id="SYL-115" virtualModelURI="http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="model" userID="SYL" flexoID="115" />
     <CreationScheme id="SYL-52" label="create" name="create" width="800" height="600" userID="SYL" flexoID="52">
-      <BehaviourControlGraph_AssignationAction id="SYL-63" assign="supportConcept" ownerContext="controlGraph2" userID="SYL" flexoID="63">
-        <AssignableAction_CreateFlexoConcept id="SYL-64" container="supportVirtualModel" conceptName="parameters.name" parentFlexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="64" />
-      </BehaviourControlGraph_AssignationAction>
+      <BehaviourControlGraph_Sequence id="SYL-107" ownerContext="controlGraph2" userID="SYL" flexoID="107">
+        <ControlGraph2_AssignationAction id="SYL-117" assign="model" ownerContext="controlGraph2" userID="SYL" flexoID="117">
+          <AssignableAction_ExpressionAction id="SYL-116" expression="parameters.model" userID="SYL" flexoID="116" />
+        </ControlGraph2_AssignationAction>
+        <ControlGraph1_AssignationAction id="SYL-63" assign="supportConcept" ownerContext="controlGraph1" userID="SYL" flexoID="63">
+          <AssignableAction_CreateFlexoConcept id="SYL-64" container="supportVirtualModel" conceptName="parameters.name" parentFlexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="64" />
+        </ControlGraph1_AssignationAction>
+      </BehaviourControlGraph_Sequence>
       <GenericBehaviourParameter id="SYL-55" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="55" />
+      <GenericBehaviourParameter id="SYL-119" widget="CUSTOM_WIDGET" name="model" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml&gt;" userID="SYL" flexoID="119" />
     </CreationScheme>
     <DeletionScheme id="SYL-53" label="delete" name="delete" width="800" height="600" userID="SYL" flexoID="53">
       <BehaviourControlGraph_EmptyControlGraph id="SYL-56" userID="SYL" flexoID="56" />
@@ -15,10 +22,80 @@
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
   <UseModelSlotDeclaration id="1" modelSlotClass="org.openflexo.foundation.fml.ta.FMLModelSlot" userID="SYL" flexoID="-1" />
   <Inspector id="SYL-1" inspectorTitle="StateChartSemantics" userID="SYL" flexoID="1" />
+  <GetSetProperty id="SYL-73" name="stateCharts" userID="SYL" flexoID="73">
+    <SetControlGraph_EmptyControlGraph id="SYL-77" ownerContext="setControlGraph" userID="SYL" flexoID="77" />
+    <GetControlGraph_ReturnStatement id="SYL-76" ownerContext="getControlGraph" userID="SYL" flexoID="76">
+      <AssignableAction_SelectFlexoConceptInstance id="SYL-75" container="this" flexoConceptTypeURI="http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml#StateChartExecutionUnitDefinition" receiver="this" userID="SYL" flexoID="75" />
+    </GetControlGraph_ReturnStatement>
+  </GetSetProperty>
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-110" virtualModelURI="http://openflexo.org/modellers/StateCharts.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="stateChartsView" userID="SYL" flexoID="110" />
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-164" virtualModelURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="initialConfiguration" userID="SYL" flexoID="164" />
   <CreationScheme id="SYL-38" label="init" name="init" width="800" height="600" userID="SYL" flexoID="38">
-    <BehaviourControlGraph_AssignationAction id="SYL-65" assign="supportVirtualModel" ownerContext="controlGraph2" userID="SYL" flexoID="65">
-      <AssignableAction_CreateTopLevelVirtualModel id="SYL-66" parentVirtualModelTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml" resourceCenter="this.resourceCenter" relativePath="" dynamicRelativePath="&quot;&quot;" resourceName="parameters.virtualModelName" userID="SYL" flexoID="66" />
-    </BehaviourControlGraph_AssignationAction>
+    <BehaviourControlGraph_Sequence id="SYL-109" ownerContext="controlGraph2" userID="SYL" flexoID="109">
+      <ControlGraph2_AssignationAction id="SYL-112" assign="stateChartsView" ownerContext="controlGraph2" userID="SYL" flexoID="112">
+        <AssignableAction_ExpressionAction id="SYL-111" expression="parameters.stateChartsView" userID="SYL" flexoID="111" />
+      </ControlGraph2_AssignationAction>
+      <ControlGraph1_AssignationAction id="SYL-65" assign="supportVirtualModel" ownerContext="controlGraph1" userID="SYL" flexoID="65">
+        <AssignableAction_CreateTopLevelVirtualModel id="SYL-66" parentVirtualModelTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml" resourceCenter="this.resourceCenter" relativePath="" dynamicRelativePath="&quot;&quot;" resourceName="parameters.virtualModelName" userID="SYL" flexoID="66" />
+      </ControlGraph1_AssignationAction>
+    </BehaviourControlGraph_Sequence>
     <GenericBehaviourParameter id="SYL-42" isRequired="true" widget="TEXT_FIELD" name="virtualModelName" type="java.lang.String" userID="SYL" flexoID="42" />
+    <GenericBehaviourParameter id="SYL-114" widget="CUSTOM_WIDGET" name="stateChartsView" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://openflexo.org/modellers/StateCharts.fml&gt;" userID="SYL" flexoID="114" />
   </CreationScheme>
+  <ActionScheme id="SYL-84" visibility="Public" label="makeInitialConfiguration" name="makeInitialConfiguration" width="800" height="600" userID="SYL" flexoID="84">
+    <BehaviourControlGraph_Sequence id="SYL-179" userID="SYL" flexoID="179">
+      <ControlGraph2_Sequence id="SYL-132" ownerContext="controlGraph2" userID="SYL" flexoID="132">
+        <ControlGraph2_Sequence id="SYL-155" ownerContext="controlGraph2" userID="SYL" flexoID="155">
+          <ControlGraph2_ReturnStatement id="SYL-154" ownerContext="controlGraph2" userID="SYL" flexoID="154">
+            <AssignableAction_ExpressionAction id="SYL-153" expression="initialConfiguration" userID="SYL" flexoID="153" />
+          </ControlGraph2_ReturnStatement>
+          <ControlGraph1_IterationAction id="SYL-91" iteratorName="stateChartDefinition" ownerContext="controlGraph1" userID="SYL" flexoID="91">
+            <Iteration_ExpressionAction id="SYL-92" expression="stateCharts" ownerContext="iterationControlGraph" userID="SYL" flexoID="92" />
+            <ControlGraph_Sequence id="SYL-133" ownerContext="controlGraph" userID="SYL" flexoID="133">
+              <ControlGraph2_Sequence id="SYL-141" ownerContext="controlGraph2" userID="SYL" flexoID="141">
+                <ControlGraph2_ExpressionAction id="SYL-140" expression="stateChartInstance.init()" ownerContext="controlGraph2" userID="SYL" flexoID="140" />
+                <ControlGraph1_AssignationAction id="SYL-131" assign="stateChartInstance.definition" ownerContext="controlGraph1" userID="SYL" flexoID="131">
+                  <AssignableAction_ExpressionAction id="SYL-130" expression="stateChartDefinition" userID="SYL" flexoID="130" />
+                </ControlGraph1_AssignationAction>
+              </ControlGraph2_Sequence>
+              <ControlGraph1_DeclarationAction id="SYL-95" variable="stateChartInstance" ownerContext="controlGraph1" userID="SYL" flexoID="95">
+                <AssignableAction_AddFlexoConceptInstance id="SYL-94" container="initialConfiguration" dynamicInstantiation="true" flexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit" dynamicFlexoConceptType="stateChartDefinition.supportConcept" receiver="initialConfiguration" userID="SYL" flexoID="94" />
+              </ControlGraph1_DeclarationAction>
+            </ControlGraph_Sequence>
+          </ControlGraph1_IterationAction>
+        </ControlGraph2_Sequence>
+        <ControlGraph1_AssignationAction id="SYL-129" assign="initialConfiguration.semantics" ownerContext="controlGraph1" userID="SYL" flexoID="129">
+          <AssignableAction_ExpressionAction id="SYL-128" expression="this" userID="SYL" flexoID="128" />
+        </ControlGraph1_AssignationAction>
+      </ControlGraph2_Sequence>
+      <ControlGraph1_AssignationAction id="SYL-178" assign="initialConfiguration" ownerContext="controlGraph1" userID="SYL" flexoID="178">
+        <AssignableAction_AddVirtualModelInstance id="SYL-177" virtualModelInstanceTitle="&quot;InitialConfiguration&quot;" virtualModelInstanceName="&quot;InitialConfiguration&quot;" dynamicInstantiation="true" flexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml" dynamicFlexoConceptType="supportVirtualModel" receiver="this" ownerContext="controlGraph1" userID="SYL" flexoID="177" />
+      </ControlGraph1_AssignationAction>
+    </BehaviourControlGraph_Sequence>
+  </ActionScheme>
+  <DeletionScheme id="SYL-120" label="delete" name="delete" width="800" height="600" userID="SYL" flexoID="120">
+    <BehaviourControlGraph_EmptyControlGraph id="SYL-121" userID="SYL" flexoID="121" />
+  </DeletionScheme>
+  <ActionScheme id="SYL-165" label="initialConfigurations" name="initialConfigurations" width="800" height="600" userID="SYL" flexoID="165">
+    <BehaviourControlGraph_Sequence id="SYL-187" userID="SYL" flexoID="187">
+      <ControlGraph2_Sequence id="SYL-188" ownerContext="controlGraph2" userID="SYL" flexoID="188">
+        <ControlGraph2_Sequence id="SYL-189" ownerContext="controlGraph2" userID="SYL" flexoID="189">
+          <ControlGraph2_ReturnStatement id="SYL-186" ownerContext="controlGraph2" userID="SYL" flexoID="186">
+            <AssignableAction_ExpressionAction id="SYL-185" expression="returned" userID="SYL" flexoID="185" />
+          </ControlGraph2_ReturnStatement>
+          <ControlGraph1_AddToListAction id="SYL-184" list="returned" ownerContext="controlGraph1" userID="SYL" flexoID="184">
+            <AssignableAction_ExpressionAction id="SYL-183" expression="initialConfiguration" userID="SYL" flexoID="183" />
+          </ControlGraph1_AddToListAction>
+        </ControlGraph2_Sequence>
+        <ControlGraph1_DeclarationAction id="SYL-182" variable="returned" ownerContext="controlGraph1" userID="SYL" flexoID="182">
+          <AssignableAction_AddClassInstance id="SYL-181" type="java.util.ArrayList&lt;java.lang.Object&gt;" userID="SYL" flexoID="181" />
+        </ControlGraph1_DeclarationAction>
+      </ControlGraph2_Sequence>
+      <ControlGraph1_ConditionalAction id="SYL-167" condition="(initialConfiguration = null)" ownerContext="controlGraph1" userID="SYL" flexoID="167">
+        <ThenControlGraph_AssignationAction id="SYL-169" assign="initialConfiguration" ownerContext="thenControlGraph" userID="SYL" flexoID="169">
+          <AssignableAction_ExpressionAction id="SYL-168" expression="this.makeInitialConfiguration()" userID="SYL" flexoID="168" />
+        </ThenControlGraph_AssignationAction>
+      </ControlGraph1_ConditionalAction>
+    </BehaviourControlGraph_Sequence>
+  </ActionScheme>
 </VirtualModel>

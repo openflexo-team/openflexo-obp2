@@ -9,18 +9,56 @@ use org.openflexo.foundation.fml.ta.FMLModelSlot;
 @VirtualModel(uri="http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml")
 public class StateChartsSemantics extends CoreSemantics  {
 
+  @GetSetProperty(value="stateCharts", access=get)  
+  public List<StateChartExecutionUnitDefinition> getStateCharts {  
+    return this.SelectFlexoConceptInstance(type=StateChartExecutionUnitDefinition);  
+  }
+  public StateCharts stateChartsView;
+  public StateChartsExecutionModel initialConfiguration;
+
   @CreationScheme  
-  StateChartsSemantics:init(String virtualModelName) {  
-    supportVirtualModel = CreateTopLevelVirtualModel();  
+  StateChartsSemantics:init(String virtualModelName, StateCharts stateChartsView) {  
+    supportVirtualModel = CreateTopLevelVirtualModel();    
+    stateChartsView = parameters.stateChartsView;  
+  }  
+
+  @ActionScheme  
+  public StateChartsExecutionModel makeInitialConfiguration() {  
+    initialConfiguration = this.AddVirtualModelInstance();    
+    initialConfiguration.semantics = this;    
+    for (stateChartDefinition : stateCharts) {    
+      StateChartExecutionUnit stateChartInstance = initialConfiguration.AddFlexoConceptInstance();      
+      stateChartInstance.definition = stateChartDefinition;      
+      stateChartInstance.init()    
+    }    
+    return initialConfiguration;  
+  }  
+
+  @DeletionScheme  
+  Void delete() {  
+  
+  }  
+
+  @ActionScheme  
+  ArrayList<Object> initialConfigurations() {  
+    if (initialConfiguration = null) {    
+      initialConfiguration = this.makeInitialConfiguration();    
+    }    
+    ArrayList<Object> returned = new ArrayList<Object>();    
+    returned.add(initialConfiguration)    
+    return returned;  
   }  
 
 
   @FlexoConcept  
   public class StateChartExecutionUnitDefinition extends ExecutionUnitDefinition  {  
   
+    public StateChartModel model;  
+  
     @CreationScheme    
-    StateChartExecutionUnitDefinition:create(String name) {    
-      supportConcept = supportVirtualModel.CreateFlexoConcept();    
+    StateChartExecutionUnitDefinition:create(String name, StateChartModel model) {    
+      supportConcept = supportVirtualModel.CreateFlexoConcept();      
+      model = parameters.model;    
     }    
   
     @DeletionScheme    
