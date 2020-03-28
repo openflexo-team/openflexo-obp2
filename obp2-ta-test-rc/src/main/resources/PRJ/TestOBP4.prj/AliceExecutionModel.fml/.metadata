@@ -1,0 +1,8 @@
+#Metadata for directory /Users/sylvain/Documents/TestsFlexo/TestOBP4.prj/AliceExecutionModel.fml
+#Sat Mar 28 11:12:54 CET 2020
+AliceExecutionModel.fml.xml.name=AliceExecutionModel
+AliceExecutionModel.fml.xml.uri=http\://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceExecutionModel.fml
+AliceExecutionModel.fml.xml.requiredModelSlotList=
+AliceExecutionModel.fml.xml.virtualModelClassName=org.openflexo.foundation.fml.VirtualModel
+AliceExecutionModel.fml.xml.modelVersion=2.0
+AliceExecutionModel.fml.xml.version=0.1

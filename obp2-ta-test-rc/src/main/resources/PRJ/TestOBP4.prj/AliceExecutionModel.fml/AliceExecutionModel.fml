@@ -1,0 +1,13 @@
+
+/**
+ * 
+ * @version 0.1
+ */
+@VirtualModel(uri="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceExecutionModel.fml")
+public class AliceExecutionModel extends StateChartsExecutionModel  {
+
+  @FlexoConcept  
+  public class AliceStateChartExecutionUnit extends StateChartExecutionUnit  {  
+  }  
+
+}

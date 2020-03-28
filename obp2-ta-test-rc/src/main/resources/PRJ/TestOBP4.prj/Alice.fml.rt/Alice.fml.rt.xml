@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FMLRTVirtualModelInstance id="0" virtualModelURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml" modelVersion="1.0" title="Alice" version="0.1" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml" userID="SYL" flexoID="1">
+  <VirtualModelModelSlotInstance id="1" virtualModelInstanceURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceStateChartsLibrary.fml.rt" modelSlotName="stateChartsView" roleName="stateChartsView" userID="SYL" flexoID="2" />
+  <VirtualModelModelSlotInstance id="2" virtualModelInstanceURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceSemantics.fml.rt" modelSlotName="stateChartsSemantics" roleName="stateChartsSemantics" userID="SYL" flexoID="3" />
+  <VirtualModelModelSlotInstance id="3" virtualModelInstanceURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/Alice.fml.rt/AliceStateChart.fml.rt" modelSlotName="singleStateChart" roleName="singleStateChart" userID="SYL" flexoID="4" />
+</FMLRTVirtualModelInstance>
