@@ -64,7 +64,7 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 
 	@Test
 	@TestOrder(1)
-	public void testCreateViewPoint() throws SaveResourceException, ModelDefinitionException, IOException {
+	public void testLoadProject() throws SaveResourceException, ModelDefinitionException, IOException {
 		instanciateTestServiceManager(OBP2TechnologyAdapter.class);
 		System.out.println("SM=" + serviceManager);
 		FlexoResourceCenterService rcService = serviceManager.getResourceCenterService();
@@ -76,7 +76,7 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 		}
 
 		FlexoProjectResource<?> projectResource = (FlexoProjectResource) serviceManager.getResourceManager()
-				.getResource("http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj");
+				.getResource("http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj");
 
 		System.out.println("projectResource=" + projectResource);
 

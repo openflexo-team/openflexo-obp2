@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FMLRTVirtualModelInstance id="0" virtualModelURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml" modelVersion="1.0" title="AliceStateChart" version="0.1" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml" userID="SYL" flexoID="1">
+  <FlexoConceptInstance id="1" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#StateGR" userID="SYL" flexoID="5">
+    <ModelObjectActorReference id="2" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_2" roleName="shape" userID="SYL" flexoID="11" />
+    <ModelObjectActorReference id="3" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_2" roleName="state" userID="SYL" flexoID="12" />
+  </FlexoConceptInstance>
+  <FlexoConceptInstance id="4" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#StateGR" userID="SYL" flexoID="6">
+    <ModelObjectActorReference id="5" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_3" roleName="shape" userID="SYL" flexoID="13" />
+    <ModelObjectActorReference id="6" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_3" roleName="state" userID="SYL" flexoID="14" />
+  </FlexoConceptInstance>
+  <FlexoConceptInstance id="7" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#TransitionGR" userID="SYL" flexoID="7">
+    <ModelObjectActorReference id="8" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_4" roleName="connector" userID="SYL" flexoID="15" />
+    <ModelObjectActorReference id="9" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_4" roleName="transition" userID="SYL" flexoID="16" />
+  </FlexoConceptInstance>
+  <FlexoConceptInstance id="10" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#StateGR" userID="SYL" flexoID="8">
+    <ModelObjectActorReference id="11" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_5" roleName="shape" userID="SYL" flexoID="17" />
+    <ModelObjectActorReference id="12" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_5" roleName="state" userID="SYL" flexoID="18" />
+  </FlexoConceptInstance>
+  <FlexoConceptInstance id="13" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#TransitionGR" userID="SYL" flexoID="9">
+    <ModelObjectActorReference id="14" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_6" roleName="connector" userID="SYL" flexoID="19" />
+    <ModelObjectActorReference id="15" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_6" roleName="transition" userID="SYL" flexoID="20" />
+  </FlexoConceptInstance>
+  <FlexoConceptInstance id="16" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#InitialTransitionGR" userID="SYL" flexoID="10">
+    <ModelObjectActorReference id="17" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_7" roleName="initialTransition" userID="SYL" flexoID="21" />
+    <ModelObjectActorReference id="18" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_7" roleName="shape" userID="SYL" flexoID="22" />
+    <ModelObjectActorReference id="19" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_8" roleName="connector" userID="SYL" flexoID="23" />
+  </FlexoConceptInstance>
+  <VirtualModelModelSlotInstance id="20" virtualModelInstanceURI="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt" modelSlotName="model" roleName="model" userID="SYL" flexoID="2" />
+  <TypeAwareModelSlotInstance id="21" modelURI="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram" modelSlotName="diagram" roleName="diagram" userID="SYL" flexoID="3" />
+  <ModelObjectActorReference id="22" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceSemantics.fml.rt#SYL_2" roleName="semantics" userID="SYL" flexoID="4" />
+</FMLRTVirtualModelInstance>
