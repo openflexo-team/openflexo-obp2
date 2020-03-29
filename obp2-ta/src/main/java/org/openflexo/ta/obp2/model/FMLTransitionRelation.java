@@ -50,7 +50,6 @@ import org.openflexo.connie.exception.NullReferenceException;
 import org.openflexo.connie.exception.TypeMismatchException;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
 
-import plug.core.IFiredTransition;
 import plug.core.ITransitionRelation;
 
 /**
@@ -116,8 +115,27 @@ public class FMLTransitionRelation extends VirtualModelInstanceWrapper implement
 	}
 
 	@Override
-	public IFiredTransition<FMLConfiguration, ?> fireOneTransition(FMLConfiguration arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	public FMLFiredTransition fireOneTransition(FMLConfiguration source, Object transition) {
+		try {
+			System.out.println("On veut executer la transition " + transition);
+			FMLConfiguration target = source.createCopy();
+			getBase().execute("this.fireOneTransition({$source},{$transition})", target.getBase(), transition);
+			FMLFiredTransition firedTransition = new FMLFiredTransition(source, target);
+			return firedTransition;
+		} catch (TypeMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullReferenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidBindingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 

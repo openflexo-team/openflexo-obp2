@@ -38,6 +38,9 @@
 
 package org.openflexo.ta.obp2.model;
 
+import org.openflexo.foundation.fml.FlexoRole;
+import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
+import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
 
 import plug.core.IConfiguration;
@@ -55,10 +58,52 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 		super(base);
 	}
 
+	private FMLRTVirtualModelInstance cloneVirtualModelInstance(VirtualModelInstance<?, ?> toBeCloned) {
+
+		System.out.println("On cherche a cloner le VMI : " + toBeCloned);
+		System.out.println("factory=" + toBeCloned.getFactory());
+		System.out.println("resource=" + toBeCloned.getResource());
+
+		FMLRTVirtualModelInstance clone = toBeCloned.getFactory().newInstance(FMLRTVirtualModelInstance.class);
+		clone.setVirtualModel(toBeCloned.getVirtualModel());
+		clone.setLocalFactory(toBeCloned.getFactory());
+		for (FlexoRole flexoRole : toBeCloned.getVirtualModel().getAccessibleRoles()) {
+			Object value = toBeCloned.getFlexoPropertyValue(flexoRole);
+			System.out.println("role: " + flexoRole + " value=" + value);
+			clone.setFlexoPropertyValue(flexoRole, value);
+		}
+		for (FlexoConceptInstance fci : toBeCloned.getFlexoConceptInstances()) {
+			FlexoConceptInstance clonedFCI = cloneFlexoConceptInstance(fci);
+			clone.addToFlexoConceptInstances(clonedFCI);
+		}
+		return clone;
+	}
+
+	private FlexoConceptInstance cloneFlexoConceptInstance(FlexoConceptInstance toBeCloned) {
+
+		System.out.println("On cherche a cloner le FCI : " + toBeCloned);
+		System.out.println("factory=" + toBeCloned.getFactory());
+		System.out.println("vmi=" + toBeCloned.getVirtualModelInstance());
+		System.out.println("resource=" + toBeCloned.getVirtualModelInstance().getResource());
+
+		FlexoConceptInstance clone = toBeCloned.getFactory().newInstance(FlexoConceptInstance.class);
+		clone.setFlexoConcept(toBeCloned.getFlexoConcept());
+		for (FlexoRole flexoRole : toBeCloned.getFlexoConcept().getAccessibleRoles()) {
+			Object value = toBeCloned.getFlexoPropertyValue(flexoRole);
+			System.out.println("role: " + flexoRole + " value=" + value);
+			clone.setFlexoPropertyValue(flexoRole, value);
+		}
+		for (FlexoConceptInstance fci : toBeCloned.getEmbeddedFlexoConceptInstances()) {
+			FlexoConceptInstance clonedFCI = cloneFlexoConceptInstance(fci);
+			clone.addToEmbeddedFlexoConceptInstances(clonedFCI);
+		}
+		return clone;
+	}
+
 	@Override
 	public FMLConfiguration createCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		VirtualModelInstance<?, ?> baseCopy = cloneVirtualModelInstance(getBase());
+		return new FMLConfiguration(baseCopy);
 	}
 
 	@Override

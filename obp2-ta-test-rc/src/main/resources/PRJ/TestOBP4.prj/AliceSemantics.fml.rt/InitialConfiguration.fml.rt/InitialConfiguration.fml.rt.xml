@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FMLRTVirtualModelInstance id="0" virtualModelURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceExecutionModel.fml" modelVersion="1.0" title="InitialConfiguration" version="0.1" flexoConceptURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceExecutionModel.fml" userID="SYL" flexoID="1">
   <FlexoConceptInstance id="1" flexoConceptURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceExecutionModel.fml#AliceStateChartExecutionUnit" userID="SYL" flexoID="2">
-    <ModelObjectActorReference id="2" objectReference="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceSemantics.fml.rt#SYL_2" roleName="definition" userID="SYL" flexoID="3" />
-    <ModelObjectActorReference id="3" objectReference="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_2" roleName="state" userID="SYL" flexoID="4" />
+    <ModelObjectActorReference id="2" objectReference="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceSemantics.fml.rt#SYL_2" roleName="definition" userID="SYL" flexoID="4" />
+    <ModelObjectActorReference id="3" objectReference="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_2" roleName="state" userID="SYL" flexoID="5" />
   </FlexoConceptInstance>
-  <VirtualModelModelSlotInstance id="4" virtualModelInstanceURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceSemantics.fml.rt" modelSlotName="semantics" roleName="semantics" userID="SYL" flexoID="5" />
+  <VirtualModelModelSlotInstance id="4" virtualModelInstanceURI="http://www.openflexo.org/projects/2020/3/TestOBP4_1585389935294.prj/AliceSemantics.fml.rt" modelSlotName="semantics" roleName="semantics" userID="SYL" flexoID="3" />
 </FMLRTVirtualModelInstance>

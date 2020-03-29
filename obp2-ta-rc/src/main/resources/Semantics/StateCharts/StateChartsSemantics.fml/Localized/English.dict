@@ -1,4 +1,5 @@
 configuration=Configuration
+fireOneTransition=FireOneTransition
 fireableTransitionsFrom=FireableTransitionsFrom
 initialConfigurations=InitialConfigurations
 invalid_parameter=Invalid parameter

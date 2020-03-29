@@ -1,10 +1,15 @@
 dependencies {
 
     compile project(':obp2-ta')
+    compile project(':obp2-ta-rc')
     compile flexoFoundation()
     
     compile testUtils()
     compile flexoFoundationTest()
+ 
+    compile openflexo("modelers-api") 
+ 	runtime openflexo("modelers-rc")
+ 
 
 	// Test resource center
 	testRuntime project(':obp2-ta-test-rc')

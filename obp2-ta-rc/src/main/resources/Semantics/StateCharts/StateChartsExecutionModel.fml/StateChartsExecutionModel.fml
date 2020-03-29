@@ -16,8 +16,13 @@ public class StateChartsExecutionModel extends CoreExecutionModel  {
   }  
 
   @ActionScheme  
-  StateChartExecutionUnit getStateChartExecutionUnit(StateChartExecutionUnitDefinition definition) {  
+  StateChartExecutionUnit getStateChartExecutionUnit(UndefinedFlexoConceptInstanceType<http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml#StateChartExecutionUnitDefinition> definition) {  
     return this.SelectUniqueFlexoConceptInstance(type=StateChartExecutionUnit,where=where=(selected.definition = parameters.definition));  
+  }  
+
+  @ActionScheme  
+  StateChartExecutionUnit getStateChartExecutionUnitWithModel(StateChartModel model) {  
+    return this.SelectUniqueFlexoConceptInstance(type=StateChartExecutionUnit,where=where=(selected.model = parameters.model));  
   }  
 
 
@@ -45,6 +50,12 @@ public class StateChartsExecutionModel extends CoreExecutionModel  {
       if (model.initialTransition != null) {      
         state = model.initialTransition.to;      
       }    
+    }    
+  
+    @ActionScheme    
+    Void performTransition(Transition transition) {    
+      state = parameters.transition.to;      
+      log ("Je passe dans l'etat " + state)    
     }    
   
   }  

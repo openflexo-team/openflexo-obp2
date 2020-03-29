@@ -20,6 +20,10 @@
   </FlexoConcept>
   <FlexoConcept id="SYL-24" isAbstract="true" name="IFiredTransition" author="sylvain" userID="SYL" flexoID="24">
     <Inspector id="SYL-25" inspectorTitle="IFiredTransition" userID="SYL" flexoID="25" />
+    <AbstractProperty id="SYL-61" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;" name="source" userID="SYL" flexoID="61" />
+    <AbstractProperty id="SYL-62" type="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;&gt;" name="targets" userID="SYL" flexoID="62" />
+    <AbstractProperty id="SYL-63" type="java.lang.Object" name="action" userID="SYL" flexoID="63" />
+    <AbstractProperty id="SYL-64" type="java.lang.Object" name="payload" userID="SYL" flexoID="64" />
     <CreationScheme id="SYL-26" label="create" name="create" width="800" height="600" userID="SYL" flexoID="26">
       <BehaviourControlGraph_EmptyControlGraph id="SYL-27" userID="SYL" flexoID="27" />
     </CreationScheme>
@@ -28,16 +32,16 @@
     </DeletionScheme>
   </FlexoConcept>
   <Inspector id="SYL-2" inspectorTitle="ITransitionRelation" userID="SYL" flexoID="2" />
-  <ActionScheme id="SYL-14" declaredType="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#ITransition&gt;&gt;" label="fireableTransitionsFrom" isAbstract="true" name="fireableTransitionsFrom" width="800" height="600" userID="SYL" flexoID="14">
+  <ActionScheme id="SYL-14" label="fireableTransitionsFrom" declaredType="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#ITransition&gt;&gt;" isAbstract="true" name="fireableTransitionsFrom" width="800" height="600" userID="SYL" flexoID="14">
     <BehaviourControlGraph_EmptyControlGraph id="SYL-30" userID="SYL" flexoID="30" />
     <GenericBehaviourParameter id="SYL-31" isRequired="true" widget="CUSTOM_WIDGET" name="configuration" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;" userID="SYL" flexoID="31" />
   </ActionScheme>
-  <ActionScheme id="SYL-15" declaredType="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IFiredTransition&gt;" label="fireOneTransition" isAbstract="true" name="fireOneTransition" width="800" height="600" userID="SYL" flexoID="15">
+  <ActionScheme id="SYL-15" label="fireOneTransition" declaredType="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IFiredTransition&gt;" isAbstract="true" name="fireOneTransition" width="800" height="600" userID="SYL" flexoID="15">
     <BehaviourControlGraph_EmptyControlGraph id="SYL-32" userID="SYL" flexoID="32" />
     <GenericBehaviourParameter id="SYL-33" isRequired="true" widget="CUSTOM_WIDGET" name="source" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;" userID="SYL" flexoID="33" />
     <GenericBehaviourParameter id="SYL-34" isRequired="true" widget="CUSTOM_WIDGET" name="transition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#ITransition&gt;" userID="SYL" flexoID="34" />
   </ActionScheme>
-  <ActionScheme id="SYL-47" declaredType="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;&gt;" label="initialConfigurations" isAbstract="true" name="initialConfigurations" width="800" height="600" userID="SYL" flexoID="47">
+  <ActionScheme id="SYL-47" label="initialConfigurations" declaredType="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/ITransitionRelation.fml#IConfiguration&gt;&gt;" isAbstract="true" name="initialConfigurations" width="800" height="600" userID="SYL" flexoID="47">
     <BehaviourControlGraph_EmptyControlGraph id="SYL-48" userID="SYL" flexoID="48" />
   </ActionScheme>
 </VirtualModel>

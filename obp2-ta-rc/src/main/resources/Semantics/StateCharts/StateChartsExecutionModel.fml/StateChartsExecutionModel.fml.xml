@@ -21,6 +21,15 @@
         <ControlGraph1_LogAction id="SYL-59" logLevel="INFO" logString="&quot;Initialize StateChartExecutionUnit&quot;" ownerContext="controlGraph1" userID="SYL" flexoID="59" />
       </BehaviourControlGraph_Sequence>
     </ActionScheme>
+    <ActionScheme id="SYL-89" label="performTransition" name="performTransition" width="800" height="600" userID="SYL" flexoID="89">
+      <BehaviourControlGraph_Sequence id="SYL-94" userID="SYL" flexoID="94">
+        <ControlGraph2_LogAction id="SYL-93" logLevel="INFO" logString="(&quot;Je passe dans l'etat &quot; + state)" ownerContext="controlGraph2" userID="SYL" flexoID="93" />
+        <ControlGraph1_AssignationAction id="SYL-91" assign="state" ownerContext="controlGraph1" userID="SYL" flexoID="91">
+          <AssignableAction_ExpressionAction id="SYL-90" expression="parameters.transition.to" userID="SYL" flexoID="90" />
+        </ControlGraph1_AssignationAction>
+      </BehaviourControlGraph_Sequence>
+      <GenericBehaviourParameter id="SYL-95" isRequired="true" widget="CUSTOM_WIDGET" name="transition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#Transition&gt;" userID="SYL" flexoID="95" />
+    </ActionScheme>
   </FlexoConcept>
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
   <Inspector id="SYL-1" inspectorTitle="StateChartsExecutionModel" userID="SYL" flexoID="1" />
@@ -35,5 +44,13 @@
       </AssignableAction_SelectUniqueFlexoConceptInstance>
     </BehaviourControlGraph_ReturnStatement>
     <GenericBehaviourParameter id="SYL-77" isRequired="true" widget="CUSTOM_WIDGET" name="definition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml#StateChartExecutionUnitDefinition&gt;" userID="SYL" flexoID="77" />
+  </ActionScheme>
+  <ActionScheme id="SYL-85" label="getStateChartExecutionUnitWithModel" name="getStateChartExecutionUnitWithModel" width="800" height="600" userID="SYL" flexoID="85">
+    <BehaviourControlGraph_ReturnStatement id="SYL-87" userID="SYL" flexoID="87">
+      <AssignableAction_SelectUniqueFlexoConceptInstance id="SYL-86" container="this" flexoConceptTypeURI="http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml#StateChartExecutionUnit" receiver="this" userID="SYL" flexoID="86">
+        <Condition id="SYL-84" condition="(selected.model = parameters.model)" userID="SYL" flexoID="84" />
+      </AssignableAction_SelectUniqueFlexoConceptInstance>
+    </BehaviourControlGraph_ReturnStatement>
+    <GenericBehaviourParameter id="SYL-88" isRequired="true" widget="CUSTOM_WIDGET" name="model" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml&gt;" userID="SYL" flexoID="88" />
   </ActionScheme>
 </VirtualModel>

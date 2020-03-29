@@ -55,6 +55,15 @@ public class ITransitionRelation {
   @FlexoConcept  
   public class IFiredTransition {  
   
+      
+    abstract IConfiguration source;  
+      
+    abstract List<IConfiguration> targets;  
+      
+    abstract Object action;  
+      
+    abstract Object payload;  
+  
     @CreationScheme    
     IFiredTransition:create() {    
       

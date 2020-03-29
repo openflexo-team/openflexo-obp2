@@ -61,6 +61,13 @@ public class StateChartsSemantics extends CoreSemantics  {
     return returned;  
   }  
 
+  @ActionScheme  
+  Void fireOneTransition(StateChartsExecutionModel source, Transition transition) {  
+    log ("On execute la transition " + parameters.transition)    
+    StateChartExecutionUnit stateChartExecutionUnit = parameters.source.getStateChartExecutionUnitWithModel(parameters.transition.container);    
+    stateChartExecutionUnit.performTransition(parameters.transition)  
+  }  
+
 
   @FlexoConcept  
   public class StateChartExecutionUnitDefinition extends ExecutionUnitDefinition  {  

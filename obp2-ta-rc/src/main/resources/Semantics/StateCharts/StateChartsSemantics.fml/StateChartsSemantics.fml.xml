@@ -134,4 +134,17 @@
     </BehaviourControlGraph_Sequence>
     <GenericBehaviourParameter id="SYL-205" isRequired="true" widget="CUSTOM_WIDGET" name="configuration" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml&gt;" userID="SYL" flexoID="205" />
   </ActionScheme>
+  <ActionScheme id="SYL-229" label="fireOneTransition" name="fireOneTransition" width="800" height="600" userID="SYL" flexoID="229">
+    <BehaviourControlGraph_Sequence id="SYL-243" userID="SYL" flexoID="243">
+      <ControlGraph2_Sequence id="SYL-245" ownerContext="controlGraph2" userID="SYL" flexoID="245">
+        <ControlGraph2_ExpressionAction id="SYL-244" expression="stateChartExecutionUnit.performTransition(parameters.transition)" ownerContext="controlGraph2" userID="SYL" flexoID="244" />
+        <ControlGraph1_DeclarationAction id="SYL-242" variable="stateChartExecutionUnit" ownerContext="controlGraph1" userID="SYL" flexoID="242">
+          <AssignableAction_ExpressionAction id="SYL-241" expression="parameters.source.getStateChartExecutionUnitWithModel(parameters.transition.container)" userID="SYL" flexoID="241" />
+        </ControlGraph1_DeclarationAction>
+      </ControlGraph2_Sequence>
+      <ControlGraph1_LogAction id="SYL-231" logLevel="INFO" logString="(&quot;On execute la transition &quot; + parameters.transition)" ownerContext="controlGraph1" userID="SYL" flexoID="231" />
+    </BehaviourControlGraph_Sequence>
+    <GenericBehaviourParameter id="SYL-233" isRequired="true" widget="CUSTOM_WIDGET" name="source" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml&gt;" userID="SYL" flexoID="233" />
+    <GenericBehaviourParameter id="SYL-234" isRequired="true" widget="CUSTOM_WIDGET" name="transition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#Transition&gt;" userID="SYL" flexoID="234" />
+  </ActionScheme>
 </VirtualModel>

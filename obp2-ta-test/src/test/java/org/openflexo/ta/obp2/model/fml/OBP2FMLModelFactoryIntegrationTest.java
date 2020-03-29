@@ -87,8 +87,8 @@ public class OBP2FMLModelFactoryIntegrationTest extends AbstractModelFactoryInte
 	 */
 	@Test
 	@TestOrder(2)
-	public void checkXXFMLTechnologyAdapter() {
-		log("checkXXFMLTechnologyAdapter()");
+	public void checkOBP2FMLTechnologyAdapter() {
+		log("checkOBP2FMLTechnologyAdapter()");
 
 		testVirtualModelModelFactoryWithTechnologyAdapter(
 				serviceManager.getTechnologyAdapterService().getTechnologyAdapter(OBP2TechnologyAdapter.class));
