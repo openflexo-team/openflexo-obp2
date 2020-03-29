@@ -39,6 +39,7 @@
 package org.openflexo.ta.obp2.model;
 
 import org.openflexo.foundation.fml.FlexoRole;
+import org.openflexo.foundation.fml.rt.AbstractVirtualModelInstanceModelFactory;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
@@ -73,28 +74,30 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 			clone.setFlexoPropertyValue(flexoRole, value);
 		}
 		for (FlexoConceptInstance fci : toBeCloned.getFlexoConceptInstances()) {
-			FlexoConceptInstance clonedFCI = cloneFlexoConceptInstance(fci);
+			FlexoConceptInstance clonedFCI = cloneFlexoConceptInstance(fci, toBeCloned.getFactory());
 			clone.addToFlexoConceptInstances(clonedFCI);
 		}
 		return clone;
 	}
 
-	private FlexoConceptInstance cloneFlexoConceptInstance(FlexoConceptInstance toBeCloned) {
+	private FlexoConceptInstance cloneFlexoConceptInstance(FlexoConceptInstance toBeCloned,
+			AbstractVirtualModelInstanceModelFactory<?> factory) {
 
 		System.out.println("On cherche a cloner le FCI : " + toBeCloned);
 		System.out.println("factory=" + toBeCloned.getFactory());
 		System.out.println("vmi=" + toBeCloned.getVirtualModelInstance());
 		System.out.println("resource=" + toBeCloned.getVirtualModelInstance().getResource());
 
-		FlexoConceptInstance clone = toBeCloned.getFactory().newInstance(FlexoConceptInstance.class);
+		FlexoConceptInstance clone = factory.newInstance(FlexoConceptInstance.class);
 		clone.setFlexoConcept(toBeCloned.getFlexoConcept());
+		clone.setLocalFactory(factory);
 		for (FlexoRole flexoRole : toBeCloned.getFlexoConcept().getAccessibleRoles()) {
 			Object value = toBeCloned.getFlexoPropertyValue(flexoRole);
 			System.out.println("role: " + flexoRole + " value=" + value);
 			clone.setFlexoPropertyValue(flexoRole, value);
 		}
 		for (FlexoConceptInstance fci : toBeCloned.getEmbeddedFlexoConceptInstances()) {
-			FlexoConceptInstance clonedFCI = cloneFlexoConceptInstance(fci);
+			FlexoConceptInstance clonedFCI = cloneFlexoConceptInstance(fci, factory);
 			clone.addToEmbeddedFlexoConceptInstances(clonedFCI);
 		}
 		return clone;

@@ -7,6 +7,7 @@ dependencies {
     compile testUtils()
     compile flexoFoundationTest()
  
+    compile diagramConnector()
     compile openflexo("modelers-api") 
  	runtime openflexo("modelers-rc")
  

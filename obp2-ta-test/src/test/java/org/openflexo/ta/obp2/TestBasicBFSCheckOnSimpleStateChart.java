@@ -38,18 +38,33 @@
 
 package org.openflexo.ta.obp2;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openflexo.connie.exception.InvalidBindingException;
+import org.openflexo.connie.exception.NullReferenceException;
+import org.openflexo.connie.exception.TypeMismatchException;
+import org.openflexo.foundation.FlexoEditor;
+import org.openflexo.foundation.FlexoException;
+import org.openflexo.foundation.FlexoProject;
+import org.openflexo.foundation.fml.VirtualModel;
+import org.openflexo.foundation.fml.rm.VirtualModelResource;
+import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
+import org.openflexo.foundation.fml.rt.rm.FMLRTVirtualModelInstanceResource;
 import org.openflexo.foundation.project.FlexoProjectResource;
 import org.openflexo.foundation.resource.FlexoResource;
 import org.openflexo.foundation.resource.FlexoResourceCenter;
 import org.openflexo.foundation.resource.FlexoResourceCenterService;
-import org.openflexo.foundation.resource.SaveResourceException;
+import org.openflexo.foundation.resource.ResourceLoadingCancelledException;
 import org.openflexo.foundation.test.OpenflexoProjectAtRunTimeTestCase;
 import org.openflexo.pamela.exceptions.ModelDefinitionException;
+import org.openflexo.technologyadapter.diagram.DiagramTechnologyAdapter;
+import org.openflexo.technologyadapter.diagram.TypedDiagramModelSlot;
 import org.openflexo.test.OrderedRunner;
 import org.openflexo.test.TestOrder;
 
@@ -62,10 +77,18 @@ import org.openflexo.test.TestOrder;
 @RunWith(OrderedRunner.class)
 public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTimeTestCase {
 
+	public static final String PROJECT_URI = "http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj";
+
+	private static FlexoEditor editor;
+	private static FMLRTVirtualModelInstance alice;
+	private static FMLRTVirtualModelInstance aliceSemantics;
+	private static FMLRTVirtualModelInstance aliceStateChartsLibrary;
+	private static VirtualModel aliceExecutionModel;
+
 	@Test
 	@TestOrder(1)
-	public void testLoadProject() throws SaveResourceException, ModelDefinitionException, IOException {
-		instanciateTestServiceManager(OBP2TechnologyAdapter.class);
+	public void testLoadProject() throws ModelDefinitionException, IOException, ResourceLoadingCancelledException, FlexoException {
+		instanciateTestServiceManager(OBP2TechnologyAdapter.class, DiagramTechnologyAdapter.class);
 		System.out.println("SM=" + serviceManager);
 		FlexoResourceCenterService rcService = serviceManager.getResourceCenterService();
 		for (FlexoResourceCenter<?> resourceCenter : rcService.getResourceCenters()) {
@@ -75,15 +98,48 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 			}
 		}
 
-		FlexoProjectResource<?> projectResource = (FlexoProjectResource) serviceManager.getResourceManager()
-				.getResource("http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj");
+		FlexoProjectResource<?> projectResource = (FlexoProjectResource) serviceManager.getResourceManager().getResource(PROJECT_URI);
 
 		System.out.println("projectResource=" + projectResource);
 
 		File projectDirectory = ((File) projectResource.getIODelegate().getSerializationArtefact()).getParentFile();
 		System.out.println("projectDirectory=" + projectDirectory);
 
-		loadProject(projectDirectory);
+		editor = loadProject(projectDirectory);
+		FlexoProject<?> project = editor.getProject();
+
+		System.out.println("Toutes les resources du projet:");
+		for (FlexoResource<?> resource : project.getAllResources()) {
+			System.out.println(" > " + resource.getURI());
+		}
+
+		FMLRTVirtualModelInstanceResource aliceResource = (FMLRTVirtualModelInstanceResource) project
+				.getResource(PROJECT_URI + "/Alice.fml.rt");
+		assertNotNull(aliceResource);
+
+		FMLRTVirtualModelInstanceResource aliceSemanticsResource = (FMLRTVirtualModelInstanceResource) project
+				.getResource(PROJECT_URI + "/AliceSemantics.fml.rt");
+		assertNotNull(aliceSemanticsResource);
+
+		FMLRTVirtualModelInstanceResource aliceSCLibraryResource = (FMLRTVirtualModelInstanceResource) project
+				.getResource(PROJECT_URI + "/AliceStateChartsLibrary.fml.rt");
+		assertNotNull(aliceSCLibraryResource);
+
+		VirtualModelResource aliceExecutionModelResource = (VirtualModelResource) project
+				.getResource(PROJECT_URI + "/AliceExecutionModel.fml");
+		assertNotNull(aliceExecutionModelResource);
+
+		alice = aliceResource.getResourceData();
+		aliceSemantics = aliceSemanticsResource.getResourceData();
+		aliceStateChartsLibrary = aliceSCLibraryResource.getResourceData();
+		aliceExecutionModel = aliceExecutionModelResource.getResourceData();
+
+	}
+
+	@Test
+	@TestOrder(2)
+	public void testExecuteBFS() throws TypeMismatchException, NullReferenceException, InvocationTargetException, InvalidBindingException {
+		alice.execute("this.performCheck()");
 	}
 
 	/*public static final String VIEWPOINT_NAME = "TestViewPoint";
