@@ -23,4 +23,9 @@
     <ModelObjectActorReference id="16" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_2" roleName="to" userID="SYL" flexoID="17" />
     <PrimitiveActorReference id="17" valueAsString="init" roleName="label" userID="SYL" flexoID="18" />
   </FlexoConceptInstance>
+  <FlexoConceptInstance id="18" flexoConceptURI="http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#Transition" userID="SYL" flexoID="19">
+    <ModelObjectActorReference id="19" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_5" roleName="from" userID="SYL" flexoID="20" />
+    <ModelObjectActorReference id="20" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_2" roleName="to" userID="SYL" flexoID="21" />
+    <PrimitiveActorReference id="21" valueAsString="Return" roleName="label" userID="SYL" flexoID="22" />
+  </FlexoConceptInstance>
 </FMLRTVirtualModelInstance>

@@ -25,7 +25,11 @@
     <ModelObjectActorReference id="18" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_7" roleName="shape" userID="SYL" flexoID="22" />
     <ModelObjectActorReference id="19" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_8" roleName="connector" userID="SYL" flexoID="23" />
   </FlexoConceptInstance>
-  <VirtualModelModelSlotInstance id="20" virtualModelInstanceURI="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt" modelSlotName="model" roleName="model" userID="SYL" flexoID="2" />
-  <TypeAwareModelSlotInstance id="21" modelURI="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram" modelSlotName="diagram" roleName="diagram" userID="SYL" flexoID="3" />
-  <ModelObjectActorReference id="22" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceSemantics.fml.rt#SYL_2" roleName="semantics" userID="SYL" flexoID="4" />
+  <FlexoConceptInstance id="20" flexoConceptURI="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#TransitionGR" userID="SYL" flexoID="24">
+    <ModelObjectActorReference id="21" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram#SYL_9" roleName="connector" userID="SYL" flexoID="25" />
+    <ModelObjectActorReference id="22" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt#SYL_19" roleName="transition" userID="SYL" flexoID="26" />
+  </FlexoConceptInstance>
+  <VirtualModelModelSlotInstance id="23" virtualModelInstanceURI="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceStateChartsLibrary.fml.rt/AliceStateChartModel.fml.rt" modelSlotName="model" roleName="model" userID="SYL" flexoID="2" />
+  <TypeAwareModelSlotInstance id="24" modelURI="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/Diagrams/AliceStateChartDiagram.diagram" modelSlotName="diagram" roleName="diagram" userID="SYL" flexoID="3" />
+  <ModelObjectActorReference id="25" objectReference="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceSemantics.fml.rt#SYL_2" roleName="semantics" userID="SYL" flexoID="4" />
 </FMLRTVirtualModelInstance>
