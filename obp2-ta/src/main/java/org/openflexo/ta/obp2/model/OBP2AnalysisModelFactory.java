@@ -1,8 +1,8 @@
 /**
  * 
- * Copyright (c) 2018, Openflexo
+ * Copyright (c) 2014, Openflexo
  * 
- * This file is part of OpenflexoTechnologyAdapter, a component of the software infrastructure 
+ * This file is part of Flexo-foundation, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -38,47 +38,25 @@
 
 package org.openflexo.ta.obp2.model;
 
-import java.util.logging.Logger;
-
-import org.openflexo.foundation.InnerResourceData;
-import org.openflexo.foundation.technologyadapter.TechnologyObject;
-import org.openflexo.pamela.annotations.ModelEntity;
-import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
+import org.openflexo.foundation.fml.rt.AbstractVirtualModelInstanceModelFactory;
+import org.openflexo.foundation.technologyadapter.TechnologyAdapterService;
+import org.openflexo.pamela.exceptions.ModelDefinitionException;
+import org.openflexo.pamela.factory.EditingContext;
+import org.openflexo.pamela.factory.ModelFactory;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResource;
 
 /**
- * Common API for all objects involved in XX model
+ * {@link ModelFactory} used to handle {@link OBP2Analysis} models<br>
+ * Only one instance of this class should be used in a session
  * 
  * @author sylvain
- *
+ * 
  */
-@ModelEntity(isAbstract = true)
-public interface OBP2Object extends InnerResourceData<OBP2Analysis>, TechnologyObject<OBP2TechnologyAdapter> {
+public class OBP2AnalysisModelFactory extends AbstractVirtualModelInstanceModelFactory<OBP2AnalysisResource> {
 
-	public OBP2ModelFactory getFactory();
-
-	/**
-	 * Default base implementation for {@link OBP2Object}
-	 * 
-	 * @author sylvain
-	 *
-	 */
-	public static abstract class XXObjectImpl extends FlexoObjectImpl implements OBP2Object {
-
-		@SuppressWarnings("unused")
-		private static final Logger logger = Logger.getLogger(XXObjectImpl.class.getPackage().getName());
-
-		@Override
-		public OBP2TechnologyAdapter getTechnologyAdapter() {
-			if (getResourceData() != null && getResourceData().getResource() != null) {
-				return getResourceData().getResource().getTechnologyAdapter();
-			}
-			return null;
-		}
-
-		@Override
-		public OBP2ModelFactory getFactory() {
-			return getResourceData().getResource().getFactory();
-		}
-
+	public OBP2AnalysisModelFactory(OBP2AnalysisResource resource, EditingContext editingContext, TechnologyAdapterService taService)
+			throws ModelDefinitionException {
+		super(resource, OBP2Analysis.class, editingContext, taService);
 	}
+
 }

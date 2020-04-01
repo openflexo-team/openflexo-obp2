@@ -1,8 +1,8 @@
 /**
  * 
- * Copyright (c) 2018, Openflexo
+ * Copyright (c) 2014-2015, Openflexo
  * 
- * This file is part of OpenflexoTechnologyAdapter, a component of the software infrastructure 
+ * This file is part of Flexo-foundation, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -38,125 +38,72 @@
 
 package org.openflexo.ta.obp2.model;
 
-import java.util.List;
 import java.util.logging.Logger;
 
-import org.openflexo.foundation.resource.ResourceData;
-import org.openflexo.foundation.technologyadapter.TechnologyAdapter;
-import org.openflexo.pamela.annotations.Adder;
-import org.openflexo.pamela.annotations.CloningStrategy;
-import org.openflexo.pamela.annotations.CloningStrategy.StrategyType;
-import org.openflexo.pamela.annotations.Embedded;
-import org.openflexo.pamela.annotations.Getter;
-import org.openflexo.pamela.annotations.Getter.Cardinality;
-import org.openflexo.ta.obp2.rm.OBP2AnalysisResource;
+import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceRepository;
+import org.openflexo.foundation.fml.rt.VirtualModelInstance;
 import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
-import org.openflexo.pamela.annotations.PastingPoint;
-import org.openflexo.pamela.annotations.PropertyIdentifier;
-import org.openflexo.pamela.annotations.Remover;
 import org.openflexo.pamela.annotations.XMLElement;
+import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResourceFactory;
 
 /**
- * Represents the {@link ResourceData} deserialized from a {@link OBP2AnalysisResource}<br>
- * 
- * Note: Purpose of that class is to demonstrate API of a {@link TechnologyAdapter}, thus the semantics is here pretty simple: a
- * {@link OBP2Analysis} is a plain text file contents, serialized as a {@link String}
+ * Represents OBP2 analysis, as a {@link VirtualModelInstance}
  * 
  * @author sylvain
- *
+ * 
  */
 @ModelEntity
-@ImplementationClass(value = OBP2Analysis.XXTextImpl.class)
-public interface OBP2Analysis extends OBP2Object, ResourceData<OBP2Analysis> {
-
-	@PropertyIdentifier(type = OBP2XXX.class, cardinality = Cardinality.LIST)
-	public static final String LINES_KEY = "lines";
-
-	/**
-	 * Return contents of text file
-	 * 
-	 * @return
-	 */
-	public String getContents();
-
-	/**
-	 * Return all {@link OBP2XXX} defined in this {@link OBP2Analysis}
-	 * 
-	 * @return
-	 */
-	@Getter(value = LINES_KEY, cardinality = Cardinality.LIST, inverse = OBP2XXX.XX_TEXT_KEY)
-	@XMLElement
-	@Embedded
-	@CloningStrategy(StrategyType.CLONE)
-	public List<OBP2XXX> getLines();
-
-	@Adder(LINES_KEY)
-	@PastingPoint
-	public void addToLines(OBP2XXX aLine);
-
-	@Remover(LINES_KEY)
-	public void removeFromLines(OBP2XXX aLine);
+@ImplementationClass(OBP2Analysis.OBP2AnalysisImpl.class)
+@XMLElement
+public interface OBP2Analysis extends VirtualModelInstance<OBP2Analysis, OBP2TechnologyAdapter> {
 
 	@Override
-	public OBP2AnalysisResource getResource();
+	public FMLRTVirtualModelInstanceRepository<?> getVirtualModelInstanceRepository();
 
-	/**
-	 * Default base implementation for {@link OBP2Analysis}
-	 * 
-	 * @author sylvain
-	 *
-	 */
-	public static abstract class XXTextImpl extends XXObjectImpl implements OBP2Analysis {
+	public static abstract class OBP2AnalysisImpl extends VirtualModelInstanceImpl<OBP2Analysis, OBP2TechnologyAdapter>
+			implements OBP2Analysis {
 
-		@SuppressWarnings("unused")
-		private static final Logger logger = Logger.getLogger(XXObjectImpl.class.getPackage().getName());
-
-		public static final String ALL_KEY = "All";
-
-		private String contents = null;
+		private static final Logger logger = Logger.getLogger(OBP2Analysis.class.getPackage().getName());
 
 		@Override
-		public OBP2Analysis getResourceData() {
-			return this;
-		}
-
-		@Override
-		public OBP2AnalysisResource getResource() {
-			return (OBP2AnalysisResource) performSuperGetter(FLEXO_RESOURCE);
-		}
-
-		@Override
-		public String toString() {
-			return super.toString() + "-" + getResource();
-		}
-
-		@Override
-		public String getContents() {
-			if (contents == null) {
-				StringBuffer sb = new StringBuffer();
-				for (OBP2XXX xxLine : getLines()) {
-					sb.append(xxLine.getValue() + "\n");
-				}
-				contents = sb.toString();
+		public OBP2TechnologyAdapter getTechnologyAdapter() {
+			if (getResource() != null) {
+				return getResource().getTechnologyAdapter();
 			}
-			return contents;
-		}
-
-		private void clearContents() {
-			contents = null;
+			return null;
 		}
 
 		@Override
-		public void addToLines(OBP2XXX aLine) {
-			performSuperAdder(LINES_KEY, aLine);
-			clearContents();
+		public FMLRTVirtualModelInstanceRepository<?> getVirtualModelInstanceRepository() {
+			if (getResource() != null) {
+				return getResource().getResourceCenter().getVirtualModelInstanceRepository();
+			}
+			return null;
 		}
 
+		/**
+		 * Returns URI for this {@link VirtualModelInstance}.<br>
+		 * Note that if this {@link VirtualModelInstance} is contained in another {@link VirtualModelInstance}, URI is computed from URI of
+		 * container VirtualModel
+		 * 
+		 * The convention for URI are following:
+		 * <container_virtual_model_instance_uri>/<virtual_model_instance_name >#<flexo_concept_instance_id> <br>
+		 * eg<br>
+		 * http://www.mydomain.org/MyVirtuaModelInstance1/MyVirtualModelInstance2#ID
+		 * 
+		 * @return String representing unique URI of this object
+		 */
 		@Override
-		public void removeFromLines(OBP2XXX aLine) {
-			performSuperRemover(LINES_KEY, aLine);
-			clearContents();
+		public String getURI() {
+			if (getContainerVirtualModelInstance() != null) {
+				return getContainerVirtualModelInstance().getURI() + "/" + getName() + OBP2AnalysisResourceFactory.OBP2_SUFFIX;
+			}
+			if (getResource() != null) {
+				return getResource().getURI();
+			}
+			return null;
 		}
 
 	}

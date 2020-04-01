@@ -4,7 +4,8 @@ dependencies {
   // openflexo dep
   compile flexoUi()
  
-  runtime fmlTechnologyAdapterUi()
+  compile fmlTechnologyAdapterUi()
+  compile fmlRtTechnologyAdapterUi()
 
   // external dep
   // testing dep

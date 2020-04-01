@@ -88,13 +88,13 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 		}*/
 	}
 
-	/*private FMLRTVirtualModelInstance cloneVirtualModelInstance(VirtualModelInstance<?, ?> toBeCloned) {
+	/*private OBP2Analysis cloneVirtualModelInstance(VirtualModelInstance<?, ?> toBeCloned) {
 	
 		System.out.println("On cherche a cloner le VMI : " + toBeCloned);
 		System.out.println("factory=" + toBeCloned.getFactory());
 		System.out.println("resource=" + toBeCloned.getResource());
 	
-		FMLRTVirtualModelInstance clone = toBeCloned.getFactory().newInstance(FMLRTVirtualModelInstance.class);
+		OBP2Analysis clone = toBeCloned.getFactory().newInstance(OBP2Analysis.class);
 		clone.setVirtualModel(toBeCloned.getVirtualModel());
 		clone.setLocalFactory(toBeCloned.getFactory());
 		for (FlexoRole flexoRole : toBeCloned.getVirtualModel().getAccessibleRoles()) {
@@ -169,22 +169,18 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 		if (this == obj)
 			return true;
 		if (obj == null) {
-			System.out.println("Pas bon 1");
 			return false;
 		}
 		if (getClass() != obj.getClass()) {
-			System.out.println("Pas bon 2");
 			return false;
 		}
 		FMLConfiguration other = (FMLConfiguration) obj;
 		if (getBase() == null) {
 			if (other.getBase() != null) {
-				System.out.println("Pas bon 3");
 				return false;
 			}
 		}
 		else if (!getBase().equalsUsingRoles(other.getBase())) {
-			System.out.println("Pas bon 4 pour " + getBase());
 			return false;
 		}
 		return true;

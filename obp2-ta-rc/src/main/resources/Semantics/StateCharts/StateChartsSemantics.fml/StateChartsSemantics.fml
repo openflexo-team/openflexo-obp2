@@ -1,5 +1,6 @@
 use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
 use org.openflexo.foundation.fml.ta.FMLModelSlot;
+use org.openflexo.ta.obp2.OBP2ModelSlot;
 
 /**
  * 
@@ -14,7 +15,6 @@ public class StateChartsSemantics extends CoreSemantics  {
     return this.SelectFlexoConceptInstance(type=StateChartExecutionUnitDefinition);  
   }
   public StateCharts stateChartsView;
-  public StateChartsExecutionModel initialConfiguration;
 
   @CreationScheme  
   StateChartsSemantics:init(String virtualModelName, StateCharts stateChartsView) {  
@@ -23,15 +23,18 @@ public class StateChartsSemantics extends CoreSemantics  {
   }  
 
   @ActionScheme  
-  public StateChartsExecutionModel makeInitialConfiguration() {  
-    initialConfiguration = this.AddVirtualModelInstance();    
-    initialConfiguration.semantics = this;    
+  public StateChartsExecutionModel makeInitialConfiguration(AbstractAnalysis analysis) {  
+    log ("On arrive la analysis=" + parameters.analysis)    
+    StateChartsExecutionModel returned = parameters.analysis.AddOBP2Analysis();    
+    log "On vient de creer le StateChartsExecutionModel"    
+    returned.semantics = this;    
     for (stateChartDefinition : stateCharts) {    
-      StateChartExecutionUnit stateChartInstance = initialConfiguration.AddFlexoConceptInstance();      
+      StateChartExecutionUnit stateChartInstance = returned.AddFlexoConceptInstance();      
+      log ("On vient de creer le StateChartInstance " + stateChartInstance)      
       stateChartInstance.definition = stateChartDefinition;      
       stateChartInstance.init()    
     }    
-    return initialConfiguration;  
+    return returned;  
   }  
 
   @DeletionScheme  
@@ -40,12 +43,9 @@ public class StateChartsSemantics extends CoreSemantics  {
   }  
 
   @ActionScheme  
-  ArrayList<Object> initialConfigurations() {  
-    if (initialConfiguration = null) {    
-      initialConfiguration = this.makeInitialConfiguration();    
-    }    
+  ArrayList<Object> makeInitialConfigurations(AbstractAnalysis analysis) {  
     ArrayList<Object> returned = new ArrayList<Object>();    
-    returned.add(initialConfiguration)    
+    returned.add(this.makeInitialConfiguration(parameters.analysis))    
     return returned;  
   }  
 

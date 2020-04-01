@@ -64,12 +64,11 @@ import org.openflexo.foundation.resource.ResourceLoadingCancelledException;
 import org.openflexo.foundation.test.OpenflexoProjectAtRunTimeTestCase;
 import org.openflexo.pamela.exceptions.ModelDefinitionException;
 import org.openflexo.technologyadapter.diagram.DiagramTechnologyAdapter;
-import org.openflexo.technologyadapter.diagram.TypedDiagramModelSlot;
 import org.openflexo.test.OrderedRunner;
 import org.openflexo.test.TestOrder;
 
 /**
- * This unit test is intented to test FMLRTVirtualModelInstance using a {@link TypedDiagramModelSlot}
+ * This unit test is intented to test OBP2Analysis using a {@link OBP2ModelSlot}
  * 
  * @author sylvain
  * 
@@ -151,8 +150,8 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 	private static VirtualModel newVirtualModel;
 	private static FlexoEditor editor;
 	private static FlexoProject<File> project;
-	private static FMLRTVirtualModelInstance newView;
-	private static FMLRTVirtualModelInstance newVirtualModelInstance;
+	private static OBP2Analysis newView;
+	private static OBP2Analysis newVirtualModelInstance;
 	
 	private static DirectoryResourceCenter newResourceCenter;
 	
@@ -255,7 +254,7 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 	@Test
 	@TestOrder(4)
 	public void testCreateView() {
-		CreateBasicVirtualModelInstance action = CreateBasicVirtualModelInstance.actionType
+		CreateBasicOBP2Analysis action = CreateBasicOBP2Analysis.actionType
 				.makeNewAction(project.getVirtualModelInstanceRepository().getRootFolder(), null, editor);
 		action.setNewVirtualModelInstanceName("MyView");
 		action.setNewVirtualModelInstanceTitle("Test creation of a new view");
@@ -275,16 +274,16 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 		// assertTrue(((ViewResource)
 		// newView.getResource()).getFile().exists());
 		assertTrue(
-				ResourceLocator.retrieveResourceAsFile(((FMLRTVirtualModelInstanceResource) newView.getResource()).getDirectory()) != null);
-		assertTrue(((FMLRTVirtualModelInstanceResource) newView.getResource()).getIODelegate().exists());
+				ResourceLocator.retrieveResourceAsFile(((OBP2AnalysisResource) newView.getResource()).getDirectory()) != null);
+		assertTrue(((OBP2AnalysisResource) newView.getResource()).getIODelegate().exists());
 	}
 	
 	@Test
 	@TestOrder(5)
 	public void testCreateVirtualModelInstance() {
-		CreateBasicVirtualModelInstance action = CreateBasicVirtualModelInstance.actionType.makeNewAction(newView, null, editor);
+		CreateBasicOBP2Analysis action = CreateBasicOBP2Analysis.actionType.makeNewAction(newView, null, editor);
 		action.setNewVirtualModelInstanceName("MyVirtualModelInstance");
-		action.setNewVirtualModelInstanceTitle("Test creation of a new FMLRTVirtualModelInstance");
+		action.setNewVirtualModelInstanceTitle("Test creation of a new OBP2Analysis");
 		action.setVirtualModel(newVirtualModel);
 		action.setCreationScheme(newVirtualModel.getCreationSchemes().get(0));
 	
@@ -294,8 +293,8 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 		assertNotNull(newVirtualModelInstance);
 		assertNotNull(newVirtualModelInstance.getResource());
 		assertTrue(
-				ResourceLocator.retrieveResourceAsFile(((FMLRTVirtualModelInstanceResource) newView.getResource()).getDirectory()) != null);
-		assertTrue(((FMLRTVirtualModelInstanceResource) newView.getResource()).getIODelegate().exists());
+				ResourceLocator.retrieveResourceAsFile(((OBP2AnalysisResource) newView.getResource()).getDirectory()) != null);
+		assertTrue(((OBP2AnalysisResource) newView.getResource()).getIODelegate().exists());
 	
 		assertEquals(1, newVirtualModelInstance.getModelSlotInstances().size());
 	
@@ -319,7 +318,7 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 		project = (FlexoProject<File>) editor.getProject();
 		assertNotNull(editor);
 		assertNotNull(project);
-		FMLRTVirtualModelInstanceResource newViewResource = project.getVirtualModelInstanceRepository()
+		OBP2AnalysisResource newViewResource = project.getVirtualModelInstanceRepository()
 				.getVirtualModelInstance(newView.getURI());
 		assertNotNull(newViewResource);
 	

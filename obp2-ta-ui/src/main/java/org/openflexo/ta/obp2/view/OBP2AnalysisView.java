@@ -36,36 +36,24 @@
  * 
  */
 
-package org.openflexo.ta.obp2.gui;
+package org.openflexo.ta.obp2.view;
 
-import java.util.logging.Logger;
-
-import javax.swing.ImageIcon;
-
-import org.openflexo.icon.ImageIconResource;
-import org.openflexo.rm.ResourceLocator;
+import org.openflexo.fml.rt.controller.view.VirtualModelInstanceView;
 import org.openflexo.ta.obp2.model.OBP2Analysis;
+import org.openflexo.view.controller.FlexoController;
+import org.openflexo.view.controller.model.FlexoPerspective;
 
-public class OBP2IconLibrary {
+/**
+ * This class represent the module view for a OBP2Analysis.<br>
+ * 
+ * @author sylvain
+ * 
+ */
+@SuppressWarnings("serial")
+public class OBP2AnalysisView extends VirtualModelInstanceView /*implements SelectionSynchronizedModuleView<OBP2Analysis>*/ {
 
-	private static final Logger logger = Logger.getLogger(OBP2IconLibrary.class.getPackage().getName());
-
-	public static final ImageIconResource OBP2_TA_BIG_ICON = new ImageIconResource(
-			ResourceLocator.locateResource("Icons/obp2-ta-32x32.png"));
-
-	public static final ImageIconResource OBP2_TA_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/obp2-ta-16x16.png"));
-	public static final ImageIconResource OBP2_ANALYSIS_ICON = new ImageIconResource(
-			ResourceLocator.locateResource("Icons/obp2-ta-16x16.png"));
-	// public static final ImageIconResource XX_LINE_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/OBP2XXX.png"));
-
-	public static ImageIcon iconForObject(Class<?> objectClass) {
-		if (OBP2Analysis.class.isAssignableFrom(objectClass)) {
-			return OBP2_ANALYSIS_ICON;
-		}
-		/*else if (OBP2XXX.class.isAssignableFrom(objectClass)) {
-			return XX_LINE_ICON;
-		}*/
-		logger.warning("No icon for " + objectClass);
-		return null;
+	public OBP2AnalysisView(OBP2Analysis obp2Analysis, FlexoController controller, FlexoPerspective perspective) {
+		super(obp2Analysis, controller, perspective);
 	}
+
 }

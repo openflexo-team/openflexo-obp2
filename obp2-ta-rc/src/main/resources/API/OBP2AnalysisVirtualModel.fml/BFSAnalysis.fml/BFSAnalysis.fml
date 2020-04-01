@@ -1,0 +1,20 @@
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/BFSAnalysis.fml")
+public class BFSAnalysis extends AbstractAnalysis  {
+
+  @CreationScheme  
+  BFSAnalysis:create() {  
+  
+  }  
+
+  @DeletionScheme  
+  Void delete() {  
+  
+  }  
+
+}

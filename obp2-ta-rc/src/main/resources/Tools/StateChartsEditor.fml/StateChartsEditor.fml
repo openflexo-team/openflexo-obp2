@@ -12,13 +12,14 @@ public class StateChartsEditor {
   public StateCharts stateChartsView;
   public StateChartsSemantics stateChartsSemantics;
   public ExecutableStateChart singleStateChart;
-  public OBP2Analysis modelChecking;
+  public OBP2AnalysisVirtualModel modelChecking;
 
   @CreationScheme  
   StateChartsEditor:init() {  
     stateChartsView = StateCharts.create();    
     stateChartsSemantics = StateChartsSemantics.init((this.name + "ExecutionModel"),stateChartsView);    
-    singleStateChart = ExecutableStateChart.create();  
+    singleStateChart = ExecutableStateChart.create();    
+    modelChecking = CreateOBP2Analysis();  
   }  
 
   @ActionScheme  
@@ -29,6 +30,11 @@ public class StateChartsEditor {
   @DeletionScheme  
   Void delete() {  
   
+  }  
+
+  @ActionScheme  
+  public Void prout() {  
+    stateChartsSemantics.makeInitialConfiguration(modelChecking.bfsAnalysis)  
   }  
 
 }

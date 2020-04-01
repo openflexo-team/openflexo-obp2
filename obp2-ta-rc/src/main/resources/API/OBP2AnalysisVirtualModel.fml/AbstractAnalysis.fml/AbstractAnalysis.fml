@@ -1,0 +1,9 @@
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/AbstractAnalysis.fml")
+public class AbstractAnalysis {
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml" version="0.1" name="OBP2AnalysisVirtualModel" author="sylvain" userID="SYL" flexoID="5">
+  <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
+  <UseModelSlotDeclaration id="1" modelSlotClass="org.openflexo.ta.obp2.OBP2ModelSlot" userID="SYL" flexoID="-1" />
+  <Inspector id="SYL-1" inspectorTitle="OBP2AnalysisVirtualModel" userID="SYL" flexoID="1" />
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-10" virtualModelURI="http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/BFSAnalysis.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="bfsAnalysis" userID="SYL" flexoID="10" />
+  <CreationScheme id="SYL-9" label="create" name="create" width="800" height="600" userID="SYL" flexoID="9">
+    <BehaviourControlGraph_AssignationAction id="SYL-19" assign="bfsAnalysis" userID="SYL" flexoID="19">
+      <AssignableAction_AddOBP2Analysis id="SYL-18" virtualModelInstanceName="&quot;BFSAnalysis&quot;" creationSchemeURI="http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/BFSAnalysis.fml.create()" flexoConceptTypeURI="http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/BFSAnalysis.fml" receiver="this" ownerContext="controlGraph2" userID="SYL" flexoID="18" />
+    </BehaviourControlGraph_AssignationAction>
+  </CreationScheme>
+</VirtualModel>

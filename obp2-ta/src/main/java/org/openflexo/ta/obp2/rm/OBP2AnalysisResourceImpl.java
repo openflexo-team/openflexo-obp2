@@ -1,8 +1,8 @@
 /**
  * 
- * Copyright (c) 2018, Openflexo
+ * Copyright (c) 2014-2015, Openflexo
  * 
- * This file is part of OpenflexoTechnologyAdapter, a component of the software infrastructure 
+ * This file is part of Flexo-foundation, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -38,217 +38,146 @@
 
 package org.openflexo.ta.obp2.rm;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.util.logging.Level;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
-import org.openflexo.foundation.FlexoException;
-import org.openflexo.foundation.IOFlexoException;
-import org.openflexo.foundation.resource.FileIODelegate;
-import org.openflexo.foundation.resource.FileWritingLock;
-import org.openflexo.foundation.resource.PamelaResourceImpl;
-import org.openflexo.foundation.resource.ResourceData;
-import org.openflexo.foundation.resource.ResourceLoadingCancelledException;
-import org.openflexo.foundation.resource.SaveResourceException;
-import org.openflexo.foundation.resource.StreamIODelegate;
-import org.openflexo.ta.obp2.model.OBP2XXX;
-import org.openflexo.ta.obp2.model.OBP2ModelFactory;
+import org.openflexo.foundation.FlexoServiceManager;
+import org.openflexo.foundation.fml.VirtualModel;
+import org.openflexo.foundation.fml.rt.rm.AbstractVirtualModelInstanceResourceImpl;
+import org.openflexo.rm.Resource;
+import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
 import org.openflexo.ta.obp2.model.OBP2Analysis;
-import org.openflexo.toolbox.FileUtils;
 
 /**
- * Default implementation for a resource storing a {@link OBP2Analysis}
+ * Default implementation for {@link OBP2AnalysisResource}
  * 
- * @author sylvain
- *
+ * 
+ * @author Sylvain
+ * 
  */
-public abstract class OBP2AnalysisResourceImpl extends PamelaResourceImpl<OBP2Analysis, OBP2ModelFactory> implements OBP2AnalysisResource {
+public abstract class OBP2AnalysisResourceImpl extends AbstractVirtualModelInstanceResourceImpl<OBP2Analysis, OBP2TechnologyAdapter>
+		implements OBP2AnalysisResource {
 
-	private static final Logger logger = Logger.getLogger(OBP2AnalysisResourceImpl.class.getPackage().getName());
+	static final Logger logger = Logger.getLogger(OBP2AnalysisResourceImpl.class.getPackage().getName());
 
 	/**
-	 * Convenient method to retrieve resource data
+	 * Return displayable name for this FlexoResource<br>
+	 * Overrides default dehaviour by using renderer of represented data when loaded
 	 * 
 	 * @return
 	 */
 	@Override
-	public OBP2Analysis getXXText() {
-		try {
-			return getResourceData();
-		} catch (ResourceLoadingCancelledException e) {
-			e.printStackTrace();
-			return null;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (FlexoException e) {
-			e.printStackTrace();
+	public String getDisplayName() {
+		if (isLoaded() && getLoadedResourceData().getFlexoConcept() != null
+				&& getLoadedResourceData().getFlexoConcept().getInspector() != null
+				&& getLoadedResourceData().getFlexoConcept().getInspector().getRenderer().isValid()) {
+			return getLoadedResourceData().getStringRepresentation();
 		}
-		return null;
+		return super.getDisplayName();
 	}
 
-	/**
-	 * Load the resource data of this resource.
-	 * 
-	 * @return the resource data.
-	 * @throws IOFlexoException
-	 */
-	@Override
-	public OBP2Analysis loadResourceData() throws IOFlexoException {
-
-		if (getFlexoIOStreamDelegate() == null) {
-			throw new IOFlexoException("Cannot load document with this IO/delegate: " + getIODelegate());
-		}
-
-		OBP2Analysis resourceData = null;
-		try {
-			resourceData = load(getFlexoIOStreamDelegate());
-			getInputStream().close();
-		} catch (IOException e) {
-			throw new IOFlexoException(e);
-		}
-
-		if (resourceData == null) {
-			logger.warning("Cannot retrieve resource data from serialization artifact " + getIODelegate());
-			return null;
-		}
-
-		resourceData.setResource(this);
-		setResourceData(resourceData);
-
-		return resourceData;
-	}
-
-	/**
-	 * Provides hook when {@link ResourceData} is unloaded
-	 */
-	@Override
-	public void unloadResourceData(boolean deleteResourceData) {
-		super.unloadResourceData(deleteResourceData);
-	}
-
-	/**
-	 * Return type of {@link ResourceData}
-	 */
 	@Override
 	public Class<OBP2Analysis> getResourceDataClass() {
 		return OBP2Analysis.class;
 	}
 
-	/**
-	 * Resource saving safe implementation<br>
-	 * Initial resource is first copied, then we write in a temporary file, renamed at the end when the serialization has been successfully
-	 * performed
-	 */
 	@Override
-	protected void _saveResourceData(boolean clearIsModified) throws SaveResourceException {
-
-		if (getFlexoIOStreamDelegate() == null) {
-			throw new SaveResourceException(getIODelegate());
+	public OBP2TechnologyAdapter getTechnologyAdapter() {
+		if (getServiceManager() != null) {
+			return getServiceManager().getTechnologyAdapterService().getTechnologyAdapter(OBP2TechnologyAdapter.class);
 		}
+		return null;
+	}
 
-		FileWritingLock lock = getFlexoIOStreamDelegate().willWriteOnDisk();
-
-		if (logger.isLoggable(Level.INFO)) {
-			logger.info("Saving resource " + this + " : " + getIODelegate().getSerializationArtefact());
-		}
-
-		if (getFlexoIOStreamDelegate() instanceof FileIODelegate) {
-			File temporaryFile = null;
-			try {
-				File fileToSave = ((FileIODelegate) getFlexoIOStreamDelegate()).getFile();
-				// Make local copy
-				makeLocalCopy(fileToSave);
-				// Using temporary file
-				temporaryFile = ((FileIODelegate) getIODelegate()).createTemporaryArtefact(".txt");
-				if (logger.isLoggable(Level.FINE)) {
-					logger.finer("Creating temp file " + temporaryFile.getAbsolutePath());
-				}
-				try (FileOutputStream fos = new FileOutputStream(temporaryFile)) {
-					write(fos);
-				}
-				System.out.println("Renamed " + temporaryFile + " to " + fileToSave);
-				FileUtils.rename(temporaryFile, fileToSave);
-			} catch (IOException e) {
-				e.printStackTrace();
-				if (temporaryFile != null) {
-					temporaryFile.delete();
-				}
-				if (logger.isLoggable(Level.WARNING)) {
-					logger.warning("Failed to save resource " + getIODelegate().getSerializationArtefact());
-				}
-				getFlexoIOStreamDelegate().hasWrittenOnDisk(lock);
-				throw new SaveResourceException(getIODelegate(), e);
-			}
-		}
-		else {
-			write(getOutputStream());
-		}
-
-		getFlexoIOStreamDelegate().hasWrittenOnDisk(lock);
-		if (clearIsModified) {
-			notifyResourceStatusChanged();
-		}
+	@Override
+	public List<OBP2AnalysisResource> getVirtualModelInstanceResources() {
+		return getContents(OBP2AnalysisResource.class);
 	}
 
 	/**
-	 * {@link ResourceData} internal loading implementation<br>
-	 * (trivial here)
+	 * Return the list of all {@link VirtualModelInstanceResource} defined in this {@link ViewResource} conform to supplied
+	 * {@link VirtualModel}
 	 * 
-	 * @param ioDelegate
 	 * @return
-	 * @throws IOException
 	 */
-	private <I> OBP2Analysis load(StreamIODelegate<I> ioDelegate) throws IOException {
-
-		OBP2Analysis returned = getFactory().makeXXText();
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(ioDelegate.getInputStream()))) {
-			int index = 0;
-			String nextLine = null;
-			do {
-				nextLine = br.readLine();
-				if (nextLine != null) {
-					System.out.println("Ligne lue : " + nextLine);
-					OBP2XXX newLine = getFactory().makeXXLine(nextLine, index);
-					returned.addToLines(newLine);
-					index++;
-				}
-			} while (nextLine != null);
+	@Override
+	public List<OBP2AnalysisResource> getVirtualModelInstanceResources(VirtualModel virtualModel) {
+		List<OBP2AnalysisResource> returned = new ArrayList<>();
+		for (OBP2AnalysisResource vmiRes : getVirtualModelInstanceResources()) {
+			if (virtualModel.isAssignableFrom(vmiRes.getVirtualModelResource().getVirtualModel())) {
+				returned.add(vmiRes);
+			}
 		}
 		return returned;
 	}
 
-	/**
-	 * {@link ResourceData} internal saving implementation<br>
-	 * (trivial here)
-	 * 
-	 * @throws IOException
-	 */
-	private void write(OutputStream out) throws SaveResourceException {
-		logger.info("Writing " + getIODelegate().getSerializationArtefact());
-		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out))) {
-			for (OBP2XXX line : getXXText().getLines()) {
-				bw.write(line.getValue());
-				bw.newLine();
+	@Override
+	public boolean delete(Object... context) {
+		// gets service manager before deleting otherwise the service manager is null
+		FlexoServiceManager serviceManager = getServiceManager();
+		Object serializationArtefact = getIODelegate().getSerializationArtefact();
+		if (super.delete(context)) {
+			if (serializationArtefact instanceof File) {
+				serviceManager.getResourceManager().addToFilesToDelete((File) serializationArtefact);
 			}
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new SaveResourceException(getIODelegate());
-		} finally {
-			try {
-				out.close();
-			} catch (IOException e) {}
+			return true;
 		}
-		logger.info("Wrote " + getIODelegate().getSerializationArtefact());
+		return false;
+	}
+
+	@Override
+	public Resource getDirectory() {
+		if (getIODelegate() != null && getIODelegate().getSerializationArtefactAsResource() != null) {
+			return getIODelegate().getSerializationArtefactAsResource().getContainer();
+		}
+		return null;
+	}
+
+	@Override
+	public OBP2Analysis getModelData() {
+		return getVirtualModelInstance();
+	}
+
+	@Override
+	public OBP2Analysis getModel() {
+		return getVirtualModelInstance();
+	}
+
+	@Override
+	public String computeDefaultURI() {
+		if (getContainer() != null) {
+			return getContainer().getURI() + (!getContainer().getURI().endsWith("/") ? "/" : "")
+					+ (getName().endsWith(OBP2AnalysisResourceFactory.OBP2_SUFFIX) ? getName()
+							: getName() + OBP2AnalysisResourceFactory.OBP2_SUFFIX);
+		}
+		if (getResourceCenter() != null && getResourceCenter().getDefaultBaseURI() != null) {
+			return getResourceCenter().getDefaultBaseURI() + (!getResourceCenter().getDefaultBaseURI().endsWith("/") ? "/" : "")
+					+ (getName().endsWith(OBP2AnalysisResourceFactory.OBP2_SUFFIX) ? getName()
+							: getName() + OBP2AnalysisResourceFactory.OBP2_SUFFIX);
+		}
+		return null;
+	}
+
+	@Override
+	public Class<OBP2TechnologyAdapter> getTechnologyAdapterClass() {
+		return OBP2TechnologyAdapter.class;
+	}
+
+	private String virtualModelURI;
+
+	@Override
+	public String getVirtualModelURI() {
+		if (getVirtualModelResource() != null) {
+			return getVirtualModelResource().getURI();
+		}
+		return virtualModelURI;
+	}
+
+	@Override
+	public void setVirtualModelURI(String virtualModelURI) {
+		this.virtualModelURI = virtualModelURI;
 	}
 
 }

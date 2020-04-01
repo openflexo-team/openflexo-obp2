@@ -47,13 +47,11 @@ import org.openflexo.connie.DataBinding.BindingDefinitionType;
 import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.fml.FlexoRole;
 import org.openflexo.foundation.fml.VirtualModel;
-import org.openflexo.foundation.fml.annotations.DeclareActorReferences;
 import org.openflexo.foundation.fml.annotations.DeclareEditionActions;
-import org.openflexo.foundation.fml.annotations.DeclareFlexoRoles;
 import org.openflexo.foundation.fml.annotations.FML;
+import org.openflexo.foundation.fml.rt.InferedFMLRTModelSlot;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
 import org.openflexo.foundation.resource.ResourceLoadingCancelledException;
-import org.openflexo.foundation.technologyadapter.FreeModelSlot;
 import org.openflexo.foundation.technologyadapter.ModelSlot;
 import org.openflexo.pamela.annotations.Getter;
 import org.openflexo.pamela.annotations.ImplementationClass;
@@ -62,12 +60,11 @@ import org.openflexo.pamela.annotations.PropertyIdentifier;
 import org.openflexo.pamela.annotations.Setter;
 import org.openflexo.pamela.annotations.XMLAttribute;
 import org.openflexo.pamela.annotations.XMLElement;
-import org.openflexo.ta.obp2.fml.OBP2XXXActorReference;
-import org.openflexo.ta.obp2.fml.OBP2XXXRole;
+import org.openflexo.ta.obp2.fml.editionaction.AddOBP2Analysis;
+import org.openflexo.ta.obp2.fml.editionaction.CreateOBP2Analysis;
 import org.openflexo.ta.obp2.fml.editionaction.PerformBFSAnalysis;
 import org.openflexo.ta.obp2.model.OBP2Analysis;
-
-import plug.core.ILanguagePlugin;
+import org.openflexo.ta.obp2.model.OBP2VirtualModelInstanceType;
 
 /**
  * Implementation of the {@link ModelSlot} class for the OBP2 technology adapter
@@ -75,15 +72,15 @@ import plug.core.ILanguagePlugin;
  * @author sylvain
  * 
  */
-@DeclareFlexoRoles({ OBP2XXXRole.class })
-@DeclareEditionActions({ PerformBFSAnalysis.class })
+// @DeclareFlexoRoles({ OBP2XXXRole.class })
+@DeclareEditionActions({ CreateOBP2Analysis.class, AddOBP2Analysis.class, PerformBFSAnalysis.class })
 // @DeclareFetchRequests({ SelectUniqueXXLine.class, SelectXXLine.class })
-@DeclareActorReferences({ OBP2XXXActorReference.class })
+// @DeclareActorReferences({ OBP2XXXActorReference.class })
 @ModelEntity
 @ImplementationClass(OBP2ModelSlot.OBP2ModelSlotImpl.class)
 @XMLElement
 @FML("OBP2ModelSlot")
-public interface OBP2ModelSlot extends FreeModelSlot<OBP2Analysis> {
+public interface OBP2ModelSlot extends InferedFMLRTModelSlot<OBP2Analysis, OBP2TechnologyAdapter> {
 
 	@PropertyIdentifier(type = DataBinding.class)
 	String TRANSITION_RELATION_KEY = "transitionRelation";
@@ -95,10 +92,13 @@ public interface OBP2ModelSlot extends FreeModelSlot<OBP2Analysis> {
 	@Setter(TRANSITION_RELATION_KEY)
 	public void setTransitionRelation(DataBinding<VirtualModelInstance<?, ?>> transitionRelation);
 
-	public static abstract class OBP2ModelSlotImpl extends FreeModelSlotImpl<OBP2Analysis> implements OBP2ModelSlot {
+	public static abstract class OBP2ModelSlotImpl extends InferedFMLRTModelSlotImpl<OBP2Analysis, OBP2TechnologyAdapter>
+			implements OBP2ModelSlot {
 
 		@SuppressWarnings("unused")
 		private static final Logger logger = Logger.getLogger(OBP2ModelSlot.class.getPackage().getName());
+
+		private OBP2VirtualModelInstanceType type;
 
 		@Override
 		public Class<OBP2TechnologyAdapter> getTechnologyAdapterClass() {
@@ -107,18 +107,10 @@ public interface OBP2ModelSlot extends FreeModelSlot<OBP2Analysis> {
 
 		@Override
 		public <PR extends FlexoRole<?>> String defaultFlexoRoleName(Class<PR> patternRoleClass) {
-			if (OBP2XXXRole.class.isAssignableFrom(patternRoleClass)) {
+			/*if (OBP2XXXRole.class.isAssignableFrom(patternRoleClass)) {
 				return "line";
-			}
+			}*/
 			return null;
-		}
-
-		@Override
-		public Type getType() {
-
-			ILanguagePlugin p;
-
-			return OBP2Analysis.class;
 		}
 
 		@Override
@@ -173,6 +165,22 @@ public interface OBP2ModelSlot extends FreeModelSlot<OBP2Analysis> {
 				}
 			}
 			return null;
+		}
+
+		@Override
+		public Type getType() {
+			if (type == null || type.getVirtualModel() != getAccessedVirtualModel()) {
+				type = OBP2VirtualModelInstanceType.getVirtualModelInstanceType(getAccessedVirtualModel());
+			}
+			return type;
+		}
+
+		@Override
+		public void setAccessedVirtualModel(VirtualModel aVirtualModel) {
+			if (aVirtualModel != getAccessedVirtualModel()) {
+				super.setAccessedVirtualModel(aVirtualModel);
+				type = OBP2VirtualModelInstanceType.getVirtualModelInstanceType(getAccessedVirtualModel());
+			}
 		}
 
 	}

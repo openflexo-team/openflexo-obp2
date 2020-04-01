@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/AbstractAnalysis.fml" version="0.1" isAbstract="true" name="AbstractAnalysis" author="sylvain" userID="SYL" flexoID="5">
+  <Inspector id="SYL-1" inspectorTitle="AbstractAnalysis" userID="SYL" flexoID="1" />
+</VirtualModel>

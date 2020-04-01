@@ -17,7 +17,7 @@ public class ITransitionRelation {
   }  
 
   @ActionScheme  
-  List<IConfiguration> initialConfigurations() {  
+  List<IConfiguration> makeInitialConfigurations(AbstractAnalysis analysis) {  
   
   }  
 

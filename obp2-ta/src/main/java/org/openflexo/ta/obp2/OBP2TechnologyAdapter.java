@@ -82,13 +82,23 @@ public class OBP2TechnologyAdapter extends TechnologyAdapter<OBP2TechnologyAdapt
 	@Override
 	public void ensureAllRepositoriesAreCreated(FlexoResourceCenter<?> rc) {
 		super.ensureAllRepositoriesAreCreated(rc);
-		getXXResourceRepository(rc);
+		getOBP2AnalysisResourceRepository(rc);
 
 	}
 
 	@Override
-	public <I> boolean isIgnorable(FlexoResourceCenter<I> resourceCenter, I contents) {
-		// System.out.println("Tiens: " + contents);
+	public <I> boolean isIgnorable(final FlexoResourceCenter<I> resourceCenter, final I contents) {
+		if (resourceCenter.isIgnorable(contents, this)) {
+			return true;
+		}
+
+		// This allows to ignore all contained OBP2 resources, that will be explored from their container resource
+		if (resourceCenter.isDirectory(contents)) {
+			if (FlexoResourceCenter.isContainedInDirectoryWithSuffix(resourceCenter, contents, OBP2AnalysisResourceFactory.OBP2_SUFFIX)) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 
@@ -102,12 +112,12 @@ public class OBP2TechnologyAdapter extends TechnologyAdapter<OBP2TechnologyAdapt
 		return "OBP2";
 	}
 
-	public OBP2AnalysisResourceFactory getXXResourceFactory() {
+	public OBP2AnalysisResourceFactory getOBP2AnalysisResourceFactory() {
 		return getResourceFactory(OBP2AnalysisResourceFactory.class);
 	}
 
 	@SuppressWarnings("unchecked")
-	public <I> OBP2AnalysisResourceRepository<I> getXXResourceRepository(FlexoResourceCenter<I> resourceCenter) {
+	public <I> OBP2AnalysisResourceRepository<I> getOBP2AnalysisResourceRepository(FlexoResourceCenter<I> resourceCenter) {
 		OBP2AnalysisResourceRepository<I> returned = resourceCenter.retrieveRepository(OBP2AnalysisResourceRepository.class, this);
 		if (returned == null) {
 			returned = OBP2AnalysisResourceRepository.instanciateNewRepository(this, resourceCenter);

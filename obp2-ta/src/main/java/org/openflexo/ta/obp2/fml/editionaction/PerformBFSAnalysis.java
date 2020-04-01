@@ -42,6 +42,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.logging.Logger;
 
+import org.openflexo.connie.exception.InvalidBindingException;
 import org.openflexo.connie.exception.NullReferenceException;
 import org.openflexo.connie.exception.TypeMismatchException;
 import org.openflexo.foundation.fml.annotations.FML;
@@ -91,7 +92,10 @@ public interface PerformBFSAnalysis extends AbstractAnalysisAction<Object> {
 
 				System.out.println("Tiens, faudrait executer le BFS !!!");
 
-				FMLTransitionRelation fmlTransitionRelation = new FMLTransitionRelation(transitionRelation);
+				VirtualModelInstance<?, ?> bfsAnalysis = analysis.execute("this.bfsAnalysis");
+				System.out.println("bfsAnalysis=" + bfsAnalysis);
+
+				FMLTransitionRelation fmlTransitionRelation = new FMLTransitionRelation(transitionRelation, bfsAnalysis);
 				BFSExplorer<FMLConfiguration, Object> controller = new BFSExplorer<>(fmlTransitionRelation,
 						new SimpleStateSpaceManager<FMLConfiguration, Object>(true));
 				controller.getAnnouncer().when(ExecutionEndedEvent.class, (Announcer announcer, ExecutionEndedEvent o) -> {
@@ -106,6 +110,9 @@ public interface PerformBFSAnalysis extends AbstractAnalysisAction<Object> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidBindingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

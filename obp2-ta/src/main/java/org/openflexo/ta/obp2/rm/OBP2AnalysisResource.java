@@ -1,8 +1,8 @@
 /**
  * 
- * Copyright (c) 2018, Openflexo
+ * Copyright (c) 2014, Openflexo
  * 
- * This file is part of OpenflexoTechnologyAdapter, a component of the software infrastructure 
+ * This file is part of Flexo-foundation, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -38,29 +38,46 @@
 
 package org.openflexo.ta.obp2.rm;
 
-import org.openflexo.foundation.resource.PamelaResource;
-import org.openflexo.foundation.technologyadapter.TechnologyAdapterResource;
+import java.util.List;
+
+import org.openflexo.foundation.fml.FMLTechnologyAdapter;
+import org.openflexo.foundation.fml.VirtualModel;
+import org.openflexo.foundation.fml.rt.rm.AbstractVirtualModelInstanceResource;
+import org.openflexo.foundation.resource.FlexoResource;
+import org.openflexo.foundation.technologyadapter.FlexoModelResource;
 import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
+import org.openflexo.pamela.annotations.XMLElement;
 import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
-import org.openflexo.ta.obp2.model.OBP2ModelFactory;
 import org.openflexo.ta.obp2.model.OBP2Analysis;
 
 /**
- * A resource storing a {@link OBP2Analysis}
+ * This is the {@link FlexoResource} encoding a {@link OBP2Analysis}
  * 
  * @author sylvain
- *
+ * 
  */
 @ModelEntity
 @ImplementationClass(OBP2AnalysisResourceImpl.class)
-public interface OBP2AnalysisResource extends TechnologyAdapterResource<OBP2Analysis, OBP2TechnologyAdapter>, PamelaResource<OBP2Analysis, OBP2ModelFactory> {
+@XMLElement
+public interface OBP2AnalysisResource extends AbstractVirtualModelInstanceResource<OBP2Analysis, OBP2TechnologyAdapter>,
+		FlexoModelResource<OBP2Analysis, VirtualModel, OBP2TechnologyAdapter, FMLTechnologyAdapter> {
 
 	/**
-	 * Convenient method to retrieve resource data
+	 * Return the list of all {@link VirtualModelInstanceResource} defined in this {@link ViewResource}
 	 * 
 	 * @return
 	 */
-	public OBP2Analysis getXXText();
+	@Override
+	public List<OBP2AnalysisResource> getVirtualModelInstanceResources();
+
+	/**
+	 * Return the list of all {@link VirtualModelInstanceResource} defined in this {@link ViewResource} conform to supplied
+	 * {@link VirtualModel}
+	 * 
+	 * @return
+	 */
+	@Override
+	public List<OBP2AnalysisResource> getVirtualModelInstanceResources(VirtualModel virtualModel);
 
 }

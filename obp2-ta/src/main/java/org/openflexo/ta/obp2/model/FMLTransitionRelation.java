@@ -60,14 +60,18 @@ import plug.core.ITransitionRelation;
  */
 public class FMLTransitionRelation extends VirtualModelInstanceWrapper implements ITransitionRelation<FMLConfiguration, Object> {
 
-	public FMLTransitionRelation(VirtualModelInstance<?, ?> base) {
-		super(base);
+	private VirtualModelInstance<?, ?> analysis;
+
+	public FMLTransitionRelation(VirtualModelInstance<?, ?> transitionRelation, VirtualModelInstance<?, ?> analysis) {
+		super(transitionRelation);
+		this.analysis = analysis;
 	}
 
 	@Override
 	public Set<FMLConfiguration> initialConfigurations() {
 		try {
-			List<VirtualModelInstance<?, ?>> initialConfigurations = getBase().execute("this.initialConfigurations()");
+			List<VirtualModelInstance<?, ?>> initialConfigurations = getBase().execute("this.makeInitialConfigurations({$analysis})",
+					analysis);
 			System.out.println("Initial configurations = " + initialConfigurations);
 			Set<FMLConfiguration> returned = new HashSet<>();
 			for (VirtualModelInstance<?, ?> virtualModelInstance : initialConfigurations) {

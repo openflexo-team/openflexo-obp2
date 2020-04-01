@@ -1,3 +1,4 @@
+analysis=Analysis
 configuration=Configuration
 fireOneTransition=FireOneTransition
 fireableTransitionsFrom=FireableTransitionsFrom
