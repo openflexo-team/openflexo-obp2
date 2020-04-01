@@ -62,20 +62,28 @@ public class FMLTransitionRelation extends VirtualModelInstanceWrapper implement
 
 	private VirtualModelInstance<?, ?> analysis;
 
+	private int nextId = 0;
+
 	public FMLTransitionRelation(VirtualModelInstance<?, ?> transitionRelation, VirtualModelInstance<?, ?> analysis) {
 		super(transitionRelation);
 		this.analysis = analysis;
 	}
 
+	public int getNextId() {
+		return nextId++;
+	}
+
 	@Override
 	public Set<FMLConfiguration> initialConfigurations() {
+		nextId = 0;
 		try {
 			List<VirtualModelInstance<?, ?>> initialConfigurations = getBase().execute("this.makeInitialConfigurations({$analysis})",
 					analysis);
 			System.out.println("Initial configurations = " + initialConfigurations);
+			nextId = initialConfigurations.size();
 			Set<FMLConfiguration> returned = new HashSet<>();
 			for (VirtualModelInstance<?, ?> virtualModelInstance : initialConfigurations) {
-				returned.add(new FMLConfiguration(virtualModelInstance));
+				returned.add(new FMLConfiguration(virtualModelInstance, this));
 			}
 			return returned;
 		} catch (TypeMismatchException e) {

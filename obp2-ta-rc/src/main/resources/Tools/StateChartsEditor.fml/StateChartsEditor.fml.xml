@@ -36,7 +36,4 @@
   <DeletionScheme id="SYL-51" label="delete" name="delete" width="800" height="600" userID="SYL" flexoID="51">
     <BehaviourControlGraph_EmptyControlGraph id="SYL-52" userID="SYL" flexoID="52" />
   </DeletionScheme>
-  <ActionScheme id="SYL-63" visibility="Public" label="prout" name="prout" width="800" height="600" userID="SYL" flexoID="63">
-    <BehaviourControlGraph_ExpressionAction id="SYL-64" expression="stateChartsSemantics.makeInitialConfiguration(modelChecking.bfsAnalysis)" userID="SYL" flexoID="64" />
-  </ActionScheme>
 </VirtualModel>

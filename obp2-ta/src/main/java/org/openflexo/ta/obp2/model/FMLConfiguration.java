@@ -41,8 +41,13 @@ package org.openflexo.ta.obp2.model;
 import java.util.List;
 
 import org.openflexo.foundation.fml.FlexoRole;
+import org.openflexo.foundation.fml.rm.VirtualModelResource;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
+import org.openflexo.foundation.resource.SaveResourceException;
+import org.openflexo.pamela.exceptions.ModelDefinitionException;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResource;
+import org.openflexo.ta.obp2.rm.OBP2AnalysisResourceFactory;
 import org.openflexo.toolbox.StringUtils;
 
 import plug.core.IConfiguration;
@@ -58,8 +63,11 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 
 	// private static List<FMLConfiguration> configs = new ArrayList<FMLConfiguration>();
 
-	public FMLConfiguration(VirtualModelInstance<?, ?> base) {
+	private final FMLTransitionRelation transitionRelation;
+
+	public FMLConfiguration(VirtualModelInstance<?, ?> base, FMLTransitionRelation transitionRelation) {
 		super(base);
+		this.transitionRelation = transitionRelation;
 		// configs.add(this);
 		/*if (configs.size() == 4) {
 			FMLConfiguration config0 = configs.get(0);
@@ -134,9 +142,28 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 
 	@Override
 	public FMLConfiguration createCopy() {
-		// VirtualModelInstance<?, ?> baseCopy = cloneVirtualModelInstance(getBase());
-		VirtualModelInstance<?, ?> baseCopy = getBase().cloneUsingRoles(getBase().getFactory());
-		FMLConfiguration returned = new FMLConfiguration(baseCopy);
+		OBP2Analysis baseCopy = (OBP2Analysis) getBase().cloneUsingRoles(getBase().getFactory());
+
+		try {
+			OBP2AnalysisResourceFactory factory = getOBP2TechnologyAdapter().getOBP2AnalysisResourceFactory();
+			String baseName = "Configuration" + transitionRelation.getNextId();
+			OBP2AnalysisResource newResource;
+			newResource = factory.makeContainedFMLRTVirtualModelInstanceResource(baseName,
+					(VirtualModelResource) getBase().getVirtualModel().getResource(),
+					(OBP2AnalysisResource) getBase().getResource().getContainer(), getOBP2TechnologyAdapter().getTechnologyContextManager(),
+					false);
+			System.out.println("New resource " + newResource + " in " + newResource.getIODelegate().getSerializationArtefact());
+			baseCopy.setResource(newResource);
+			newResource.setResourceData(baseCopy);
+		} catch (SaveResourceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ModelDefinitionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		FMLConfiguration returned = new FMLConfiguration(baseCopy, transitionRelation);
 		System.out.println("NEW FMLConfiguration " + Integer.toHexString(returned.hashCode()));
 		System.out.println(render());
 		return returned;

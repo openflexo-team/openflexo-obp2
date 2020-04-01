@@ -38,7 +38,9 @@
 
 package org.openflexo.ta.obp2.model;
 
+import org.openflexo.foundation.FlexoServiceManager;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
+import org.openflexo.ta.obp2.OBP2TechnologyAdapter;
 
 /**
  * Base class used to provide features based on a {@link VirtualModelInstance}
@@ -55,5 +57,19 @@ public abstract class VirtualModelInstanceWrapper extends FlexoConceptInstanceWr
 	@Override
 	public VirtualModelInstance<?, ?> getBase() {
 		return (VirtualModelInstance<?, ?>) super.getBase();
+	}
+
+	public FlexoServiceManager getServiceManager() {
+		if (getBase() != null) {
+			return getBase().getServiceManager();
+		}
+		return null;
+	}
+
+	public OBP2TechnologyAdapter getOBP2TechnologyAdapter() {
+		if (getServiceManager() != null) {
+			return getServiceManager().getTechnologyAdapterService().getTechnologyAdapter(OBP2TechnologyAdapter.class);
+		}
+		return null;
 	}
 }

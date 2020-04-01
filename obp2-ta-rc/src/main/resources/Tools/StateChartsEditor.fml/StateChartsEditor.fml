@@ -32,9 +32,4 @@ public class StateChartsEditor {
   
   }  
 
-  @ActionScheme  
-  public Void prout() {  
-    stateChartsSemantics.makeInitialConfiguration(modelChecking.bfsAnalysis)  
-  }  
-
 }
