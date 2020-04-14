@@ -67,7 +67,7 @@ public class CreateBasicOBP2AnalysisWizard extends AbstractCreateVirtualModelIns
 
 	@Override
 	public Image getDefaultPageImage() {
-		return IconFactory.getImageIcon(OBP2IconLibrary.OBP2_TA_BIG_ICON, IconLibrary.NEW_32_32).getImage();
+		return IconFactory.getImageIcon(OBP2IconLibrary.OBP2_TA_BIG_ICON, IconLibrary.BIG_NEW_MARKER).getImage();
 	}
 
 	@Override

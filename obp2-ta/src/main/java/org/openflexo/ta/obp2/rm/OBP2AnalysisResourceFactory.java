@@ -228,7 +228,7 @@ public class OBP2AnalysisResourceFactory
 	}
 
 	@Override
-	protected <I> OBP2AnalysisResource registerResource(OBP2AnalysisResource resource, FlexoResourceCenter<I> resourceCenter) {
+	public <I> OBP2AnalysisResource registerResource(OBP2AnalysisResource resource, FlexoResourceCenter<I> resourceCenter) {
 		super.registerResource(resource, resourceCenter);
 
 		// Register the resource in the VirtualModelInstanceRepository of supplied resource center
