@@ -41,7 +41,7 @@ package org.openflexo.ta.obp2.model;
 import java.util.List;
 
 import org.openflexo.foundation.fml.FlexoRole;
-import org.openflexo.foundation.fml.rm.VirtualModelResource;
+import org.openflexo.foundation.fml.rm.CompilationUnitResource;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
 import org.openflexo.foundation.resource.SaveResourceException;
@@ -149,7 +149,7 @@ public class FMLConfiguration extends VirtualModelInstanceWrapper implements ICo
 			String baseName = "Configuration" + transitionRelation.getNextId();
 			OBP2AnalysisResource newResource;
 			newResource = factory.makeContainedFMLRTVirtualModelInstanceResource(baseName,
-					(VirtualModelResource) getBase().getVirtualModel().getResource(),
+					(CompilationUnitResource) getBase().getVirtualModel().getResource(),
 					(OBP2AnalysisResource) getBase().getResource().getContainer(), getOBP2TechnologyAdapter().getTechnologyContextManager(),
 					false);
 			System.out.println("New resource " + newResource + " in " + newResource.getIODelegate().getSerializationArtefact());

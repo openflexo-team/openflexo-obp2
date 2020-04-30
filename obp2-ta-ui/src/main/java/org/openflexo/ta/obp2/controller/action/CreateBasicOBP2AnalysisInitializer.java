@@ -78,7 +78,8 @@ public class CreateBasicOBP2AnalysisInitializer extends ActionInitializer<Create
 					&& ((FMLRTVirtualModelInstance) action.getFocusedObject()).getVirtualModel() != null) {
 				// @Brutal
 				// TODO: Instead of doing this, it would be better to handle resources in wizard FIB
-				((FMLRTVirtualModelInstance) action.getFocusedObject()).getVirtualModel().loadContainedVirtualModelsWhenUnloaded();
+				System.out.println("TODO: load contained resources");
+				// ((FMLRTVirtualModelInstance) action.getFocusedObject()).getVirtualModel().loadContainedVirtualModelsWhenUnloaded();
 			}
 			Wizard wizard = new CreateBasicOBP2AnalysisWizard(action, getController());
 			WizardDialog dialog = new WizardDialog(wizard, getController());

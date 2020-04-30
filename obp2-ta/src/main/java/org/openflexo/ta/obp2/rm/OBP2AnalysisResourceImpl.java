@@ -106,7 +106,7 @@ public abstract class OBP2AnalysisResourceImpl extends AbstractVirtualModelInsta
 	public List<OBP2AnalysisResource> getVirtualModelInstanceResources(VirtualModel virtualModel) {
 		List<OBP2AnalysisResource> returned = new ArrayList<>();
 		for (OBP2AnalysisResource vmiRes : getVirtualModelInstanceResources()) {
-			if (virtualModel.isAssignableFrom(vmiRes.getVirtualModelResource().getVirtualModel())) {
+			if (virtualModel.isAssignableFrom(vmiRes.getVirtualModelResource().getCompilationUnit().getVirtualModel())) {
 				returned.add(vmiRes);
 			}
 		}
@@ -133,16 +133,6 @@ public abstract class OBP2AnalysisResourceImpl extends AbstractVirtualModelInsta
 			return getIODelegate().getSerializationArtefactAsResource().getContainer();
 		}
 		return null;
-	}
-
-	@Override
-	public OBP2Analysis getModelData() {
-		return getVirtualModelInstance();
-	}
-
-	@Override
-	public OBP2Analysis getModel() {
-		return getVirtualModelInstance();
 	}
 
 	@Override

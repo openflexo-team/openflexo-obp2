@@ -40,11 +40,10 @@ package org.openflexo.ta.obp2.rm;
 
 import java.util.List;
 
-import org.openflexo.foundation.fml.FMLTechnologyAdapter;
 import org.openflexo.foundation.fml.VirtualModel;
 import org.openflexo.foundation.fml.rt.rm.AbstractVirtualModelInstanceResource;
 import org.openflexo.foundation.resource.FlexoResource;
-import org.openflexo.foundation.technologyadapter.FlexoModelResource;
+import org.openflexo.foundation.technologyadapter.TechnologyAdapterResource;
 import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
 import org.openflexo.pamela.annotations.XMLElement;
@@ -61,7 +60,7 @@ import org.openflexo.ta.obp2.model.OBP2Analysis;
 @ImplementationClass(OBP2AnalysisResourceImpl.class)
 @XMLElement
 public interface OBP2AnalysisResource extends AbstractVirtualModelInstanceResource<OBP2Analysis, OBP2TechnologyAdapter>,
-		FlexoModelResource<OBP2Analysis, VirtualModel, OBP2TechnologyAdapter, FMLTechnologyAdapter> {
+		TechnologyAdapterResource<OBP2Analysis, OBP2TechnologyAdapter> {
 
 	/**
 	 * Return the list of all {@link VirtualModelInstanceResource} defined in this {@link ViewResource}

@@ -42,6 +42,7 @@ import java.util.logging.Logger;
 
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceRepository;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
+import org.openflexo.foundation.fml.rt.rm.AbstractVirtualModelInstanceResource;
 import org.openflexo.pamela.annotations.ImplementationClass;
 import org.openflexo.pamela.annotations.ModelEntity;
 import org.openflexo.pamela.annotations.XMLElement;
@@ -70,7 +71,7 @@ public interface OBP2Analysis extends VirtualModelInstance<OBP2Analysis, OBP2Tec
 		@Override
 		public OBP2TechnologyAdapter getTechnologyAdapter() {
 			if (getResource() != null) {
-				return getResource().getTechnologyAdapter();
+				return ((AbstractVirtualModelInstanceResource<?, OBP2TechnologyAdapter>) getResource()).getTechnologyAdapter();
 			}
 			return null;
 		}

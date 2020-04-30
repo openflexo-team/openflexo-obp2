@@ -53,7 +53,7 @@ import org.openflexo.foundation.FlexoEditor;
 import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.FlexoProject;
 import org.openflexo.foundation.fml.VirtualModel;
-import org.openflexo.foundation.fml.rm.VirtualModelResource;
+import org.openflexo.foundation.fml.rm.CompilationUnitResource;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.rm.FMLRTVirtualModelInstanceResource;
 import org.openflexo.foundation.project.FlexoProjectResource;
@@ -124,14 +124,14 @@ public class TestBasicBFSCheckOnSimpleStateChart extends OpenflexoProjectAtRunTi
 				.getResource(PROJECT_URI + "/AliceStateChartsLibrary.fml.rt");
 		assertNotNull(aliceSCLibraryResource);
 
-		VirtualModelResource aliceExecutionModelResource = (VirtualModelResource) project
+		CompilationUnitResource aliceExecutionModelResource = (CompilationUnitResource) project
 				.getResource(PROJECT_URI + "/AliceExecutionModel.fml");
 		assertNotNull(aliceExecutionModelResource);
 
 		alice = aliceResource.getResourceData();
 		aliceSemantics = aliceSemanticsResource.getResourceData();
 		aliceStateChartsLibrary = aliceSCLibraryResource.getResourceData();
-		aliceExecutionModel = aliceExecutionModelResource.getResourceData();
+		aliceExecutionModel = aliceExecutionModelResource.getResourceData().getVirtualModel();
 
 	}
 

@@ -49,7 +49,7 @@ import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.fml.VirtualModel;
 import org.openflexo.foundation.fml.VirtualModelInstanceType;
 import org.openflexo.foundation.fml.annotations.FML;
-import org.openflexo.foundation.fml.rm.VirtualModelResource;
+import org.openflexo.foundation.fml.rm.CompilationUnitResource;
 import org.openflexo.foundation.fml.rt.RunTimeEvaluationContext;
 import org.openflexo.foundation.fml.rt.VirtualModelInstance;
 import org.openflexo.foundation.fml.rt.action.FlexoBehaviourAction;
@@ -77,7 +77,8 @@ public interface AddOBP2Analysis<VMI extends VirtualModelInstance<VMI, ?>> exten
 	 * 
 	 * @return
 	 */
-	public VirtualModelResource getOwnerVirtualModelResource();
+	@Override
+	public CompilationUnitResource getOwnerVirtualModelResource();
 
 	public static abstract class AddOBP2AnalysisImpl<VMI extends VirtualModelInstance<VMI, ?>>
 			extends AbstractAddVirtualModelInstanceImpl<OBP2Analysis, VMI> implements AddOBP2Analysis<VMI> {
@@ -96,11 +97,11 @@ public interface AddOBP2Analysis<VMI extends VirtualModelInstance<VMI, ?>> exten
 		}
 
 		@Override
-		public VirtualModelResource getOwnerVirtualModelResource() {
+		public CompilationUnitResource getOwnerVirtualModelResource() {
 			if (getReceiver().isSet() && getReceiver().isValid()) {
 				Type type = getReceiver().getAnalyzedType();
 				if (type instanceof VirtualModelInstanceType) {
-					return (VirtualModelResource) ((VirtualModelInstanceType) type).getVirtualModel().getResource();
+					return ((VirtualModelInstanceType) type).getVirtualModel().getResource();
 				}
 			}
 			return null;

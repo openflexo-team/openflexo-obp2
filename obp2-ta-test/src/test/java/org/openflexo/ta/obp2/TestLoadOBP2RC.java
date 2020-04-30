@@ -48,7 +48,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.fml.VirtualModel;
-import org.openflexo.foundation.fml.rm.VirtualModelResource;
+import org.openflexo.foundation.fml.rm.CompilationUnitResource;
 import org.openflexo.foundation.resource.FlexoResource;
 import org.openflexo.foundation.resource.FlexoResourceCenter;
 import org.openflexo.foundation.resource.FlexoResourceCenterService;
@@ -72,20 +72,20 @@ public class TestLoadOBP2RC extends OpenflexoTestCase {
 	private static FlexoResourceCenter<?> modellerRC;
 	private static FlexoResourceCenter<?> obp2RC;
 
-	private static VirtualModelResource stateChartsVMResource;
-	private static VirtualModelResource stateChartsModelVMResource;
-	private static VirtualModelResource stateChartsDiagramVMResource;
+	private static CompilationUnitResource stateChartsVMResource;
+	private static CompilationUnitResource stateChartsModelVMResource;
+	private static CompilationUnitResource stateChartsDiagramVMResource;
 
-	private static VirtualModelResource iTransitionRelationVMResource;
-	private static VirtualModelResource obp2AnalysisVMResource;
-	private static VirtualModelResource abstractAnalysisVMResource;
-	private static VirtualModelResource bfsAnalysisVMResource;
-	private static VirtualModelResource coreSemanticsVMResource;
-	private static VirtualModelResource coreExecutionModelVMResource;
-	private static VirtualModelResource stateChartsExecutionModelVMResource;
-	private static VirtualModelResource stateChartsSemanticsVMResource;
-	private static VirtualModelResource stateChartEditorVMResource;
-	private static VirtualModelResource executableStateChartVMResource;
+	private static CompilationUnitResource iTransitionRelationVMResource;
+	private static CompilationUnitResource obp2AnalysisVMResource;
+	private static CompilationUnitResource abstractAnalysisVMResource;
+	private static CompilationUnitResource bfsAnalysisVMResource;
+	private static CompilationUnitResource coreSemanticsVMResource;
+	private static CompilationUnitResource coreExecutionModelVMResource;
+	private static CompilationUnitResource stateChartsExecutionModelVMResource;
+	private static CompilationUnitResource stateChartsSemanticsVMResource;
+	private static CompilationUnitResource stateChartEditorVMResource;
+	private static CompilationUnitResource executableStateChartVMResource;
 
 	@Test
 	@TestOrder(1)
@@ -103,16 +103,16 @@ public class TestLoadOBP2RC extends OpenflexoTestCase {
 			System.out.println(" > " + (resource.isLoaded() ? "*" : " ") + " " + resource.getURI());
 		}
 
-		stateChartsVMResource = (VirtualModelResource) modellerRC.getResource("http://openflexo.org/modellers/StateCharts.fml");
+		stateChartsVMResource = (CompilationUnitResource) modellerRC.getResource("http://openflexo.org/modellers/StateCharts.fml");
 		assertNotNull(stateChartsVMResource);
 		assertFalse(stateChartsVMResource.isLoaded());
 
-		stateChartsModelVMResource = (VirtualModelResource) modellerRC
+		stateChartsModelVMResource = (CompilationUnitResource) modellerRC
 				.getResource("http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml");
 		assertNotNull(stateChartsModelVMResource);
 		assertFalse(stateChartsModelVMResource.isLoaded());
 
-		stateChartsDiagramVMResource = (VirtualModelResource) modellerRC
+		stateChartsDiagramVMResource = (CompilationUnitResource) modellerRC
 				.getResource("http://openflexo.org/modellers/StateCharts.fml/StateChartDiagram.fml");
 		assertNotNull(stateChartsDiagramVMResource);
 		assertFalse(stateChartsDiagramVMResource.isLoaded());
@@ -124,48 +124,49 @@ public class TestLoadOBP2RC extends OpenflexoTestCase {
 			System.out.println(" > " + (resource.isLoaded() ? "*" : " ") + " " + resource.getURI());
 		}
 
-		iTransitionRelationVMResource = (VirtualModelResource) obp2RC.getResource("http://openflexo.org/obp2/ITransitionRelation.fml");
+		iTransitionRelationVMResource = (CompilationUnitResource) obp2RC.getResource("http://openflexo.org/obp2/ITransitionRelation.fml");
 		assertNotNull(iTransitionRelationVMResource);
 		assertFalse(iTransitionRelationVMResource.isLoaded());
 
-		obp2AnalysisVMResource = (VirtualModelResource) obp2RC.getResource("http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml");
+		obp2AnalysisVMResource = (CompilationUnitResource) obp2RC.getResource("http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml");
 		assertNotNull(obp2AnalysisVMResource);
 		assertFalse(obp2AnalysisVMResource.isLoaded());
 
-		abstractAnalysisVMResource = (VirtualModelResource) obp2RC
+		abstractAnalysisVMResource = (CompilationUnitResource) obp2RC
 				.getResource("http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/AbstractAnalysis.fml");
 		assertNotNull(abstractAnalysisVMResource);
 		assertFalse(abstractAnalysisVMResource.isLoaded());
 
-		bfsAnalysisVMResource = (VirtualModelResource) obp2RC
+		bfsAnalysisVMResource = (CompilationUnitResource) obp2RC
 				.getResource("http://openflexo.org/obp2/API/OBP2AnalysisVirtualModel.fml/BFSAnalysis.fml");
 		assertNotNull(bfsAnalysisVMResource);
 		assertFalse(bfsAnalysisVMResource.isLoaded());
 
-		coreSemanticsVMResource = (VirtualModelResource) obp2RC.getResource("http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml");
+		coreSemanticsVMResource = (CompilationUnitResource) obp2RC
+				.getResource("http://openflexo.org/obp2/Semantics/Core/CoreSemantics.fml");
 		assertNotNull(coreSemanticsVMResource);
 		assertFalse(coreSemanticsVMResource.isLoaded());
 
-		coreExecutionModelVMResource = (VirtualModelResource) obp2RC
+		coreExecutionModelVMResource = (CompilationUnitResource) obp2RC
 				.getResource("http://openflexo.org/obp2/Semantics/Core/CoreExecutionModel.fml");
 		assertNotNull(coreExecutionModelVMResource);
 		assertFalse(coreExecutionModelVMResource.isLoaded());
 
-		stateChartsExecutionModelVMResource = (VirtualModelResource) obp2RC
+		stateChartsExecutionModelVMResource = (CompilationUnitResource) obp2RC
 				.getResource("http://openflexo.org/obp2/resources/Semantics/StateCharts/StateChartsExecutionModel.fml");
 		assertNotNull(stateChartsExecutionModelVMResource);
 		assertFalse(stateChartsExecutionModelVMResource.isLoaded());
 
-		stateChartsSemanticsVMResource = (VirtualModelResource) obp2RC
+		stateChartsSemanticsVMResource = (CompilationUnitResource) obp2RC
 				.getResource("http://openflexo.org/obp2/Semantics/StateCharts/StateChartsSemantics.fml");
 		assertNotNull(stateChartsSemanticsVMResource);
 		assertFalse(stateChartsSemanticsVMResource.isLoaded());
 
-		stateChartEditorVMResource = (VirtualModelResource) obp2RC.getResource("http://openflexo.org/obp2/Tools/StateChartsEditor.fml");
+		stateChartEditorVMResource = (CompilationUnitResource) obp2RC.getResource("http://openflexo.org/obp2/Tools/StateChartsEditor.fml");
 		assertNotNull(stateChartEditorVMResource);
 		assertFalse(stateChartEditorVMResource.isLoaded());
 
-		executableStateChartVMResource = (VirtualModelResource) obp2RC
+		executableStateChartVMResource = (CompilationUnitResource) obp2RC
 				.getResource("http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml");
 		assertNotNull(executableStateChartVMResource);
 		assertFalse(executableStateChartVMResource.isLoaded());

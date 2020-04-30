@@ -23,7 +23,7 @@ package org.openflexo.ta.obp2.rm;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import org.openflexo.foundation.fml.rm.VirtualModelResource;
+import org.openflexo.foundation.fml.rm.CompilationUnitResource;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.rm.AbstractVirtualModelInstanceResource;
 import org.openflexo.foundation.fml.rt.rm.AbstractVirtualModelInstanceResourceFactory;
@@ -70,7 +70,7 @@ public class OBP2AnalysisResourceFactory
 	 * 
 	 * @param baseName
 	 * @param uri
-	 * @param virtualModelResource
+	 * @param compilationUnitResource
 	 * @param folder
 	 * @param technologyContextManager
 	 * @param createEmptyContents
@@ -79,7 +79,7 @@ public class OBP2AnalysisResourceFactory
 	 * @throws ModelDefinitionException
 	 */
 	public <I> OBP2AnalysisResource makeTopLevelFMLRTVirtualModelInstanceResource(String baseName, String uri,
-			VirtualModelResource virtualModelResource, RepositoryFolder<OBP2AnalysisResource, I> folder, boolean createEmptyContents)
+			CompilationUnitResource compilationUnitResource, RepositoryFolder<OBP2AnalysisResource, I> folder, boolean createEmptyContents)
 			throws SaveResourceException, ModelDefinitionException {
 
 		FlexoResourceCenter<I> resourceCenter = folder.getResourceRepository().getResourceCenter();
@@ -87,12 +87,12 @@ public class OBP2AnalysisResourceFactory
 				folder.getSerializationArtefact());
 
 		OBP2AnalysisResource returned = initResourceForCreation(serializationArtefact, resourceCenter, baseName, uri);
-		returned.setVirtualModelResource(virtualModelResource);
+		returned.setVirtualModelResource(compilationUnitResource);
 		registerResource(returned, resourceCenter);
 
 		if (createEmptyContents) {
 			OBP2Analysis resourceData = createEmptyContents(returned);
-			resourceData.setVirtualModel(virtualModelResource.getVirtualModel());
+			resourceData.setVirtualModel(compilationUnitResource.getCompilationUnit().getVirtualModel());
 			returned.save();
 			if (resourceData.getFMLRunTimeEngine() != null) {
 				// TODO: today FMLRTVirtualModelInstance is a RunTimeEvaluationContext
@@ -110,7 +110,7 @@ public class OBP2AnalysisResourceFactory
 	 * in supplied container {@link AbstractVirtualModelInstanceResource}
 	 * 
 	 * @param baseName
-	 * @param virtualModelResource
+	 * @param compilationUnitResource
 	 * @param containerResource
 	 * @param technologyContextManager
 	 * @param createEmptyContents
@@ -119,7 +119,7 @@ public class OBP2AnalysisResourceFactory
 	 * @throws ModelDefinitionException
 	 */
 	public <I> OBP2AnalysisResource makeContainedFMLRTVirtualModelInstanceResource(String baseName,
-			VirtualModelResource virtualModelResource, AbstractVirtualModelInstanceResource<?, ?> containerResource,
+			CompilationUnitResource compilationUnitResource, AbstractVirtualModelInstanceResource<?, ?> containerResource,
 			TechnologyContextManager<OBP2TechnologyAdapter> technologyContextManager, boolean createEmptyContents)
 			throws SaveResourceException, ModelDefinitionException {
 
@@ -131,12 +131,12 @@ public class OBP2AnalysisResourceFactory
 		String viewURI = containerResource.getURI() + "/" + (baseName.endsWith(OBP2_SUFFIX) ? baseName : (baseName + OBP2_SUFFIX));
 
 		OBP2AnalysisResource returned = initResourceForCreation(serializationArtefact, resourceCenter, baseName, viewURI);
-		returned.setVirtualModelResource(virtualModelResource);
+		returned.setVirtualModelResource(compilationUnitResource);
 		registerResource(returned, resourceCenter);
 
 		if (createEmptyContents) {
 			OBP2Analysis resourceData = createEmptyContents(returned);
-			resourceData.setVirtualModel(virtualModelResource.getVirtualModel());
+			resourceData.setVirtualModel(compilationUnitResource.getCompilationUnit().getVirtualModel());
 			returned.save();
 			if (resourceData.getFMLRunTimeEngine() != null) {
 				// TODO: today FMLRTVirtualModelInstance is a RunTimeEvaluationContext
@@ -299,8 +299,8 @@ public class OBP2AnalysisResourceFactory
 				returned.setModelVersion(CURRENT_OBP2_VERSION);
 			}
 			if (StringUtils.isNotEmpty(vmiInfo.virtualModelURI)) {
-				VirtualModelResource vmResource = resourceCenter.getServiceManager().getVirtualModelLibrary()
-						.getVirtualModelResource(vmiInfo.virtualModelURI);
+				CompilationUnitResource vmResource = resourceCenter.getServiceManager().getVirtualModelLibrary()
+						.getCompilationUnitResource(vmiInfo.virtualModelURI);
 				returned.setVirtualModelResource(vmResource);
 				if (vmResource == null) {
 					// In this case, serialize URI of virtual model, to give a chance to find it later
