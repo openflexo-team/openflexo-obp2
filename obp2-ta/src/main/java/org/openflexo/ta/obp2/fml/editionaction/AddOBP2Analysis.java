@@ -86,7 +86,7 @@ public interface AddOBP2Analysis<VMI extends VirtualModelInstance<VMI, ?>> exten
 
 		@Override
 		public Class<VMI> getVirtualModelInstanceClass() {
-			return (Class<VMI>) VirtualModelInstance.class;
+			return (Class) VirtualModelInstance.class;
 		}
 
 		@Override

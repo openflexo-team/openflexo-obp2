@@ -4,4 +4,5 @@
     <Inspector id="SYL-7" inspectorTitle="AliceStateChartExecutionUnit" userID="SYL" flexoID="7" />
   </FlexoConcept>
   <Inspector id="SYL-1" inspectorTitle="AliceExecutionModel" userID="SYL" flexoID="1" />
+  <PrimitiveRole id="SYL-14" primitiveType="String" cloningStrategy="Clone" cardinality="ZeroOne" name="toto" userID="SYL" flexoID="14" />
 </VirtualModel>

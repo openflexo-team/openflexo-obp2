@@ -1,8 +1,8 @@
 #Metadata for directory /Users/sylvain/GIT-2.0.0/openflexo-obp2/obp2-ta-test-rc/src/main/resources/PRJ/TestBasicBFSCheckOnSimpleStateChart.prj/AliceExecutionModel.fml
-#Sun Mar 29 12:53:05 CEST 2020
+#Fri Apr 10 17:13:41 CEST 2020
 AliceExecutionModel.fml.xml.name=AliceExecutionModel
-AliceExecutionModel.fml.xml.requiredModelSlotList=
 AliceExecutionModel.fml.xml.uri=http\://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceExecutionModel.fml
-AliceExecutionModel.fml.xml.modelVersion=2.0
+AliceExecutionModel.fml.xml.requiredModelSlotList=
 AliceExecutionModel.fml.xml.virtualModelClassName=org.openflexo.foundation.fml.VirtualModel
+AliceExecutionModel.fml.xml.modelVersion=2.0
 AliceExecutionModel.fml.xml.version=0.1

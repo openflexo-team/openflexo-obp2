@@ -6,6 +6,8 @@
 @VirtualModel(uri="http://www.openflexo.org/obp2/test/TestBasicCheckOnSimpleStateChart.prj/AliceExecutionModel.fml")
 public class AliceExecutionModel extends StateChartsExecutionModel  {
 
+  public String toto;
+
   @FlexoConcept  
   public class AliceStateChartExecutionUnit extends StateChartExecutionUnit  {  
   }  
