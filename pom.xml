@@ -23,7 +23,7 @@
 		<flexocore.version>2.0.0</flexocore.version>
 		<poi.version>3.12</poi.version>
 		<ta.logo>https://support.openflexo.org/images/components/ta/pdf_ta/PDF-icon.png</ta.logo>
-	    <sitedeploy.dir>/home/www/sites/openflexo-pdf</sitedeploy.dir>
+	    <sitedeploy.dir>/home/www/sites/openflexo-obp2</sitedeploy.dir>
 	</properties>
 	<scm>
 		<connection>scm:git:ssh://git@github.com/openflexo-team/openflexo-pdf.git</connection>
