@@ -35,7 +35,7 @@
 			img="https://support.openflexo.org/images/components/ta/obp2_ta/OBP2-200.png">
 	</menu>
 
-    <menu name="OBP2 connector">
+    <menu name="OBP2 connector UI">
       <item name="Home" 		href="index.html" />
       <item name="Javadoc"    	href="./apidocs/index.html" />
     </menu>
