@@ -19,22 +19,3 @@ dependencies {
 
 }
 
-/*buildscript {
-    repositories {
-        maven { url uri('https://maven.openflexo.org/artifactory/openflexo-deps/') }
-  		maven { url "https://dl.bintray.com/plug-obp/maven/" }
-    }
-    dependencies {
-    	 compile flexoFoundation()
-		  compile 'fr.ensta-bretagne:plug-core:0.0.8'
-
-	  // testing dep
-  	testCompile testUtils()
-  	testCompile flexoFoundationTest()
-   }
-}
-
-version = "2.0.0"
-apply plugin: 'org.openflexo.buildconfig'*/
-
-
