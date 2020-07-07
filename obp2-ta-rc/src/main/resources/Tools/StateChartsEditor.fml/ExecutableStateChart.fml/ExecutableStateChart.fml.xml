@@ -3,7 +3,7 @@
   <FlexoConcept id="SYL-32" name="StateGR" userID="SYL" flexoID="32">
     <Inspector id="SYL-28" inspectorTitle="StateGR" userID="SYL" flexoID="28" />
     <ShapeRole id="SYL-46" previewHeight="35.26315789473684" previewY="82.36842105263158" previewX="93.40796019900498" previewWidth="63.18407960199006" exampleLabel="Status" metamodelElementReference="http://openflexo.org/modellers/StateCharts/StateChartDiagram.diagramspecification/ExampleDiagram.diagram#SYL_2" cloningStrategy="Clone" cardinality="ZeroOne" name="shape" userID="SYL" flexoID="46">
-      <GRSpec id="SYL-185" featureName="label" value="state.name" userID="SYL" flexoID="185" />
+      <GRSpec id="SYL-200" featureName="label" value="state.name" userID="SYL" flexoID="200" />
     </ShapeRole>
     <FlexoConceptInstanceRole id="SYL-34" virtualModelInstance="model" flexoConceptTypeURI="http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#State" cloningStrategy="Reference" cardinality="ZeroOne" name="state" userID="SYL" flexoID="34" />
     <DropScheme id="SYL-33" target="top" label="dropStateGRAtTopLevel" name="dropStateGRAtTopLevel" width="800" height="600" userID="SYL" flexoID="33">
@@ -22,7 +22,7 @@
   <FlexoConcept id="SYL-56" name="TransitionGR" userID="SYL" flexoID="56">
     <Inspector id="SYL-52" inspectorTitle="TransitionGR" userID="SYL" flexoID="52" />
     <ConnectorRole id="SYL-61" exampleLabel="transition" metamodelElementReference="http://openflexo.org/modellers/StateCharts/StateChartDiagram.diagramspecification/ExampleDiagram.diagram#SYL_4" cloningStrategy="Clone" cardinality="ZeroOne" name="connector" userID="SYL" flexoID="61">
-      <GRSpec id="SYL-186" featureName="label" value="transition.label" userID="SYL" flexoID="186" />
+      <GRSpec id="SYL-201" featureName="label" value="transition.label" userID="SYL" flexoID="201" />
     </ConnectorRole>
     <FlexoConceptInstanceRole id="SYL-105" virtualModelInstance="model" flexoConceptTypeURI="http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#Transition" cloningStrategy="Reference" cardinality="ZeroOne" name="transition" userID="SYL" flexoID="105" />
     <LinkScheme id="SYL-57" northDirectionSupported="true" eastDirectionSupported="true" fromTarget="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#StateGR" toTarget="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#StateGR" westDirectionSupported="true" isAvailableWithFloatingPalette="true" southDirectionSupported="true" label="linkStateGRToStateGR" name="linkStateGRToStateGR" width="800" height="600" userID="SYL" flexoID="57">
@@ -46,7 +46,7 @@
     <FlexoConceptInstanceRole id="SYL-92" virtualModelInstance="model" flexoConceptTypeURI="http://openflexo.org/modellers/StateCharts.fml/StateChartModel.fml#InitialTransition" cloningStrategy="Reference" cardinality="ZeroOne" name="initialTransition" userID="SYL" flexoID="92" />
     <ConnectorRole id="SYL-114" exampleLabel="init" metamodelElementReference="http://openflexo.org/modellers/StateCharts/StateChartDiagram.diagramspecification/ExampleDiagram.diagram#SYL_6" cloningStrategy="Clone" cardinality="ZeroOne" name="connector" userID="SYL" flexoID="114">
       <StartShape_ShapeRole idref="SYL-91" />
-      <GRSpec id="SYL-187" featureName="label" value="initialTransition.label" userID="SYL" flexoID="187" />
+      <GRSpec id="SYL-202" featureName="label" value="initialTransition.label" userID="SYL" flexoID="202" />
     </ConnectorRole>
     <DropScheme id="SYL-79" target="http://openflexo.org/obp2/Tools/StateChartsEditor.fml/ExecutableStateChart.fml#StateGR" label="dropInitialTransitionGRAtTopLevel" name="dropInitialTransitionGRAtTopLevel" width="800" height="600" userID="SYL" flexoID="79">
       <BehaviourControlGraph_Sequence id="SYL-138" userID="SYL" flexoID="138">
