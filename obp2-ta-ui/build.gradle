@@ -1,16 +1,13 @@
 dependencies {
-  compile project(":obp2-ta")
+  implementation project(":obp2-ta")
 
   // openflexo dep
-  compile flexoUi()
- 
-  compile fmlTechnologyAdapterUi()
-  compile fmlRtTechnologyAdapterUi()
+  implementation flexoUi()
+
+  implementation fmlTechnologyAdapterUi()
+  implementation fmlRtTechnologyAdapterUi()
 
   // external dep
   // testing dep
-  testCompile flexoUiTest()
-
-  // Test resource center, if required
- // testRuntime project(':obp2-ta-test-rc')
+  testImplementation flexoUiTest()
 }

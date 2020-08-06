@@ -1,18 +1,15 @@
 dependencies {
+    implementation project(':obp2-ta')
+    implementation project(':obp2-ta-rc')
+    implementation flexoFoundation()
 
-    compile project(':obp2-ta')
-    compile project(':obp2-ta-rc')
-    compile flexoFoundation()
-    
-    compile testUtils()
-    compile flexoFoundationTest()
- 
-    compile diagramConnector()
-    compile openflexo("modelers-api") 
- 	runtime openflexo("modelers-rc")
- 
+    implementation testUtils()
+    implementation flexoFoundationTest()
 
-	// Test resource center
-	testRuntime project(':obp2-ta-test-rc')
-  
+    implementation diagramConnector()
+    implementation openflexo("modelers-api")
+    runtimeOnly openflexo("modelers-rc")
+
+    // Test resource center
+    testRuntimeOnly project(':obp2-ta-test-rc')
 }
