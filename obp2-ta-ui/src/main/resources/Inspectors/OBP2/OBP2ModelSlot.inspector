@@ -19,7 +19,7 @@
 				label="transition_relation" />
 			<Custom manageDynamicModel="true" index="31"
 				dataClassForComponent="org.openflexo.connie.DataBinding"
-				componentClassName="org.openflexo.gina.swing.utils.BindingSelector"
+				componentClassName="org.openflexo.gina.swing.utils.JavaBindingSelector"
 				name="ContainerSelector" data="data.transitionRelation"
 				constraints="twocols(expandHorizontally=true;expandVertically=false;index=3;location=right)">
 				<Assignment mandatory="true" variable="component.bindable" />
